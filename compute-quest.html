@@ -1,0 +1,3131 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="playful" class="cq-light">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="theme-color" content="#7c3aed" />
+<title>ComputeQuest — KS3 Computing Practice · by Mr Borketey</title>
+<meta name="description" content="Practice computing for UK Year 7, 8 and 9. Free, no login, OCR-aligned, designed to feel like a game. Created by Mr Borketey (Harris Academy Purley)." />
+<meta name="author" content="Mr Borketey" />
+<meta name="copyright" content="© 2026 Mr Borketey. All rights reserved." />
+<meta name="contact" content="j.borketey@harrispurley.org.uk" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&family=JetBrains+Mono:wght@400;600&family=VT323&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    darkMode: ['class', '.cq-dark'],
+    theme: {
+      extend: {
+        colors: {
+          bg:      'var(--cq-bg)',
+          surface: 'var(--cq-surface)',
+          sunken:  'var(--cq-sunken)',
+          ink:     'var(--cq-ink)',
+          muted:   'var(--cq-muted)',
+          line:    'var(--cq-line)',
+          primary: 'var(--cq-primary)',
+          accent:  'var(--cq-accent)',
+          warn:    'var(--cq-warn)',
+          danger:  'var(--cq-danger)',
+          success: 'var(--cq-success)',
+        },
+        fontFamily: {
+          sans:    ['var(--cq-font-sans)','Inter','system-ui','sans-serif'],
+          display: ['var(--cq-font-display)','"Plus Jakarta Sans"','system-ui','sans-serif'],
+          mono:    ['"JetBrains Mono"','ui-monospace','monospace'],
+        },
+        borderRadius: { card: '20px', pill: '999px' },
+        boxShadow: {
+          card: 'var(--cq-shadow-card)',
+          glow: 'var(--cq-shadow-glow)',
+        },
+      },
+    },
+  };
+</script>
+<style>
+  /* ============================
+     THEME VARIABLES
+     ============================ */
+  :root {
+    --cq-font-sans: 'Inter';
+    --cq-font-display: '"Plus Jakarta Sans"';
+  }
+
+  /* PLAYFUL — bright violet + mint, friendly */
+  html[data-theme="playful"].cq-light {
+    --cq-bg:      hsl(252 100% 99%);
+    --cq-surface: hsl(0 0% 100%);
+    --cq-sunken:  hsl(252 40% 96%);
+    --cq-ink:     hsl(252 40% 12%);
+    --cq-muted:   hsl(252 12% 45%);
+    --cq-line:    hsl(252 30% 92%);
+    --cq-primary: hsl(258 89% 60%);
+    --cq-accent:  hsl(160 84% 42%);
+    --cq-warn:    hsl(38 92% 55%);
+    --cq-danger:  hsl(0 84% 60%);
+    --cq-success: hsl(142 70% 42%);
+    --cq-shadow-card: 0 1px 2px hsl(252 40% 12% / .04), 0 10px 30px hsl(258 60% 40% / .08);
+    --cq-shadow-glow: 0 10px 40px hsl(258 89% 60% / .25);
+    --cq-hero-gradient: radial-gradient(ellipse at top, hsl(258 89% 95%) 0%, hsl(252 100% 99%) 60%);
+  }
+  html[data-theme="playful"].cq-dark {
+    --cq-bg:      hsl(252 30% 8%);
+    --cq-surface: hsl(252 25% 12%);
+    --cq-sunken:  hsl(252 25% 10%);
+    --cq-ink:     hsl(252 30% 96%);
+    --cq-muted:   hsl(252 12% 65%);
+    --cq-line:    hsl(252 25% 20%);
+    --cq-primary: hsl(258 89% 68%);
+    --cq-accent:  hsl(160 70% 55%);
+    --cq-warn:    hsl(38 92% 60%);
+    --cq-danger:  hsl(0 84% 65%);
+    --cq-success: hsl(142 60% 55%);
+    --cq-shadow-card: 0 1px 2px hsl(0 0% 0% / .4), 0 10px 30px hsl(258 60% 5% / .5);
+    --cq-shadow-glow: 0 10px 40px hsl(258 89% 60% / .35);
+    --cq-hero-gradient: radial-gradient(ellipse at top, hsl(258 50% 18%) 0%, hsl(252 30% 8%) 60%);
+  }
+
+  /* NEON — cyberpunk dark with cyan/magenta */
+  html[data-theme="neon"] {
+    --cq-font-sans: '"JetBrains Mono"';
+    --cq-font-display: '"JetBrains Mono"';
+    --cq-bg:      hsl(240 30% 5%);
+    --cq-surface: hsl(240 25% 9%);
+    --cq-sunken:  hsl(240 25% 7%);
+    --cq-ink:     hsl(180 100% 92%);
+    --cq-muted:   hsl(220 20% 60%);
+    --cq-line:    hsl(280 50% 25%);
+    --cq-primary: hsl(180 100% 50%);
+    --cq-accent:  hsl(320 100% 60%);
+    --cq-warn:    hsl(50 100% 55%);
+    --cq-danger:  hsl(0 100% 60%);
+    --cq-success: hsl(135 100% 55%);
+    --cq-shadow-card: 0 0 1px hsl(180 100% 50% / .6), 0 0 30px hsl(320 100% 60% / .15);
+    --cq-shadow-glow: 0 0 30px hsl(180 100% 50% / .6);
+    --cq-hero-gradient: radial-gradient(ellipse at top, hsl(280 60% 15%) 0%, hsl(240 30% 5%) 60%);
+  }
+
+  /* RETRO — pixel/CRT amber-green */
+  html[data-theme="retro"] {
+    --cq-font-sans: 'VT323';
+    --cq-font-display: 'VT323';
+    --cq-bg:      hsl(35 30% 8%);
+    --cq-surface: hsl(35 25% 12%);
+    --cq-sunken:  hsl(35 25% 10%);
+    --cq-ink:     hsl(50 100% 70%);
+    --cq-muted:   hsl(50 50% 55%);
+    --cq-line:    hsl(120 40% 25%);
+    --cq-primary: hsl(120 70% 55%);
+    --cq-accent:  hsl(35 100% 60%);
+    --cq-warn:    hsl(50 100% 55%);
+    --cq-danger:  hsl(0 100% 65%);
+    --cq-success: hsl(120 80% 55%);
+    --cq-shadow-card: 0 0 1px hsl(120 70% 55% / .8), inset 0 0 60px hsl(0 0% 0% / .3);
+    --cq-shadow-glow: 0 0 20px hsl(120 70% 55% / .5);
+    --cq-hero-gradient: radial-gradient(ellipse at top, hsl(120 40% 12%) 0%, hsl(35 30% 8%) 60%);
+  }
+  html[data-theme="retro"] body { letter-spacing: 0.5px; }
+  html[data-theme="retro"]::before {
+    content:""; position:fixed; inset:0; pointer-events:none; z-index:50;
+    background: repeating-linear-gradient(0deg, transparent 0, transparent 2px, hsl(0 0% 0% / .06) 2px, hsl(0 0% 0% / .06) 3px);
+  }
+
+  /* MINIMAL — quiet near-monochrome */
+  html[data-theme="minimal"].cq-light {
+    --cq-bg:      hsl(40 20% 98%);
+    --cq-surface: hsl(0 0% 100%);
+    --cq-sunken:  hsl(40 15% 95%);
+    --cq-ink:     hsl(0 0% 9%);
+    --cq-muted:   hsl(0 0% 45%);
+    --cq-line:    hsl(0 0% 90%);
+    --cq-primary: hsl(0 0% 9%);
+    --cq-accent:  hsl(20 80% 55%);
+    --cq-warn:    hsl(38 92% 55%);
+    --cq-danger:  hsl(0 70% 50%);
+    --cq-success: hsl(150 50% 35%);
+    --cq-shadow-card: 0 0 0 1px hsl(0 0% 90%);
+    --cq-shadow-glow: 0 0 0 2px hsl(0 0% 9%);
+    --cq-hero-gradient: linear-gradient(180deg, hsl(40 20% 98%), hsl(40 15% 96%));
+  }
+  html[data-theme="minimal"].cq-dark {
+    --cq-bg:      hsl(0 0% 6%);
+    --cq-surface: hsl(0 0% 10%);
+    --cq-sunken:  hsl(0 0% 8%);
+    --cq-ink:     hsl(0 0% 96%);
+    --cq-muted:   hsl(0 0% 60%);
+    --cq-line:    hsl(0 0% 20%);
+    --cq-primary: hsl(0 0% 96%);
+    --cq-accent:  hsl(20 80% 60%);
+    --cq-warn:    hsl(38 92% 60%);
+    --cq-danger:  hsl(0 70% 60%);
+    --cq-success: hsl(150 50% 55%);
+    --cq-shadow-card: 0 0 0 1px hsl(0 0% 20%);
+    --cq-shadow-glow: 0 0 0 2px hsl(0 0% 96%);
+    --cq-hero-gradient: linear-gradient(180deg, hsl(0 0% 6%), hsl(0 0% 8%));
+  }
+
+  /* GLOBAL */
+  * { -webkit-tap-highlight-color: transparent; }
+  html, body { background: var(--cq-bg); color: var(--cq-ink); }
+  body { font-family: var(--cq-font-sans), 'Inter', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  .font-display { font-family: var(--cq-font-display), 'Plus Jakarta Sans', system-ui, sans-serif; font-weight: 800; letter-spacing: -0.02em; }
+  .hero-bg { background: var(--cq-hero-gradient); }
+
+  /* ANIMATIONS */
+  @keyframes pop      { 0%{transform:scale(.9);opacity:0} 60%{transform:scale(1.06)} 100%{transform:scale(1);opacity:1} }
+  @keyframes slideUp  { from{transform:translateY(14px);opacity:0} to{transform:translateY(0);opacity:1} }
+  @keyframes shake    { 0%,100%{transform:translateX(0)} 20%,60%{transform:translateX(-7px)} 40%,80%{transform:translateX(7px)} }
+  @keyframes pulse-glow { 0%,100%{box-shadow:0 0 0 0 hsl(258 89% 60% / .5)} 50%{box-shadow:0 0 0 14px hsl(258 89% 60% / 0)} }
+  @keyframes flame    { 0%,100%{transform:scale(1) rotate(-2deg)} 50%{transform:scale(1.08) rotate(3deg)} }
+  @keyframes float    { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+  @keyframes spin-slow{ to{transform:rotate(360deg)} }
+  @keyframes confetti-fall { to{transform:translateY(110vh) rotate(720deg);opacity:0} }
+  @keyframes star-burst { 0%{transform:scale(.3);opacity:1} 100%{transform:scale(1.6);opacity:0} }
+  @keyframes xp-rise { 0%{transform:translateY(0) scale(.8);opacity:0} 15%{transform:translateY(-10px) scale(1.1);opacity:1} 100%{transform:translateY(-90px) scale(1);opacity:0} }
+  @keyframes sparkle { 0%,100%{opacity:0;transform:scale(0)} 50%{opacity:1;transform:scale(1)} }
+  @keyframes bounce-happy { 0%,100%{transform:translateY(0) rotate(0)} 30%{transform:translateY(-14px) rotate(-6deg)} 60%{transform:translateY(-4px) rotate(4deg)} }
+  @keyframes wiggle-sad { 0%,100%{transform:translateY(0) rotate(0)} 25%{transform:translateY(2px) rotate(-3deg)} 75%{transform:translateY(2px) rotate(3deg)} }
+  @keyframes tilt-hover { 0%{transform:perspective(800px) rotateX(0) rotateY(0)} 100%{transform:perspective(800px) rotateX(2deg) rotateY(-3deg)} }
+  @keyframes count-up { from{transform:translateY(8px);opacity:0} to{transform:translateY(0);opacity:1} }
+  @keyframes shimmer-bg { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
+  @keyframes combo-pop  { 0%{transform:scale(.4) rotate(-12deg);opacity:0} 60%{transform:scale(1.15) rotate(3deg);opacity:1} 100%{transform:scale(1) rotate(0)} }
+  @keyframes ring-grow  { 0%{transform:scale(.6);opacity:.7} 100%{transform:scale(1.8);opacity:0} }
+  @keyframes drift      { 0%{transform:translate(0,0)} 50%{transform:translate(8px,-12px)} 100%{transform:translate(0,0)} }
+
+  .anim-xp-rise   { animation: xp-rise 1.2s ease-out forwards; }
+  .anim-sparkle   { animation: sparkle 1s ease-in-out infinite; }
+  .anim-happy     { animation: bounce-happy .8s cubic-bezier(.34,1.56,.64,1); }
+  .anim-sad       { animation: wiggle-sad .55s ease-in-out 2; }
+  .anim-count     { animation: count-up .35s ease-out both; }
+  .anim-combo     { animation: combo-pop .5s cubic-bezier(.34,1.56,.64,1) both; }
+  .anim-ring-grow { animation: ring-grow .9s ease-out forwards; }
+  .anim-drift     { animation: drift 18s ease-in-out infinite; }
+
+  /* Glassmorphism card variant */
+  .glass {
+    background: linear-gradient(135deg, hsl(0 0% 100% / .55) 0%, hsl(0 0% 100% / .25) 100%);
+    backdrop-filter: blur(14px) saturate(1.4);
+    -webkit-backdrop-filter: blur(14px) saturate(1.4);
+    border: 1px solid hsl(0 0% 100% / .35);
+  }
+  .cq-dark .glass {
+    background: linear-gradient(135deg, hsl(252 30% 15% / .65) 0%, hsl(252 30% 10% / .5) 100%);
+    border: 1px solid hsl(0 0% 100% / .08);
+  }
+  html[data-theme="neon"] .glass {
+    background: linear-gradient(135deg, hsl(280 60% 15% / .6) 0%, hsl(240 30% 7% / .8) 100%);
+    border: 1px solid hsl(180 100% 50% / .25);
+  }
+
+  /* Tilt effect for cards on hover (subtle, desktop only) */
+  @media (hover:hover) {
+    .tilt:hover { transform: perspective(900px) translateY(-3px) rotateX(2deg) rotateY(-2deg); }
+  }
+  .tilt { transition: transform .35s cubic-bezier(.2,.8,.2,1); }
+
+  /* Floating XP container */
+  .xp-float {
+    position: absolute; pointer-events: none; z-index: 60;
+    font-weight: 800; font-size: 1.5rem;
+    color: var(--cq-success);
+    text-shadow: 0 2px 12px hsl(142 76% 45% / .5);
+  }
+
+  /* Sparkles around correct answers */
+  .sparkle {
+    position:absolute; width:6px; height:6px;
+    background: radial-gradient(circle, white 0%, transparent 70%);
+    pointer-events:none;
+  }
+
+  /* Combo banner */
+  .combo-banner {
+    position: fixed; top: 96px; left: 50%; transform: translateX(-50%);
+    background: linear-gradient(90deg, var(--cq-primary), var(--cq-accent));
+    color: white; font-weight: 800; font-family: var(--cq-font-display);
+    padding: .5rem 1.2rem; border-radius: 999px;
+    box-shadow: var(--cq-shadow-glow);
+    z-index: 70; letter-spacing: .02em;
+  }
+
+  /* Drag-and-drop visual states for ordering */
+  .drag-item   { cursor: grab; }
+  .drag-item:active { cursor: grabbing; }
+  .drag-dragging { opacity: .4; }
+  .drag-over   { outline: 3px dashed var(--cq-primary); outline-offset: -3px; background: var(--cq-sunken); }
+
+  /* Animated gradient backgrounds for hero cards */
+  .gradient-flow {
+    background: linear-gradient(120deg, var(--cq-primary), var(--cq-accent), var(--cq-warn), var(--cq-primary));
+    background-size: 300% 300%;
+    animation: shimmer-bg 8s ease infinite;
+  }
+
+  /* Subtle background particles */
+  .bg-particles { position: absolute; inset:0; pointer-events: none; overflow:hidden; }
+  .bg-particles span {
+    position:absolute; width:10px; height:10px; border-radius:50%;
+    background: var(--cq-primary); opacity:.12; animation: drift 24s ease-in-out infinite;
+  }
+
+  /* Streak counter inside quiz */
+  .streak-meter {
+    display: inline-flex; align-items: center; gap: .35rem;
+    padding: .2rem .6rem; border-radius: 999px;
+    background: linear-gradient(90deg, var(--cq-warn), var(--cq-danger));
+    color: white; font-weight: 800;
+    box-shadow: 0 4px 16px hsl(38 92% 55% / .35);
+  }
+
+  /* Larger touch targets on mobile */
+  @media (max-width: 640px) {
+    .choice { font-size: 1.02rem; }
+    .btn-primary { padding: 1rem 1.4rem; }
+  }
+
+  .anim-pop     { animation: pop .35s cubic-bezier(.34,1.56,.64,1) both; }
+  .anim-slideUp { animation: slideUp .28s ease-out both; }
+  .anim-shake   { animation: shake .42s ease-in-out both; }
+  .anim-flame   { animation: flame 1.6s ease-in-out infinite; }
+  .anim-float   { animation: float 3s ease-in-out infinite; }
+  .anim-pulse-glow { animation: pulse-glow 1.6s ease-out infinite; }
+  .anim-spin-slow  { animation: spin-slow 14s linear infinite; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
+  }
+
+  /* CHOICE BUTTON STATES */
+  .choice-correct { background: hsl(142 70% 95%); border-color: var(--cq-success) !important; color: var(--cq-success); }
+  .cq-dark .choice-correct { background: hsl(142 40% 18%); }
+  .choice-wrong   { background: hsl(0 84% 96%); border-color: var(--cq-danger) !important; color: var(--cq-danger); }
+  .cq-dark .choice-wrong   { background: hsl(0 50% 18%); }
+  .choice-shimmer { background: linear-gradient(110deg, transparent 30%, hsl(0 0% 100% / .25) 50%, transparent 70%); background-size: 200% 100%; animation: shimmer 1.5s linear infinite; }
+  @keyframes shimmer { from{background-position:200% 0} to{background-position:-200% 0} }
+
+  /* CONFETTI */
+  .confetti-piece {
+    position: fixed; top: -10vh; width: 10px; height: 14px; will-change: transform, opacity;
+    animation: confetti-fall linear forwards; z-index: 100; border-radius: 2px;
+  }
+
+  /* MASCOT */
+  .mascot-eye { transform-origin: center; }
+
+  /* PROGRESS RING */
+  .ring-track { stroke: var(--cq-line); }
+  .ring-fill  { stroke: var(--cq-primary); transition: stroke-dashoffset .6s cubic-bezier(.4,0,.2,1); }
+
+  /* PIXEL ART for retro */
+  html[data-theme="retro"] .pixelate { image-rendering: pixelated; }
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-thumb { background: var(--cq-line); border-radius: 999px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--cq-muted); }
+
+  /* UTILITY CLASSES */
+  .card { background: var(--cq-surface); border: 1px solid var(--cq-line); box-shadow: var(--cq-shadow-card); border-radius: 20px; }
+  .pill { display: inline-flex; align-items: center; gap: .4rem; padding: .35rem .8rem; border-radius: 999px; background: var(--cq-sunken); border: 1px solid var(--cq-line); font-size: .8rem; font-weight: 600; }
+  .btn-primary { background: var(--cq-primary); color: white; border-radius: 14px; padding: .85rem 1.4rem; font-weight: 700; transition: transform .18s, box-shadow .18s; box-shadow: var(--cq-shadow-glow); }
+  .btn-primary:hover:not(:disabled) { transform: translateY(-1px); }
+  .btn-primary:active:not(:disabled) { transform: translateY(1px); }
+  .btn-primary:disabled { opacity: .55; cursor: not-allowed; box-shadow: none; }
+  .btn-ghost { background: var(--cq-sunken); color: var(--cq-ink); border-radius: 14px; padding: .7rem 1.1rem; font-weight: 600; transition: background .18s; border: 1px solid var(--cq-line); }
+  .btn-ghost:hover { background: var(--cq-line); }
+  .chip { display: inline-flex; align-items: center; gap: .3rem; padding: .25rem .6rem; border-radius: 999px; font-size: .7rem; font-weight: 600; background: var(--cq-sunken); color: var(--cq-muted); border: 1px solid var(--cq-line); }
+  .input { background: var(--cq-surface); border: 2px solid var(--cq-line); border-radius: 12px; padding: .7rem 1rem; font-family: inherit; font-size: 1rem; color: var(--cq-ink); transition: border-color .18s; }
+  .input:focus { outline: none; border-color: var(--cq-primary); }
+  .code-block { font-family: 'JetBrains Mono', ui-monospace, monospace; background: var(--cq-sunken); border: 1px solid var(--cq-line); border-radius: 12px; padding: .9rem 1rem; font-size: .92rem; line-height: 1.55; white-space: pre-wrap; }
+
+  /* Hide on small for some layouts */
+  .desktop-only { display: none; }
+  @media (min-width: 768px) { .desktop-only { display: inline-flex; } }
+</style>
+</head>
+<body class="min-h-screen">
+<div id="root"></div>
+
+<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+<script type="text/babel" data-presets="env,react">
+const { useState, useEffect, useRef, useMemo, useCallback, Fragment } = React;
+
+/* ============================================================
+   TOPICS
+   ============================================================ */
+const TOPICS = [
+  { id:'ct',      name:'Computational Thinking', emoji:'🧠', strand:'CT', years:[7,8,9], desc:'Decomposition, abstraction, patterns.' },
+  { id:'algo',    name:'Algorithms & Flowcharts', emoji:'🔁', strand:'AP', years:[7,8,9], desc:'Step-by-step solutions & flowchart shapes.' },
+  { id:'binary',  name:'Binary & Number Systems', emoji:'🔢', strand:'DR', years:[7,8,9], desc:'Bits, bytes, binary ↔ denary, hex.' },
+  { id:'logic',   name:'Logic Gates & Boolean',  emoji:'🔌', strand:'AP', years:[7,8,9], desc:'AND, OR, NOT, truth tables.' },
+  { id:'python',  name:'Python Basics',          emoji:'🐍', strand:'AP', years:[7,8,9], desc:'Variables, print, input, types.' },
+  { id:'iter',    name:'Selection & Iteration',  emoji:'🔄', strand:'AP', years:[8,9],   desc:'if/else, while, for loops.' },
+  { id:'data',    name:'Data Representation',    emoji:'📊', strand:'DR', years:[7,8,9], desc:'Text, images, sound as binary.' },
+  { id:'hw',      name:'Hardware & Software',    emoji:'🖥️', strand:'CS', years:[7,8],   desc:'CPU, RAM, OS, input/output.' },
+  { id:'net',     name:'Networks',               emoji:'🌐', strand:'NW', years:[7,8,9], desc:'LAN, WAN, internet, protocols.' },
+  { id:'sec',     name:'Cyber Security & Ethics',emoji:'🛡️', strand:'SE', years:[7,8,9], desc:'Passwords, phishing, ethics, law.' },
+  { id:'web',     name:'HTML & CSS',             emoji:'🎨', strand:'CC', years:[7,8,9], desc:'Web pages, tags & styles.' },
+  { id:'scratch', name:'Scratch',                emoji:'🐱', strand:'CC', years:[7,8,9], desc:'Block coding, sprites & events.' },
+];
+
+const TOPIC_BY = Object.fromEntries(TOPICS.map(t => [t.id, t]));
+
+/* ============================================================
+   QUESTION BANK — 310+ questions, OCR KS3 aligned
+   ============================================================ */
+// Compact helper to keep the bank readable.
+const q = (id, y, t, type, prompt, options, answer, exp, d=2, hint=null) => ({
+  id, year:y, topic:t, type, prompt, options, answer, explanation:exp, difficulty:d, hint, xp: 8 + d*4
+});
+
+const QUESTIONS = [
+  /* ===================== YEAR 7 ===================== */
+
+  /* ---- Y7 COMPUTATIONAL THINKING (14) ---- */
+  q('y7-ct-1', 7,'ct','mc','What does "decomposition" mean in computing?',
+    ['Breaking a problem into smaller parts','Solving a problem in your head','Writing one very long program','Drawing a picture of the problem'],0,
+    'Decomposition splits a big problem into smaller, more manageable parts.',1),
+  q('y7-ct-2', 7,'ct','mc','What is "abstraction"?',
+    ['Removing unnecessary detail','Adding lots of detail','Writing in pseudocode','Copying someone else'],0,
+    'Abstraction hides detail you don\'t need so you can focus on what matters.',2),
+  q('y7-ct-3', 7,'ct','mc','Pattern recognition means…',
+    ['Spotting similarities between problems','Drawing repeating shapes','Memorising answers','Using a search engine'],0,
+    'Spotting patterns helps you reuse solutions from problems you\'ve seen before.',2),
+  q('y7-ct-4', 7,'ct','tf','True or False: An algorithm is a set of step-by-step instructions.',
+    ['True','False'],0,'Yes — an algorithm is just clear, ordered instructions to solve a problem.',1),
+  q('y7-ct-5', 7,'ct','tf','True or False: Decomposition makes problems harder to solve.',
+    ['True','False'],1,'Decomposition makes problems *easier* by chunking them.',1),
+  q('y7-ct-6', 7,'ct','order','Order the steps of making a cup of tea (top = first):',
+    ['Boil the water','Put tea bag in cup','Pour water on tea bag','Wait, then remove bag'],[0,1,2,3],
+    'Boil first, then prep the cup, then pour, then wait. The order matters!',1),
+  q('y7-ct-7', 7,'ct','mc','Which is the best example of abstraction?',
+    ['A London Underground map','A satellite photo of London','A 3D model of London','A list of every London street'],0,
+    'The Tube map removes irrelevant geography — pure abstraction.',2),
+  q('y7-ct-8', 7,'ct','mc','You\'re planning a school disco. Which is "decomposition"?',
+    ['Splitting it into music, food, tickets, decoration','Doing everything yourself','Cancelling the disco','Asking a teacher'],0,
+    'Split into sub-tasks — that\'s decomposition.',1),
+  q('y7-ct-9', 7,'ct','fitb','Fill in: An algorithm is a set of clear, ordered _____.',
+    null,'instructions','Algorithms are ordered instructions a computer can follow.',1,'Step-by-step _____.'),
+  q('y7-ct-10',7,'ct','mc','Which is NOT a computational thinking skill?',
+    ['Decomposition','Abstraction','Guessing randomly','Pattern recognition'],2,
+    'Guessing isn\'t computational thinking — it\'s the opposite!',1),
+  q('y7-ct-11',7,'ct','match','Match each technique to its example:',
+    [['Decomposition','Split a game into menu, levels, score'],['Abstraction','Use ☎ to mean a phone number'],['Pattern recognition','Same recipe works for tea & coffee'],['Algorithm','Step 1, Step 2, Step 3…']],
+    [0,1,2,3],'Each skill solves a different part of a problem.',2),
+  q('y7-ct-12',7,'ct','mc','Why do programmers use abstraction?',
+    ['To hide unnecessary detail','To make code longer','To slow programs down','To avoid testing'],0,
+    'Hiding detail keeps code simple and focused.',2),
+  q('y7-ct-13',7,'ct','mc','Generalisation means…',
+    ['Making a solution work for many similar problems','Writing in general English','Solving slowly','Only for general knowledge'],0,
+    'A general solution handles a whole family of problems, not just one.',3),
+  q('y7-ct-14',7,'ct','tf','True or False: A good algorithm should be ambiguous.',
+    ['True','False'],1,'Algorithms must be UNambiguous — every step must be crystal clear.',2),
+
+  /* ---- Y7 ALGORITHMS & FLOWCHARTS (12) ---- */
+  q('y7-algo-1',7,'algo','mc','In a flowchart, what shape represents "start" or "end"?',
+    ['Oval','Diamond','Rectangle','Triangle'],0,'Ovals (or "terminators") mark the start and end of a flowchart.',1),
+  q('y7-algo-2',7,'algo','mc','What shape represents a decision in a flowchart?',
+    ['Diamond','Circle','Rectangle','Star'],0,'Diamonds ask Yes/No questions and split the flow.',1),
+  q('y7-algo-3',7,'algo','mc','What shape represents a process (an action)?',
+    ['Rectangle','Oval','Diamond','Hexagon'],0,'Rectangles show steps that DO something.',1),
+  q('y7-algo-4',7,'algo','mc','What shape is used for input or output?',
+    ['Parallelogram','Square','Diamond','Triangle'],0,'Parallelograms (slanted boxes) mean "get data in" or "show data out".',2),
+  q('y7-algo-5',7,'algo','tf','True or False: Flowcharts use arrows to show the direction of flow.',
+    ['True','False'],0,'Arrows connect shapes and show what happens next.',1),
+  q('y7-algo-6',7,'algo','order','Put these steps in order to find the largest of two numbers A and B:',
+    ['Input A and B','Is A > B?','If yes, output A. If no, output B','End'],[0,1,2,3],
+    'Get input, compare, output the bigger one, finish.',2),
+  q('y7-algo-7',7,'algo','mc','What is pseudocode?',
+    ['Code-like English used to plan algorithms','A secret coding language','Broken code','Python only'],0,
+    'Pseudocode is a half-English/half-code style for planning before writing real code.',2),
+  q('y7-algo-8',7,'algo','order','Order the steps of logging into a website:',
+    ['Type username','Type password','Click "Log in"','See homepage'],[0,1,2,3],
+    'Each step depends on the one before — that\'s sequence.',1),
+  q('y7-algo-9',7,'algo','fitb','Fill in: An algorithm must always _____ (have an end).',
+    null,'terminate','A good algorithm must terminate — it can\'t run forever.',2,'Starts with "t" — means "to end".'),
+  q('y7-algo-10',7,'algo','mc','What is sequence in programming?',
+    ['Doing steps one after another','Skipping steps','Repeating forever','Choosing between steps'],0,
+    'Sequence = one step then the next, in order.',1),
+  q('y7-algo-11',7,'algo','mc','Which is NOT a way to represent an algorithm?',
+    ['A random doodle','A flowchart','Pseudocode','Code'],0,'A doodle isn\'t precise enough!',1),
+  q('y7-algo-12',7,'algo','tf','True or False: The same problem can have many different correct algorithms.',
+    ['True','False'],0,'Multiple correct algorithms can exist — some are faster or simpler.',2),
+
+  /* ---- Y7 BINARY (10) ---- */
+  q('y7-bin-1',7,'binary','mc','How many different values can ONE bit represent?',
+    ['1','2','8','10'],1,'A bit is either 0 or 1 — that\'s 2 values.',1),
+  q('y7-bin-2',7,'binary','mc','How many bits are in a byte?',
+    ['4','8','16','32'],1,'1 byte = 8 bits. Always.',1),
+  q('y7-bin-3',7,'binary','mc','What is binary 10 in denary (normal numbers)?',
+    ['1','2','10','11'],1,'Binary 10 = 1 two + 0 ones = 2.',1),
+  q('y7-bin-4',7,'binary','mc','What is binary 11 in denary?',
+    ['2','3','4','11'],1,'1 two + 1 one = 3.',1),
+  q('y7-bin-5',7,'binary','fitb','Convert denary 4 into a 4-bit binary number.',
+    null,'0100','4 = 1 four + 0 twos + 0 ones, padded to 4 bits → 0100.',2,'Place values: 8 4 2 1.'),
+  q('y7-bin-6',7,'binary','mc','Why do computers use binary?',
+    ['Electrical signals have two states: on/off','Humans count in binary','It\'s a tradition','It uses less storage than denary'],0,
+    'Computers work with electricity which is naturally on (1) or off (0).',2),
+  q('y7-bin-7',7,'binary','fitb','Convert denary 7 into binary.',
+    null,'0111','4+2+1 = 7 → 0111.',2,'7 = 4 + 2 + 1.'),
+  q('y7-bin-8',7,'binary','mc','What is denary 8 in 4-bit binary?',
+    ['0100','1000','0111','1111'],1,'8 = 1 in the eights column, 0 elsewhere → 1000.',2),
+  q('y7-bin-9',7,'binary','tf','True or False: A 4-bit binary number can represent numbers from 0 to 15.',
+    ['True','False'],0,'2⁴ = 16 different values, from 0 to 15.',2),
+  q('y7-bin-10',7,'binary','mc','How many bits is a "nibble"?',
+    ['2','4','8','16'],1,'A nibble is half a byte — 4 bits.',2),
+
+  /* ---- Y7 DATA REPRESENTATION (6) ---- */
+  q('y7-data-1',7,'data','mc','What is ASCII?',
+    ['A code that maps characters to numbers','A type of file','An image format','A computer brand'],0,
+    'ASCII = American Standard Code for Information Interchange. Letters → numbers.',2),
+  q('y7-data-2',7,'data','mc','In ASCII, "A" is 65. What is "B"?',
+    ['64','65','66','100'],2,'ASCII letters go in order — B is one after A.',2),
+  q('y7-data-3',7,'data','tf','True or False: Computers store text as numbers.',
+    ['True','False'],0,'Every character is stored as a number (its character code).',1),
+  q('y7-data-4',7,'data','mc','How is a black-and-white image stored?',
+    ['As a grid of 1s (white) and 0s (black)','As coloured pencils','As text only','As sound'],0,
+    'Each pixel is just one bit: 1 or 0.',2),
+  q('y7-data-5',7,'data','mc','What is a pixel?',
+    ['A tiny dot of colour in an image','A computer part','A keyboard key','A type of file'],0,
+    'Pixel = "picture element" — the smallest dot on a screen.',1),
+  q('y7-data-6',7,'data','fitb','In a 1-bit image, each pixel uses _____ bit(s).',
+    null,'1','1-bit = 1 bit per pixel — perfect for black & white.',2),
+
+  /* ---- Y7 HARDWARE & SOFTWARE (14) ---- */
+  q('y7-hw-1',7,'hw','mc','What does CPU stand for?',
+    ['Central Processing Unit','Computer Power Unit','Core Programming Unit','Central Plotting Unit'],0,
+    'CPU = Central Processing Unit — the "brain" of the computer.',1),
+  q('y7-hw-2',7,'hw','mc','What is RAM mainly used for?',
+    ['Short-term memory while programs run','Long-term storage of files','Connecting to the internet','Cooling the CPU'],0,
+    'RAM holds data the CPU is using *right now*. It clears when you turn off.',2),
+  q('y7-hw-3',7,'hw','mc','What\'s special about ROM?',
+    ['It can only be read, not changed','It\'s the fastest memory','It connects to Wi-Fi','It is removable'],0,
+    'ROM = Read Only Memory. It usually stores startup instructions.',2),
+  q('y7-hw-4',7,'hw','mc','Which of these is HARDWARE?',
+    ['Keyboard','Microsoft Word','Chrome','Windows 11'],0,'Hardware = physical things you can touch.',1),
+  q('y7-hw-5',7,'hw','mc','Which of these is SOFTWARE?',
+    ['Mouse','Speakers','Spotify','Monitor'],2,'Software = programs and apps.',1),
+  q('y7-hw-6',7,'hw','mc','Which is an INPUT device?',
+    ['Microphone','Printer','Monitor','Speakers'],0,'Inputs get data INTO the computer.',1),
+  q('y7-hw-7',7,'hw','mc','Which is an OUTPUT device?',
+    ['Keyboard','Scanner','Speakers','Mouse'],2,'Outputs send data OUT of the computer.',1),
+  q('y7-hw-8',7,'hw','mc','Which is a STORAGE device?',
+    ['Hard drive','Mouse','Monitor','Webcam'],0,'Storage keeps files even when power is off.',2),
+  q('y7-hw-9',7,'hw','tf','True or False: RAM loses everything when the computer turns off.',
+    ['True','False'],0,'RAM is "volatile" — it forgets when power goes.',2),
+  q('y7-hw-10',7,'hw','tf','True or False: You need hardware to run software.',
+    ['True','False'],0,'Software is just instructions — it needs hardware to actually do anything.',1),
+  q('y7-hw-11',7,'hw','mc','Which is an Operating System?',
+    ['Windows 11','Microsoft Word','Chrome','Photoshop'],0,
+    'An OS manages everything else; the others are apps that run on it.',2),
+  q('y7-hw-12',7,'hw','match','Match each device to its category:',
+    [['Keyboard','Input'],['Printer','Output'],['SSD','Storage'],['CPU','Processing']],[0,1,2,3],
+    'Knowing which is which helps you describe a computer system.',2),
+  q('y7-hw-13',7,'hw','mc','Which is generally FASTER?',
+    ['SSD','Hard disk drive (HDD)','Floppy disk','Tape'],0,'SSDs have no moving parts and are much faster.',2),
+  q('y7-hw-14',7,'hw','fitb','CPU stands for Central _____ Unit.',
+    null,'Processing','The CPU *processes* instructions.',1),
+
+  /* ---- Y7 NETWORKS (6) ---- */
+  q('y7-net-1',7,'net','mc','What is a network?',
+    ['Computers connected to share data','A bunch of cables in a box','One single computer','A type of program'],0,
+    'A network = 2+ devices that can communicate.',1),
+  q('y7-net-2',7,'net','mc','What does the "internet" actually refer to?',
+    ['A global network of networks','One huge computer','A program','A website'],0,
+    'The internet is networks of networks.',2),
+  q('y7-net-3',7,'net','mc','What does LAN stand for?',
+    ['Local Area Network','Long Antenna Network','Light Access Network','Linked Area Node'],0,
+    'A LAN covers a small area like a school or home.',1),
+  q('y7-net-4',7,'net','mc','What does WAN stand for?',
+    ['Wide Area Network','Wireless Access Network','World Apple Network','Wired Area Node'],0,
+    'A WAN spans large areas — the internet is the biggest WAN.',2),
+  q('y7-net-5',7,'net','tf','True or False: Wi-Fi is wired.',
+    ['True','False'],1,'Wi-Fi is wireless — that\'s the point.',1),
+  q('y7-net-6',7,'net','mc','What does a router do?',
+    ['Sends data between networks','Cleans up viruses','Stores files','Generates power'],0,
+    'A router directs traffic between your network and the internet.',2),
+
+  /* ---- Y7 CYBER SECURITY (8) ---- */
+  q('y7-sec-1',7,'sec','mc','Which is the strongest password?',
+    ['P@ssw0rd!92Tree','password','123456','your name'],0,
+    'Mix length, letters, numbers, symbols — and never use predictable words.',2),
+  q('y7-sec-2',7,'sec','mc','What is "phishing"?',
+    ['Fake emails that try to steal info','A type of antivirus','A computer game','Slow internet'],0,
+    'Phishing tricks you into giving up passwords or money.',2),
+  q('y7-sec-3',7,'sec','mc','Which should you NEVER share online with strangers?',
+    ['Your home address','Your favourite colour','Your pet\'s species','Your favourite subject'],0,
+    'Address, phone, school name and personal info should stay private.',1),
+  q('y7-sec-4',7,'sec','tf','True or False: Use the same password for every site.',
+    ['True','False'],1,'Different sites = different passwords. If one leaks, others stay safe.',1),
+  q('y7-sec-5',7,'sec','mc','What does 2FA stand for?',
+    ['Two-Factor Authentication','Two Free Accounts','Twice Fast Access','Two-Folder Archive'],0,
+    '2FA adds a second check (like a code on your phone) for extra security.',2),
+  q('y7-sec-6',7,'sec','mc','What is malware?',
+    ['Software designed to harm computers','A type of hardware','A printer brand','A coding language'],0,
+    'Malware = MALicious softWARE: viruses, ransomware, spyware…',2),
+  q('y7-sec-7',7,'sec','tf','True or False: Antivirus software helps protect computers from malware.',
+    ['True','False'],0,'Antivirus scans for and removes harmful programs.',1),
+  q('y7-sec-8',7,'sec','mc','A stranger online asks to meet up. What do you do?',
+    ['Tell a trusted adult and don\'t go','Go alone','Send them your address','Block your parents'],0,
+    'Never meet strangers from the internet alone. Tell a trusted adult.',1),
+
+  /* ---- Y7 HTML & SCRATCH (12) ---- */
+  q('y7-web-1',7,'web','mc','What does HTML stand for?',
+    ['HyperText Markup Language','How To Make Links','Home Tool Multi Language','Hyper Tool Markup'],0,
+    'HTML structures web pages with tags.',1),
+  q('y7-web-2',7,'web','mc','What is the <h1> tag for?',
+    ['The main heading','A horizontal line','A hyperlink','An image'],0,
+    '<h1> is the biggest, most important heading on a page.',1),
+  q('y7-web-3',7,'web','mc','What is the <p> tag for?',
+    ['A paragraph','A picture','A page break','A program'],0,'<p> wraps a paragraph of text.',1),
+  q('y7-web-4',7,'web','tf','True or False: HTML tags are written inside angle brackets like <this>.',
+    ['True','False'],0,'Yes — angle brackets separate tags from content.',1),
+  q('y7-web-5',7,'web','fitb','What is the closing tag for <h1>? Type the full tag.',
+    null,'</h1>','Closing tags have a forward slash before the name.',2,'Starts with "</".'),
+  q('y7-web-6',7,'scratch','mc','Scratch is mainly a what type of language?',
+    ['Block-based','Text-based','Voice-based','Hand-written'],0,'You snap coloured blocks together — no typing code.',1),
+  q('y7-web-7',7,'scratch','mc','In Scratch, what is a "sprite"?',
+    ['A character or object on the stage','A type of drink','A bug in code','A keyboard'],0,
+    'Sprites are the objects you program in Scratch.',1),
+  q('y7-web-8',7,'scratch','tf','True or False: Scratch uses written code, like Python.',
+    ['True','False'],1,'Scratch is BLOCK-based, not text. That\'s why beginners love it.',1),
+  q('y7-web-9',7,'scratch','mc','In Scratch, "When 🚩 clicked" is what kind of block?',
+    ['Event','Motion','Sound','Variable'],0,'It STARTS a script when an event happens.',2),
+  q('y7-web-10',7,'web','mc','In HTML <a href="x.com">link</a>, what is "href"?',
+    ['An attribute giving the link\'s URL','A tag','A comment','A function'],0,
+    'Attributes give extra info to tags — href tells <a> where to go.',2),
+  q('y7-web-11',7,'web','mc','The <img> tag needs which attribute to show an image?',
+    ['src','href','data','link'],0,'"src" (source) tells the browser where the image file is.',2),
+  q('y7-web-12',7,'web','mc','What is CSS used for?',
+    ['Styling web pages (colours, layout)','Sending emails','Running games','Storing data'],0,
+    'CSS = Cascading Style Sheets. It makes web pages look good.',2),
+
+  /* ---- Y7 LOGIC GATES (12) — new intro-level set ---- */
+  q('y7-logic-1',7,'logic','mc','A logic gate takes inputs and produces…',
+    ['One output (0 or 1)','Many outputs at once','No output','A random output'],0,
+    'Every logic gate takes 1+ inputs and gives exactly one output: 0 or 1.',1),
+  q('y7-logic-2',7,'logic','mc','In digital logic, "1" means…',
+    ['True / On','False / Off','Maybe','The number ten'],0,
+    'In logic, 1 = True / On / Yes. 0 = False / Off / No.',1),
+  q('y7-logic-3',7,'logic','mc','An AND gate gives 1 when…',
+    ['ALL its inputs are 1','At least one input is 1','No inputs are 1','It is daytime'],0,
+    'AND is strict: all inputs must be 1.',1),
+  q('y7-logic-4',7,'logic','mc','An OR gate gives 1 when…',
+    ['At least one input is 1','Both inputs are 0','Inputs are equal','Inputs are different'],0,
+    'OR is generous: any 1 makes the output 1.',1),
+  q('y7-logic-5',7,'logic','mc','A NOT gate does what?',
+    ['Flips 0 to 1 and 1 to 0','Adds two inputs','Multiplies inputs','Does nothing'],0,
+    'NOT inverts (flips) its single input.',1),
+  q('y7-logic-6',7,'logic','tf','True or False: A truth table shows every possible input/output combination.',
+    ['True','False'],0,'Yes — that\'s exactly what truth tables do.',2),
+  q('y7-logic-7',7,'logic','mc','A=1, B=1. What does AND give?',
+    ['0','1','2','Error'],1,'Both are 1, so AND outputs 1.',1),
+  q('y7-logic-8',7,'logic','mc','A=0, B=0. What does OR give?',
+    ['0','1','2','Either'],0,'Neither is 1, so OR outputs 0.',1),
+  q('y7-logic-9',7,'logic','mc','NOT 1 equals…',
+    ['0','1','2','True'],0,'NOT flips 1 to 0.',1),
+  q('y7-logic-10',7,'logic','mc','Real-life example of AND:',
+    ['Need card AND PIN to pay','Either dad or mum can sign','Nobody signs','Open every door'],0,
+    'Two conditions both required = AND.',2),
+  q('y7-logic-11',7,'logic','tf','True or False: Logic gates are the building blocks of every computer.',
+    ['True','False'],0,'Millions of tiny gates inside the CPU do all the work.',1),
+  q('y7-logic-12',7,'logic','match','Match each gate to its rule:',
+    [['AND','Both must be 1'],['OR','At least one must be 1'],['NOT','Flips the input']],[0,1,2],
+    'Three gates are enough to build any digital circuit.',2),
+
+  /* ---- Y7 PYTHON INTRO (12) — new intro-level set ---- */
+  q('y7-py-1',7,'python','mc','Python is a…',
+    ['Text-based programming language','Block language like Scratch','Web browser','Type of laptop'],0,
+    'Python is one of the most popular text-based languages.',1),
+  q('y7-py-2',7,'python','mc','Which line prints "Hi!" in Python?',
+    ['print("Hi!")','say "Hi!"','show "Hi!"','echo Hi'],0,
+    'print() is Python\'s output command.',1),
+  q('y7-py-3',7,'python','mc','In Python, "Hello" with quotes is a…',
+    ['String (text)','Number','Function','Error'],0,
+    'Quotes turn things into strings (pieces of text).',1),
+  q('y7-py-4',7,'python','mc','In Python, what does # do?',
+    ['Starts a comment','Means multiply','Creates a variable','Prints'],0,
+    '# starts a comment — Python ignores the rest of that line.',1),
+  q('y7-py-5',7,'python','mc','A variable…',
+    ['Stores data with a name','Is a type of bug','Is a picture','Prints output'],0,
+    'Variables let you label and reuse data.',1),
+  q('y7-py-6',7,'python','fitb','Complete: _____("Hi!")  — fills in the output command.',
+    null,'print','print() shows things in the output.',1),
+  q('y7-py-7',7,'python','mc','age = 12 — what data type is this?',
+    ['Integer (whole number)','String','Float','Boolean'],0,
+    'Whole numbers are integers (int).',2),
+  q('y7-py-8',7,'python','mc','name = "Sam" — what data type is this?',
+    ['String (text)','Integer','Float','Boolean'],0,
+    'Anything in quotes is a string.',2),
+  q('y7-py-9',7,'python','mc','Why does indentation matter in Python?',
+    ['It groups code blocks together','It changes colour','It is decoration','It does nothing'],0,
+    'Indentation tells Python which lines belong together.',2),
+  q('y7-py-10',7,'python','tf','True or False: Python treats Name and name as different variables.',
+    ['True','False'],0,'Python IS case-sensitive — capitals matter!',2),
+  q('y7-py-11',7,'python','mc','print(2 + 3) outputs…',
+    ['5','2+3','"5"','Error'],0,'Python works out 2+3 = 5, then prints 5.',1),
+  q('y7-py-12',7,'python','mc','A "bug" in code is…',
+    ['A mistake that stops it working','A real insect','An award','A file type'],0,
+    'Finding & fixing bugs is called "debugging".',1),
+
+  /* ---- Y7 COMPUTATIONAL THINKING — 6 more ---- */
+  q('y7-ct-15',7,'ct','mc','Which task benefits MOST from decomposition?',
+    ['Designing a video game','Tying a single shoelace','Saying "hi"','Sneezing'],0,
+    'Big projects need decomposition; tiny tasks don\'t.',2),
+  q('y7-ct-16',7,'ct','mc','Two algorithms solve the same problem. Which is BETTER?',
+    ['The one that uses fewer steps','The longest one','The one with most variables','Always the first written'],0,
+    'Efficient algorithms do less work — they\'re faster.',2),
+  q('y7-ct-17',7,'ct','tf','True or False: It\'s better to plan before writing code.',
+    ['True','False'],0,'Planning saves time and prevents rework.',1),
+  q('y7-ct-18',7,'ct','mc','An algorithm is the PLAN. A program is…',
+    ['The algorithm written in code','A picture','A bug','A keyboard'],0,
+    'Algorithm = idea. Program = working code that runs.',2),
+  q('y7-ct-19',7,'ct','mc','Decomposing "make a sandwich" could give…',
+    ['Get bread, get filling, assemble, cut','Buy a shop','Plant wheat','Skip lunch'],0,
+    'Pick natural, useful sub-tasks.',2),
+  q('y7-ct-20',7,'ct','order','Order the problem-solving steps:',
+    ['Understand the problem','Plan a solution','Build the solution','Test it'],[0,1,2,3],
+    'Always understand and plan BEFORE building.',2),
+
+  /* ---- Y7 ALGORITHMS — 6 more ---- */
+  q('y7-algo-13',7,'algo','mc','Which shape starts a flowchart?',
+    ['Oval','Diamond','Rectangle','Star'],0,
+    'Ovals mark start (and end) of a flowchart.',1),
+  q('y7-algo-14',7,'algo','order','Order steps for crossing a road safely:',
+    ['Stop at kerb','Look both ways','Listen for traffic','Cross when safe'],[0,1,2,3],
+    'Algorithms are everywhere — even crossing the road.',1),
+  q('y7-algo-15',7,'algo','mc','"IF it is raining THEN take an umbrella" is which structure?',
+    ['Selection (decision)','Loop','Sequence','Variable'],0,
+    'IF/THEN = selection — choose based on a condition.',2),
+  q('y7-algo-16',7,'algo','mc','"Repeat 5 times: jump" is which structure?',
+    ['Iteration (loop)','Selection','Sequence','Variable'],0,
+    'Repeating something = iteration.',2),
+  q('y7-algo-17',7,'algo','mc','Pseudocode is written in…',
+    ['English-like language for planning','Pure binary','Random symbols','Pictures only'],0,
+    'Pseudocode is human-friendly; it isn\'t run by a computer.',2),
+  q('y7-algo-18',7,'algo','order','Order an algorithm to draw a square with a turtle:',
+    ['Repeat 4 times:','  Move forward 100','  Turn right 90°','End repeat'],[0,1,2,3],
+    'Loops keep your algorithm short and elegant.',3),
+
+  /* ---- Y7 BINARY — 5 more ---- */
+  q('y7-bin-11',7,'binary','mc','In an 8-bit number, the LEFTMOST place value is…',
+    ['128','64','32','1'],0,
+    'Place values double left: 1, 2, 4, 8, 16, 32, 64, 128.',2),
+  q('y7-bin-12',7,'binary','fitb','Convert denary 5 into a 4-bit binary number.',
+    null,'0101','4 + 1 = 5 → 0101.',2,'Place values: 8 4 2 1.'),
+  q('y7-bin-13',7,'binary','fitb','Convert denary 12 into a 4-bit binary number.',
+    null,'1100','8 + 4 = 12 → 1100.',2,'8 + 4 = 12.'),
+  q('y7-bin-14',7,'binary','mc','How many bits do you need to count up to 16?',
+    ['4','5','8','16'],1,
+    '4 bits go up to 15. To represent 16 itself you need 5 bits.',3),
+  q('y7-bin-15',7,'binary','mc','2 to the power of 3 (2³) equals…',
+    ['6','8','9','16'],1,
+    '2×2×2 = 8. Powers of 2 are everywhere in binary.',2),
+
+  /* ---- Y7 HARDWARE/SOFTWARE — 4 more ---- */
+  q('y7-hw-15',7,'hw','mc','A GPU is best at…',
+    ['Drawing graphics & many parallel calculations','Storing files','Cooling','Reading text aloud'],0,
+    'GPUs do many small calculations at once — great for games & AI.',3),
+  q('y7-hw-16',7,'hw','mc','The motherboard\'s job is to…',
+    ['Connect all the main components','Cool the room','Light up the screen','Make sounds'],0,
+    'The motherboard is the central hub linking CPU, RAM, etc.',2),
+  q('y7-hw-17',7,'hw','mc','A peripheral is…',
+    ['An add-on device like a printer','The CPU','The motherboard','The OS'],0,
+    'Peripherals connect to the computer to extend its abilities.',2),
+  q('y7-hw-18',7,'hw','mc','Firmware is software that…',
+    ['Is built into hardware','Lives in the cloud','Is free','Is illegal'],0,
+    'Firmware controls devices like routers and TVs.',3),
+
+  /* ---- Y7 NETWORKS — 4 more ---- */
+  q('y7-net-7',7,'net','mc','Wi-Fi sends data using…',
+    ['Radio waves','Sound waves','Light only','Magnets'],0,
+    'Wi-Fi uses radio waves to transmit data wirelessly.',2),
+  q('y7-net-8',7,'net','mc','Ethernet (wired) is usually…',
+    ['Faster and more reliable than Wi-Fi','Slower than Wi-Fi','Wireless','Optional'],0,
+    'Wired connections are generally more stable.',2),
+  q('y7-net-9',7,'net','tf','True or False: The internet and the World Wide Web are the same thing.',
+    ['True','False'],1,'The web is just ONE service running on the internet (others include email, gaming).',2),
+  q('y7-net-10',7,'net','mc','Cloud storage means…',
+    ['Files stored on remote servers, accessed via internet','Files in your phone','Files in RAM','Files in actual clouds'],0,
+    'Google Drive, Dropbox, iCloud — all "cloud" services.',2),
+
+  /* ---- Y7 CYBER SECURITY — 4 more ---- */
+  q('y7-sec-9',7,'sec','mc','Your "digital footprint" is…',
+    ['The data trail you leave online','Your shoe size','A file format','Your IP address only'],0,
+    'Every post, photo, search adds to your digital footprint.',2),
+  q('y7-sec-10',7,'sec','mc','Which is the STRONGEST password?',
+    ['BlueTiger$Eats77Pizza','password1','12345','qwerty'],0,
+    'Long, mixed, memorable passphrases are very strong.',2),
+  q('y7-sec-11',7,'sec','tf','True or False: Regular backups protect against ransomware.',
+    ['True','False'],0,'With offline backups, you can refuse to pay ransoms.',1),
+  q('y7-sec-12',7,'sec','mc','If you see cyberbullying online, you should…',
+    ['Report it & tell a trusted adult','Join in','Ignore forever','Reply rudely'],0,
+    'Reporting helps stop the bully and supports the victim.',1),
+
+  /* ---- Y7 HTML & SCRATCH — 6 more ---- */
+  q('y7-web-13',7,'web','tf','True or False: An HTML page usually has <html>, <head> and <body> tags.',
+    ['True','False'],0,'These tags give every page a standard structure.',2),
+  q('y7-web-14',7,'web','mc','Where does the page title (shown in the browser tab) go?',
+    ['Inside <title> in <head>','Inside <body>','In CSS','In JavaScript'],0,
+    '<title> goes in <head> and appears on the browser tab.',2),
+  q('y7-web-15',7,'web','mc','HTML comments look like…',
+    ['<!-- like this -->','# like this','// like this','/* like this */'],0,
+    'HTML comments are written between <!-- and -->.',3),
+  q('y7-web-16',7,'scratch','mc','In Scratch, a "costume" is…',
+    ['Another picture for a sprite','A song','A code block','A variable'],0,
+    'Costumes let sprites change appearance — useful for animation.',2),
+  q('y7-web-17',7,'scratch','mc','In Scratch, the "forever" block is a…',
+    ['Loop','Sound effect','Variable','Event'],0,
+    '"forever" wraps blocks that should repeat without stopping.',1),
+  q('y7-web-18',7,'scratch','mc','Scratch broadcasts let sprites…',
+    ['Send messages to other sprites','Change colour','Save files','Sing'],0,
+    'Broadcasts help sprites coordinate behaviour.',3),
+
+  /* ---- Y7 SCRATCH — dedicated topic, 25 new questions ---- */
+  q('y7-scratch-1',7,'scratch','mc','Scratch was created by…',
+    ['MIT Media Lab','Microsoft','Apple','Google'],0,
+    'The Lifelong Kindergarten group at MIT Media Lab created Scratch.',1),
+  q('y7-scratch-2',7,'scratch','mc','In Scratch, the area where sprites act is called the…',
+    ['Stage','Field','Studio','Page'],0,
+    'The Stage is the visible area where your program runs.',1),
+  q('y7-scratch-3',7,'scratch','mc','A "backdrop" in Scratch is…',
+    ['A background image for the stage','A song','A type of sprite','A code block'],0,
+    'Backdrops change the stage\'s appearance.',1),
+  q('y7-scratch-4',7,'scratch','mc','Which block category has "move 10 steps"?',
+    ['Motion','Looks','Sound','Variables'],0,
+    'Motion blocks move sprites around the stage.',1),
+  q('y7-scratch-5',7,'scratch','mc','Which block category has "say Hello for 2 secs"?',
+    ['Looks','Motion','Control','Sound'],0,
+    'Looks blocks control how sprites appear and what they say.',1),
+  q('y7-scratch-6',7,'scratch','mc','Which block category has "wait 1 secs"?',
+    ['Control','Motion','Events','Sensing'],0,
+    'Control blocks pause, repeat, and branch programs.',1),
+  q('y7-scratch-7',7,'scratch','mc','Which block category has "if … then"?',
+    ['Control','Operators','Sensing','Events'],0,
+    'Control includes if, repeat, forever, wait — flow control.',2),
+  q('y7-scratch-8',7,'scratch','mc','Which block category has "+", "−", "=", and "and"?',
+    ['Operators','Variables','Motion','Looks'],0,
+    'Operators do maths and logic.',2),
+  q('y7-scratch-9',7,'scratch','mc','Which block category has "touching colour" and "key pressed"?',
+    ['Sensing','Control','Operators','Events'],0,
+    'Sensing detects collisions, keys, and stage interactions.',2),
+  q('y7-scratch-10',7,'scratch','mc','In Scratch, the centre of the stage has coordinates…',
+    ['x:0, y:0','x:1, y:1','x:240, y:180','x:-1, y:-1'],0,
+    'Scratch uses (x, y) with the centre at (0, 0).',2),
+  q('y7-scratch-11',7,'scratch','mc','When a sprite moves RIGHT, its x value…',
+    ['Increases','Decreases','Stays the same','Becomes negative'],0,
+    'Right = positive x. Left = negative x.',2),
+  q('y7-scratch-12',7,'scratch','mc','When a sprite moves UP, its y value…',
+    ['Increases','Decreases','Stays the same','Becomes 0'],0,
+    'Up = positive y. Down = negative y.',2),
+  q('y7-scratch-13',7,'scratch','mc','"glide 1 secs to x:0 y:0" does what?',
+    ['Smoothly moves the sprite to (0,0) over 1 sec','Teleports instantly','Plays a sound','Changes costume'],0,
+    'Glide produces smooth animation.',2),
+  q('y7-scratch-14',7,'scratch','mc','"repeat 10" is a kind of…',
+    ['Loop','Variable','Comment','Event'],0,
+    'Repeat blocks make code run multiple times.',1),
+  q('y7-scratch-15',7,'scratch','mc','A variable in Scratch can store…',
+    ['Numbers or text','Only numbers','Only a colour','Sprites'],0,
+    'Variables hold any value you set them to.',2),
+  q('y7-scratch-16',7,'scratch','mc','"change Score by 1" does what?',
+    ['Adds 1 to the Score variable','Sets Score to 1','Deletes Score','Creates a new sprite'],0,
+    '"change … by 1" increments by 1; "set … to 1" replaces the value.',2),
+  q('y7-scratch-17',7,'scratch','order','Order the blocks so a sprite greets, then moves, when the flag is clicked:',
+    ['when 🚩 clicked','say "Hi!" for 2 secs','move 10 steps'],[0,1,2],
+    'Event triggers the script; the rest runs top-to-bottom.',2),
+  q('y7-scratch-18',7,'scratch','tf','True or False: Many sprites in a Scratch project can run scripts at the same time.',
+    ['True','False'],0,'Yes — each sprite runs its own scripts in parallel.',2),
+  q('y7-scratch-19',7,'scratch','mc','To rotate a sprite 90° clockwise, use…',
+    ['"turn ↻ 90 degrees"','"go to x:90"','"set x to 90"','"say 90"'],0,
+    '"turn" rotates by the given amount.',2),
+  q('y7-scratch-20',7,'scratch','mc','Which Scratch category contains "play sound until done"?',
+    ['Sound','Looks','Motion','Variables'],0,
+    'Sound blocks play, stop, and tweak audio.',1),
+  q('y7-scratch-21',7,'scratch','mc','What does "hide" do?',
+    ['Makes the sprite invisible','Deletes the sprite','Mutes sound','Restarts the game'],0,
+    '"hide" turns the sprite invisible; "show" brings it back.',1),
+  q('y7-scratch-22',7,'scratch','mc','"next costume" does what?',
+    ['Switches to the next costume image','Adds a new sprite','Plays the next song','Quits the program'],0,
+    'Cycle costumes to create animations — like a flip-book.',2),
+  q('y7-scratch-23',7,'scratch','tf','True or False: A "sprite" can have more than one costume.',
+    ['True','False'],0,'Sprites can have many costumes, used for animation or different appearances.',1),
+  q('y7-scratch-24',7,'scratch','mc','"when this sprite clicked" is what type of block?',
+    ['Event','Motion','Variable','Operator'],0,
+    'Events start scripts in response to user actions.',1),
+  q('y7-scratch-25',7,'scratch','match','Match the block category to a typical block:',
+    [['Motion','move 10 steps'],['Looks','say Hi'],['Events','when 🚩 clicked'],['Control','repeat 10']],[0,1,2,3],
+    'Knowing categories helps you find blocks fast.',3),
+
+  /* ---- Y7 EXTRA general questions (12 more across topics) ---- */
+  q('y7-ct-21',7,'ct','mc','You see the same code pattern in three places. Which technique helps most?',
+    ['Pattern recognition','Decomposition','Abstraction','Algorithm'],0,
+    'Pattern recognition spots repetition you can reuse.',2),
+  q('y7-ct-22',7,'ct','mc','A simple line drawing of a face is an example of…',
+    ['Abstraction','Decomposition','Iteration','A bug'],0,
+    'Removing detail to keep what matters = abstraction.',2),
+  q('y7-algo-19',7,'algo','mc','Flowchart arrows show…',
+    ['The order steps happen','Decoration','Sounds','Colours'],0,
+    'Arrows direct the flow from one shape to the next.',1),
+  q('y7-algo-20',7,'algo','order','Order an algorithm to brush your teeth:',
+    ['Pick up toothbrush','Put toothpaste on it','Brush for 2 minutes','Rinse'],[0,1,2,3],
+    'Simple sequential algorithms are everywhere.',1),
+  q('y7-bin-16',7,'binary','match','Match binary to denary:',
+    [['0001','1'],['0010','2'],['0100','4'],['1000','8']],[0,1,2,3],
+    'Each column doubles: 1, 2, 4, 8…',2),
+  q('y7-bin-17',7,'binary','mc','How many different values can 3 bits represent?',
+    ['3','6','8','9'],2,'2³ = 8 values (from 000 to 111).',2),
+  q('y7-hw-19',7,'hw','match','Match the unit to its size:',
+    [['Bit','smallest unit (0/1)'],['Byte','8 bits'],['Kilobyte','~1000 bytes'],['Megabyte','~1 million bytes']],[0,1,2,3],
+    'Units help describe how much data something uses.',2),
+  q('y7-net-11',7,'net','mc','To view a website your browser asks for…',
+    ['HTML files from a web server','A printer','A USB cable','The cloud only'],0,
+    'Browsers send a request, servers respond with HTML, CSS, JS.',2),
+  q('y7-sec-13',7,'sec','mc','Why is it important to check the privacy settings on apps?',
+    ['To control who can see your data','To save space','To download games','To boost speed'],0,
+    'Privacy settings let you decide what to share.',2),
+  q('y7-py-13',7,'python','mc','In `score = score + 1`, what happens to "score"?',
+    ['It goes up by 1','Stays the same','Becomes 0','Becomes "score+1"'],0,
+    'The right side is calculated first, then stored in the variable on the left.',2),
+  q('y7-web-19',7,'web','mc','Which tag would you use for a big main heading?',
+    ['<h1>','<head>','<header>','<big>'],0,
+    '<h1> is the largest, most important heading.',1),
+  q('y7-web-20',7,'web','mc','Which is a real CSS property?',
+    ['color','heading','print','tag'],0,
+    'CSS properties include color, font-size, background-color, etc.',2),
+
+  /* ===================== YEAR 8 ===================== */
+
+  /* ---- Y8 COMPUTATIONAL THINKING (8) ---- */
+  q('y8-ct-1',8,'ct','mc','You\'re writing a game. Which is the BEST decomposition?',
+    ['Player, Enemies, Score, Levels','Just write everything in one block','Skip planning','Copy a friend\'s code'],0,
+    'Big systems are split into modules that each do one job.',2),
+  q('y8-ct-2',8,'ct','mc','Which is the strongest abstraction of a car?',
+    ['Steering, accelerator, brakes','All 30,000 individual parts','The colour','The badge'],0,
+    'For a driver, controls matter more than internal parts.',2),
+  q('y8-ct-3',8,'ct','tf','True or False: Patterns help you avoid solving the same problem twice.',
+    ['True','False'],0,'Spotting patterns lets you reuse solutions.',1),
+  q('y8-ct-4',8,'ct','mc','What is "trace tabling" used for?',
+    ['Working out what a program will output, step by step','Drawing tables','Storing data','Naming variables'],0,
+    'Trace tables track variable values as you run code line by line.',3),
+  q('y8-ct-5',8,'ct','mc','You spot the same code three times in your program. What\'s the BEST fix?',
+    ['Turn it into a subroutine and call it','Leave it','Delete it','Rename a variable'],0,
+    'Repeated code → make it a function. Cleaner, easier to fix.',3),
+  q('y8-ct-6',8,'ct','fitb','A self-contained block of code that does a job and can be reused is called a _____.',
+    null,'subroutine','Subroutine (or function/procedure) = a reusable code block.',3,'Also called a function or procedure.'),
+  q('y8-ct-7',8,'ct','mc','Why is testing important?',
+    ['To check the program works correctly','To make it look fancy','To save the file','To rename variables'],0,
+    'Testing catches bugs before users do.',1),
+  q('y8-ct-8',8,'ct','order','Order the standard problem-solving stages:',
+    ['Understand','Plan','Code','Test'],[0,1,2,3],'Always understand and plan BEFORE you code.',2),
+
+  /* ---- Y8 ALGORITHMS (14) ---- */
+  q('y8-algo-1',8,'algo','mc','In a linear search, you check items…',
+    ['One by one in order','In pairs','Randomly','Only the last one'],0,
+    'Linear search = check each item until you find it (or run out).',2),
+  q('y8-algo-2',8,'algo','mc','For a binary search, the list must first be…',
+    ['Sorted','Reversed','Empty','Doubled'],0,'Binary search needs an ordered list to halve the search space.',3),
+  q('y8-algo-3',8,'algo','mc','Binary search works by…',
+    ['Halving the list each step','Checking every item','Sorting the list','Asking the user'],0,
+    'Each step throws away half the items — very fast on big lists.',3),
+  q('y8-algo-4',8,'algo','mc','Which is generally FASTER on a sorted list of 1,000 items?',
+    ['Binary search','Linear search','Both the same','Neither works'],0,
+    'Binary search makes at most ~10 comparisons vs up to 1000 for linear.',3),
+  q('y8-algo-5',8,'algo','mc','A bubble sort works by…',
+    ['Repeatedly swapping neighbours that are out of order','Cutting the list in half','Random shuffling','Sorting backwards only'],0,
+    'Bubble sort compares pairs and swaps until everything is in order.',3),
+  q('y8-algo-6',8,'algo','order','Bubble sort steps for [3,1,2] until sorted:',
+    ['Compare 3 and 1, swap → [1,3,2]','Compare 3 and 2, swap → [1,2,3]','Pass through again, no swaps → done','Stop'],[0,1,2,3],
+    'Each pass bubbles the largest unsorted value to the end.',3),
+  q('y8-algo-7',8,'algo','mc','Which is NOT a sorting algorithm?',
+    ['Bubble','Merge','Insertion','Binary'],3,'Binary is a SEARCH algorithm, not a sort.',2),
+  q('y8-algo-8',8,'algo','tf','True or False: A linear search needs the list to be sorted first.',
+    ['True','False'],1,'Linear search works on unsorted lists — that\'s its main perk.',2),
+  q('y8-algo-9',8,'algo','mc','What does "efficiency" of an algorithm mean?',
+    ['How much time/memory it uses','How pretty the code is','How long the variable names are','How many bugs it has'],0,
+    'Efficient algorithms do more with less time and memory.',2),
+  q('y8-algo-10',8,'algo','mc','In a flowchart, the order [diamond → rectangle → arrow back to diamond] is a…',
+    ['Loop','Sequence','Decision only','Output'],0,'Coming back to the decision makes it a loop.',3),
+  q('y8-algo-11',8,'algo','mc','Pseudocode "REPEAT … UNTIL x = 10" is what kind of structure?',
+    ['Iteration (loop)','Selection (if)','Sequence','Subroutine'],0,'REPEAT/UNTIL is a loop that runs until the condition is true.',3),
+  q('y8-algo-12',8,'algo','fitb','A loop that repeats while a condition is True is called a _____ loop.',
+    null,'while','WHILE loops keep going as long as the condition is True.',2),
+  q('y8-algo-13',8,'algo','match','Match the structure to its meaning:',
+    [['Sequence','Steps one after another'],['Selection','if / else choice'],['Iteration','Looping / repeating']],[0,1,2],
+    'These are the three building blocks of all programs.',2),
+  q('y8-algo-14',8,'algo','mc','Which flowchart symbol has TWO outputs (Yes / No)?',
+    ['Diamond (decision)','Oval','Rectangle','Parallelogram'],0,
+    'Decisions branch — Yes goes one way, No the other.',2),
+
+  /* ---- Y8 BINARY (14) ---- */
+  q('y8-bin-1',8,'binary','fitb','Convert denary 13 into 4-bit binary.',
+    null,'1101','8+4+0+1 = 13 → 1101.',2,'8+4+1 = 13.'),
+  q('y8-bin-2',8,'binary','fitb','Convert denary 9 into 4-bit binary.',
+    null,'1001','8+0+0+1 = 9 → 1001.',2),
+  q('y8-bin-3',8,'binary','fitb','Convert denary 15 into 4-bit binary.',
+    null,'1111','8+4+2+1 = 15 → 1111.',2),
+  q('y8-bin-4',8,'binary','mc','Convert binary 1010 into denary.',
+    ['8','10','12','5'],1,'8+0+2+0 = 10.',2),
+  q('y8-bin-5',8,'binary','mc','Convert binary 1100 into denary.',
+    ['10','11','12','13'],2,'8+4 = 12.',2),
+  q('y8-bin-6',8,'binary','mc','Convert binary 1111 into denary.',
+    ['14','15','16','7'],1,'8+4+2+1 = 15.',2),
+  q('y8-bin-7',8,'binary','fitb','Convert denary 20 into 8-bit binary.',
+    null,'00010100','16+4 = 20 → 00010100 (padded to 8 bits).',3,'16 + 4 = 20.'),
+  q('y8-bin-8',8,'binary','fitb','Convert denary 32 into 8-bit binary.',
+    null,'00100000','32 = 1 in the 32 column → 00100000.',3),
+  q('y8-bin-9',8,'binary','mc','What is the largest number you can store in 8 bits?',
+    ['127','128','255','256'],2,'2⁸ – 1 = 255. (256 values, 0 to 255.)',3),
+  q('y8-bin-10',8,'binary','mc','Add binary: 0101 + 0011 = ?',
+    ['1000','1001','0111','1010'],0,'5 + 3 = 8 → 1000.',3),
+  q('y8-bin-11',8,'binary','mc','Add binary: 0110 + 0010 = ?',
+    ['1000','1001','0111','1010'],0,'6 + 2 = 8 → 1000.',3),
+  q('y8-bin-12',8,'binary','mc','When does binary addition produce a "carry"?',
+    ['When 1+1 in a column = 10','When digits match','When there are zeros','Never'],0,
+    '1 + 1 in binary = 10, which means carry 1.',3),
+  q('y8-bin-13',8,'binary','fitb','How many bits are in 2 bytes?',
+    null,'16','1 byte = 8 bits, so 2 bytes = 16 bits.',1),
+  q('y8-bin-14',8,'binary','match','Match the unit to its size:',
+    [['Nibble','4 bits'],['Byte','8 bits'],['Kilobyte','1000 bytes']],[0,1,2],
+    'Knowing units helps you reason about file sizes.',2),
+
+  /* ---- Y8 LOGIC GATES (8) ---- */
+  q('y8-logic-1',8,'logic','mc','An AND gate outputs 1 when…',
+    ['Both inputs are 1','Either input is 1','Neither input is 1','Inputs are different'],0,
+    'AND only outputs 1 if BOTH inputs are 1.',2),
+  q('y8-logic-2',8,'logic','mc','An OR gate outputs 1 when…',
+    ['At least one input is 1','Both inputs are 0','Both inputs are 1 only','Inputs are equal'],0,
+    'OR is true if either (or both) inputs are 1.',2),
+  q('y8-logic-3',8,'logic','mc','A NOT gate does what?',
+    ['Inverts the input (0→1, 1→0)','Doubles the input','Adds 1','Does nothing'],0,
+    'NOT flips the bit. Simple but powerful.',1),
+  q('y8-logic-4',8,'logic','mc','A=1, B=0. A AND B = ?',
+    ['0','1','Either','Neither'],0,'Both must be 1 — they aren\'t — so 0.',2),
+  q('y8-logic-5',8,'logic','mc','A=1, B=0. A OR B = ?',
+    ['0','1','2','Both'],1,'At least one is 1, so output is 1.',2),
+  q('y8-logic-6',8,'logic','mc','NOT 0 = ?',
+    ['0','1','True','False'],1,'NOT flips 0 to 1.',1),
+  q('y8-logic-7',8,'logic','tf','True or False: A truth table shows every possible input/output combination of a logic circuit.',
+    ['True','False'],0,'Truth tables are exhaustive — they list every case.',2),
+  q('y8-logic-8',8,'logic','mc','Two inputs A and B. How many rows does a truth table have?',
+    ['2','3','4','8'],2,'2 inputs = 2² = 4 rows.',2),
+
+  /* ---- Y8 PYTHON (14) ---- */
+  q('y8-py-1',8,'python','mc','Which Python line prints "Hello"?',
+    ['print("Hello")','echo "Hello"','printf("Hello")','say Hello'],0,'Python uses print() with parentheses.',1),
+  q('y8-py-2',8,'python','mc','Which is a valid variable assignment in Python?',
+    ['age = 12','12 = age','let age = 12','var age = 12'],0,'Python uses simple `name = value` — no keyword needed.',1),
+  q('y8-py-3',8,'python','mc','What does input() do?',
+    ['Reads typed text from the user','Prints a message','Sends an email','Sleeps the program'],0,
+    'input() pauses for the user to type, and returns the string.',2),
+  q('y8-py-4',8,'python','fitb','Complete: name = _____("What is your name? ")',
+    null,'input','Use input() to ask the user for text.',2),
+  q('y8-py-5',8,'python','mc','x = "5". What TYPE is x?',
+    ['string','integer','float','boolean'],0,'Quotes around 5 make it a STRING, not a number.',2),
+  q('y8-py-6',8,'python','mc','Convert string "12" to an integer using…',
+    ['int("12")','str("12")','float("12")','bool("12")'],0,'int(...) converts to integer.',2),
+  q('y8-py-7',8,'python','mc','What is the output of: print(3 + 4)?',
+    ['7','3+4','"7"','Error'],0,'3 + 4 = 7. print writes 7.',1),
+  q('y8-py-8',8,'python','mc','What does the # symbol do at the start of a line?',
+    ['Starts a comment','Starts a print','Creates a variable','Ends the program'],0,
+    '# means the rest of the line is a comment — ignored by Python.',1),
+  q('y8-py-9',8,'python','mc','Which is NOT a Python data type?',
+    ['integer','string','float','character'],3,
+    'Python has no separate "char" type — single chars are just strings of length 1.',2),
+  q('y8-py-10',8,'python','fitb','Complete: print(_____) to display the value of a variable called score.',
+    null,'score','You put the variable name inside print().',1),
+  q('y8-py-11',8,'python','mc','Which operator means "equals" in a condition?',
+    ['==','=','!=','=>'],0,'Single = ASSIGNS. Double == COMPARES.',2),
+  q('y8-py-12',8,'python','mc','What is 7 % 2 in Python?',
+    ['1','3','0','3.5'],0,'% is "modulo" — the remainder of 7÷2 is 1.',3),
+  q('y8-py-13',8,'python','fitb','Type the operator that means "not equal to" in Python.',
+    null,'!=','!= compares for inequality.',2),
+  q('y8-py-14',8,'python','mc','Which print uses an f-string?',
+    ['print(f"Hi {name}")','print("Hi name")','print("Hi", name + 1)','print(name % "Hi")'],0,
+    'f"…" lets you insert variables in {curly braces}.',3),
+
+  /* ---- Y8 SELECTION & ITERATION (10) ---- */
+  q('y8-iter-1',8,'iter','mc','Which statement runs code ONLY if a condition is true?',
+    ['if','for','while','print'],0,'`if` is the basic selection statement.',1),
+  q('y8-iter-2',8,'iter','mc','What runs if the if condition is False and there\'s an else?',
+    ['The else block','Nothing','The if block','An error'],0,'else handles the "otherwise" case.',1),
+  q('y8-iter-3',8,'iter','mc','Which loop has a fixed number of iterations?',
+    ['for','while','if','else'],0,'`for i in range(10)` loops a known number of times.',2),
+  q('y8-iter-4',8,'iter','mc','Which loop repeats while a condition is True?',
+    ['while','for','if','else'],0,'`while` checks the condition each loop.',2),
+  q('y8-iter-5',8,'iter','mc','for i in range(5): how many times does it loop?',
+    ['4','5','6','0'],1,'range(5) gives 0,1,2,3,4 — five iterations.',2),
+  q('y8-iter-6',8,'iter','mc','range(2, 6) produces…',
+    ['2,3,4,5','2,3,4,5,6','3,4,5','1,2,3,4,5,6'],0,'range(start, stop) excludes the stop value.',3),
+  q('y8-iter-7',8,'iter','fitb','Complete: for i in _____(10):',
+    null,'range','range(n) gives numbers 0…n-1 for the loop.',2),
+  q('y8-iter-8',8,'iter','mc','A loop that never ends is called an…',
+    ['Infinite loop','Outer loop','Even loop','For-each loop'],0,
+    'Infinite loops are usually bugs — they freeze your program.',2),
+  q('y8-iter-9',8,'iter','order','Order the lines of a guessing game:',
+    ['answer = 7','guess = int(input())','if guess == answer:','print("Correct!")'],[0,1,2,3],
+    'Set the answer, take input, compare, then respond.',2),
+  q('y8-iter-10',8,'iter','tf','True or False: A for loop in Python always counts from 0.',
+    ['True','False'],1,'range(5,10) starts at 5, for example.',2),
+
+  /* ---- Y8 DATA REPRESENTATION (10) ---- */
+  q('y8-data-1',8,'data','mc','In a bitmap image, what is stored for each pixel?',
+    ['A colour value','A letter','A formula','A sound'],0,'Each pixel holds the bits for its colour.',2),
+  q('y8-data-2',8,'data','mc','Image quality goes up when you increase…',
+    ['Resolution (more pixels)','The file name length','Compression','Date taken'],0,
+    'More pixels = sharper image (but bigger file).',2),
+  q('y8-data-3',8,'data','mc','How many bits in standard ASCII for one character?',
+    ['7 (often stored as 8)','4','16','32'],0,'Standard ASCII uses 7 bits — 128 different characters.',3),
+  q('y8-data-4',8,'data','mc','Unicode is needed because…',
+    ['ASCII can\'t fit all world languages/emoji','It\'s smaller than ASCII','It\'s faster','It\'s open source'],0,
+    'Unicode can encode hundreds of thousands of characters.',3),
+  q('y8-data-5',8,'data','mc','A 10×10 1-bit image takes how many bits?',
+    ['10','100','1000','1'],1,'10 × 10 = 100 pixels, 1 bit each = 100 bits.',3),
+  q('y8-data-6',8,'data','mc','Sound is sampled at intervals and stored as…',
+    ['Numbers representing wave height','Letters','Pictures','Words'],0,
+    'Sampling measures the wave amplitude many times per second.',3),
+  q('y8-data-7',8,'data','mc','A higher sample rate gives…',
+    ['Better sound quality, bigger file','Worse sound','No change','Smaller file'],0,
+    'More samples = more accurate sound, but more data.',3),
+  q('y8-data-8',8,'data','tf','True or False: All file types are images.',
+    ['True','False'],1,'Files can be text, video, sound, code — many types!',1),
+  q('y8-data-9',8,'data','mc','Why is colour depth important?',
+    ['It sets how many colours each pixel can be','It changes resolution','It removes images','It edits text'],0,
+    'More bits per pixel → more possible colours.',3),
+  q('y8-data-10',8,'data','match','Match the data to how it\'s stored:',
+    [['Text','Character codes'],['Image','Pixel grid'],['Sound','Sampled wave']],[0,1,2],
+    'Everything in a computer is just binary — these are the *shapes* of it.',2),
+
+  /* ---- Y8 HARDWARE & SOFTWARE (6) ---- */
+  q('y8-hw-1',8,'hw','mc','The CPU does WHICH of these tasks?',
+    ['Fetch, decode, execute','Print, scan, paint','Code, debug, deploy','Type, click, drag'],0,
+    'The fetch-decode-execute cycle is what CPUs do.',3),
+  q('y8-hw-2',8,'hw','mc','Cache memory is…',
+    ['Very fast memory close to the CPU','A slow backup','A type of monitor','Removable storage'],0,
+    'Cache speeds the CPU by holding frequently used data nearby.',3),
+  q('y8-hw-3',8,'hw','mc','Which OS is open source?',
+    ['Linux','macOS','Windows 11','Chrome OS'],0,'Linux is open — anyone can see and modify the code.',2),
+  q('y8-hw-4',8,'hw','mc','Utility software does what?',
+    ['Maintains the computer (antivirus, backup)','Plays games','Writes letters','Browses the web'],0,
+    'Utilities help keep the system healthy.',2),
+  q('y8-hw-5',8,'hw','tf','True or False: A GPU is mainly used for graphics and parallel maths.',
+    ['True','False'],0,'GPUs excel at parallel work — great for graphics & AI.',2),
+  q('y8-hw-6',8,'hw','mc','Which is system software (not application software)?',
+    ['Operating system','Word processor','Spreadsheet','Web browser'],0,
+    'System software runs the computer; applications run on top.',2),
+
+  /* ---- Y8 NETWORKS (10) ---- */
+  q('y8-net-1',8,'net','mc','In a STAR topology, all devices connect to…',
+    ['A central switch or hub','Each other in a circle','Nothing','One cable'],0,
+    'Star = each device has its own cable to the central point.',2),
+  q('y8-net-2',8,'net','mc','In a MESH network, devices…',
+    ['Connect to many others, with multiple paths','Form a circle','Only connect to one','Don\'t connect at all'],0,
+    'Mesh is highly reliable — many paths, hard to break.',3),
+  q('y8-net-3',8,'net','mc','A SWITCH does what?',
+    ['Forwards data to the right device on a LAN','Generates power','Cools the CPU','Prints'],0,
+    'Switches read addresses and send data to the right port.',3),
+  q('y8-net-4',8,'net','mc','What is an IP address?',
+    ['A unique number identifying a device on a network','A type of cable','A web browser','A monitor'],0,
+    'IP = Internet Protocol address.',2),
+  q('y8-net-5',8,'net','mc','URL stands for…',
+    ['Uniform Resource Locator','Universal Reading Line','Unique Routing Link','User Resource List'],0,
+    'A URL is the web address of a resource.',2),
+  q('y8-net-6',8,'net','mc','HTTP is…',
+    ['A protocol for transferring web pages','A programming language','A monitor type','A web browser'],0,
+    'HTTP defines how browsers and servers talk.',2),
+  q('y8-net-7',8,'net','mc','HTTPS is HTTP + ?',
+    ['Encryption (secure)','Speed','Sound','Faster fonts'],0,
+    'HTTPS encrypts data with TLS so eavesdroppers can\'t read it.',3),
+  q('y8-net-8',8,'net','tf','True or False: A web server stores and serves web pages.',
+    ['True','False'],0,'Servers serve — clients request, servers respond.',1),
+  q('y8-net-9',8,'net','match','Match each device to its role:',
+    [['Router','Connects networks'],['Switch','Connects devices in a LAN'],['Server','Serves files/pages']],[0,1,2],
+    'These three together form most networks.',3),
+  q('y8-net-10',8,'net','mc','A "client" in a client-server model is…',
+    ['A device that REQUESTS data','A device that STORES data','A web page','A cable'],0,
+    'Browsers are clients; they request pages from servers.',2),
+
+  /* ---- Y8 CYBER SECURITY (8) ---- */
+  q('y8-sec-1',8,'sec','mc','SQL injection attacks try to…',
+    ['Send malicious commands to a database','Damage hardware','Print spam','Replace fonts'],0,
+    'Bad input becomes part of a query — sanitise inputs!',4),
+  q('y8-sec-2',8,'sec','mc','A brute-force attack tries to…',
+    ['Guess passwords by trying many combinations','Cut network cables','Damage screens','Steal mice'],0,
+    'Long, complex passwords slow brute-force attacks massively.',3),
+  q('y8-sec-3',8,'sec','mc','Social engineering means…',
+    ['Tricking people into giving info','Building robots','Coding social networks','Designing chairs'],0,
+    'The weakest link is often human, not technical.',3),
+  q('y8-sec-4',8,'sec','mc','A firewall does what?',
+    ['Controls network traffic in/out','Cools the CPU','Stores files','Prints reports'],0,
+    'Firewalls block unwanted connections.',2),
+  q('y8-sec-5',8,'sec','mc','What is encryption?',
+    ['Scrambling data so only those with a key can read it','Compressing data','Deleting data','Backing up data'],0,
+    'Without the key, encrypted data looks like nonsense.',3),
+  q('y8-sec-6',8,'sec','tf','True or False: The Computer Misuse Act makes it illegal to access systems without permission.',
+    ['True','False'],0,'In the UK, unauthorised access is a criminal offence.',2),
+  q('y8-sec-7',8,'sec','mc','Best defence against phishing emails:',
+    ['Be suspicious, check sender, don\'t click links','Click everything','Forward to all friends','Reply with personal info'],0,
+    'When in doubt, don\'t click. Verify directly with the company.',2),
+  q('y8-sec-8',8,'sec','mc','Personal data should be…',
+    ['Stored securely and only with consent','Shared widely','Posted publicly','Sold freely'],0,
+    'GDPR/Data Protection laws require careful handling.',3),
+
+  /* ---- Y8 HTML/CSS (8) ---- */
+  q('y8-web-1',8,'web','mc','In CSS, `color: red;` sets…',
+    ['Text colour','Background colour','Border colour','Image colour'],0,'`color` is the TEXT colour. Use `background-color` for backgrounds.',2),
+  q('y8-web-2',8,'web','mc','`background-color: blue;` sets the…',
+    ['Background colour of the element','Text colour','Page title','Border'],0,'Yes — element background.',2),
+  q('y8-web-3',8,'web','mc','In CSS, what does `font-size: 20px;` do?',
+    ['Sets text size to 20 pixels','Sets font name','Sets line height','Sets weight'],0,'px = pixels.',1),
+  q('y8-web-4',8,'web','mc','Which HTML tag creates an unordered (bullet) list?',
+    ['<ul>','<ol>','<li>','<list>'],0,'<ul> = unordered list. <li> for items.',2),
+  q('y8-web-5',8,'web','mc','Which tag creates a numbered list?',
+    ['<ol>','<ul>','<num>','<li>'],0,'<ol> = ordered list.',2),
+  q('y8-web-6',8,'web','mc','In <a href="...">, what does <a> create?',
+    ['A hyperlink','A heading','A paragraph','A line break'],0,'<a> = anchor, used for links.',1),
+  q('y8-web-7',8,'web','fitb','Type the HTML tag that adds a line break.',
+    null,'<br>','<br> is a self-closing tag that adds a break.',2),
+  q('y8-web-8',8,'web','mc','Where should CSS usually go for a big website?',
+    ['In a separate .css file linked from HTML','In every HTML file','In the URL','In a database'],0,
+    'External CSS keeps code clean and reusable.',3),
+
+  /* ---- Y8 EXTRA QUESTIONS (25 more across topics) ---- */
+  q('y8-ct-9',8,'ct','mc','"Validation" in programming means…',
+    ['Checking that input is sensible before use','Praising your code','Saving the file','Renaming variables'],0,
+    'Validation rejects bad input (e.g. age = -5) before it causes problems.',3),
+  q('y8-ct-10',8,'ct','mc','A trace table is useful for…',
+    ['Tracking variable values line by line','Tidying up code','Drawing flowcharts','Naming files'],0,
+    'Trace tables let you "run" code on paper to find bugs.',3),
+  q('y8-ct-11',8,'ct','mc','Pseudocode lets you…',
+    ['Plan an algorithm without worrying about syntax','Run code without a computer','Skip testing','Add bugs'],0,
+    'Pseudocode focuses on logic, not language-specific rules.',2),
+  q('y8-ct-12',8,'ct','mc','Refactoring code means…',
+    ['Cleaning it up without changing what it does','Adding features','Removing tests','Renaming files'],0,
+    'Good refactoring keeps behaviour but improves readability.',3),
+  q('y8-algo-15',8,'algo','mc','Which sort uses "divide and conquer"?',
+    ['Merge sort','Bubble sort','Insertion sort','Linear sort'],0,
+    'Merge sort splits, sorts halves, then merges.',4),
+  q('y8-algo-16',8,'algo','mc','Best search if the list is UNSORTED?',
+    ['Linear','Binary','Merge','Bubble'],0,
+    'Binary search needs sorted data; linear works on any list.',3),
+  q('y8-algo-17',8,'algo','mc','Trace: x ← 0. FOR i ← 1 TO 3: x ← x + i. Final x?',
+    ['3','6','10','1'],1,'0+1+2+3 = 6.',3),
+  q('y8-algo-18',8,'algo','mc','Pseudocode "IF score >= 50 THEN OUTPUT \'Pass\'" — what runs if score = 40?',
+    ['Nothing (no else)','Output Pass','Error','It crashes'],0,
+    'With no ELSE, the block is just skipped.',2),
+  q('y8-py-15',8,'python','fitb','Complete the f-string: print(_____"Hi {name}")',
+    null,'f','f"..." f-strings let you insert variables in braces.',3),
+  q('y8-py-16',8,'python','mc','int("12") + 3 gives…',
+    ['15','"123"','Error','3'],0,'int("12") becomes the number 12. 12 + 3 = 15.',3),
+  q('y8-py-17',8,'python','mc','print("a", "b") outputs…',
+    ['a b','ab','"a","b"','Error'],0,
+    'By default, print separates arguments with a space.',3),
+  q('y8-py-18',8,'python','order','Order lines to ask a name and greet:',
+    ['name = input("Name? ")','greeting = "Hi " + name','print(greeting)','# end'],[0,1,2,3],
+    'Input → process → output — the classic IPO model.',2),
+  q('y8-bin-15',8,'binary','fitb','Convert denary 25 into 8-bit binary.',
+    null,'00011001','16+8+1 = 25 → 00011001.',3,'16+8+1 = 25.'),
+  q('y8-bin-16',8,'binary','mc','Binary 1110 in denary is…',
+    ['10','12','14','15'],2,'8+4+2 = 14.',3),
+  q('y8-bin-17',8,'binary','mc','The largest number storable in 6 bits is…',
+    ['31','32','63','64'],2,'2⁶ – 1 = 63.',3),
+  q('y8-logic-9',8,'logic','mc','A NAND gate gives 1 when…',
+    ['Inputs are NOT both 1','Both inputs are 1','At least one is 0','Always'],0,
+    'NAND = NOT AND. Opposite of AND.',3),
+  q('y8-logic-10',8,'logic','mc','XOR gives 1 when inputs are…',
+    ['Different','The same','Both 1','Both 0'],0,
+    'XOR = exclusive OR: true when inputs differ.',3),
+  q('y8-logic-11',8,'logic','mc','Truth table for AND with A=0, B=1: output?',
+    ['0','1','Either','Error'],0,'AND needs BOTH to be 1.',1),
+  q('y8-net-11',8,'net','mc','Which is a WAN?',
+    ['The internet','Your home Wi-Fi','A single cable','One PC'],0,
+    'A WAN spans large geographic areas. The internet is the largest.',2),
+  q('y8-net-12',8,'net','mc','A "protocol" is…',
+    ['A set of rules for communication','A piece of hardware','A type of cable','A user'],0,
+    'HTTP, FTP, TCP — all are protocols (rule sets).',3),
+  q('y8-net-13',8,'net','mc','In client-server, what serves?',
+    ['The server provides data to clients','Clients serve servers','Nobody serves','Both equally'],0,
+    'Servers respond to client requests.',2),
+  q('y8-sec-9',8,'sec','mc','Why should organisations keep personal data secure?',
+    ['It\'s the law (GDPR) and the ethical thing','To save money','To gain ads','To slow systems'],0,
+    'GDPR/Data Protection Act protects people\'s rights.',3),
+  q('y8-sec-10',8,'sec','mc','Best practice for backups is…',
+    ['3 copies, 2 media, 1 off-site','One copy on the same disk','No backup needed','Email to yourself'],0,
+    'The "3-2-1" rule is the gold standard for backups.',3),
+  q('y8-web-9',8,'web','mc','External CSS is BETTER than inline because…',
+    ['One file styles many pages','Inline is faster','It only works on phones','It\'s newer'],0,
+    'External CSS = reusable, maintainable.',3),
+  q('y8-web-10',8,'web','mc','In CSS, a class is reused with…',
+    ['.classname','#idname','{classname}','class=""'],0,
+    'Classes can be reused on many elements; IDs should be unique.',3),
+
+  /* ---- Y8 SCRATCH — 10 new ---- */
+  q('y8-scratch-1',8,'scratch','mc','Custom blocks ("My Blocks") let you…',
+    ['Make your own reusable blocks','Buy more blocks','Add sounds','Change sprites'],0,
+    'Custom blocks are like functions: define once, use many times.',3),
+  q('y8-scratch-2',8,'scratch','mc','A "list" in Scratch stores…',
+    ['Multiple values','Only one value','Only text','Only sprites'],0,
+    'Lists are like arrays — they hold many values you can index.',3),
+  q('y8-scratch-3',8,'scratch','mc','"broadcast Hello" sends the message to…',
+    ['All sprites listening for "Hello"','Just one sprite','The stage only','No one'],0,
+    'Broadcasts let sprites coordinate without polling.',3),
+  q('y8-scratch-4',8,'scratch','mc','"create clone of myself" does what?',
+    ['Makes a copy of the sprite at runtime','Deletes the sprite','Plays a sound','Changes colour'],0,
+    'Clones are temporary copies, great for bullets and enemies.',3),
+  q('y8-scratch-5',8,'scratch','mc','"pick random 1 to 10" returns…',
+    ['A random integer in that range','Always 1','Always 10','Always the average'],0,
+    'Useful for game randomness, dice rolls, AI choices.',2),
+  q('y8-scratch-6',8,'scratch','tf','True or False: Variables can be "For this sprite only" or "For all sprites".',
+    ['True','False'],0,
+    'Local variables are private to a sprite; global variables are shared.',3),
+  q('y8-scratch-7',8,'scratch','mc','To detect when the spacebar is pressed, use which category?',
+    ['Events','Variables','Motion','Looks'],0,
+    '"when space key pressed" is an Events block.',2),
+  q('y8-scratch-8',8,'scratch','order','Order a basic "click to score" game script:',
+    ['when 🚩 clicked','set Score to 0','forever','  when this sprite clicked → change Score by 1'],[0,1,2,3],
+    'Initialise variables, then loop the game logic.',3),
+  q('y8-scratch-9',8,'scratch','mc','"stop other scripts in sprite" is useful when…',
+    ['Restarting this sprite\'s behaviour','Ending the whole project','Hiding the sprite','Adding a new sprite'],0,
+    'Useful for cancelling ongoing animations before starting a new state.',3),
+  q('y8-scratch-10',8,'scratch','mc','In Scratch, a clone "starts" running its scripts from…',
+    ['"when I start as a clone"','"when 🚩 clicked"','"when sprite clicked"','It does not start automatically'],0,
+    'Clones use the "when I start as a clone" hat block.',3),
+
+  /* ---- Y8 EXTRA general (10 new) ---- */
+  q('y8-ct-13',8,'ct','mc','"Top-down" design means…',
+    ['Start with the big problem, break it down','Start with one tiny part','Sort the alphabet','Always copy code'],0,
+    'Top-down is decomposition applied to design.',3),
+  q('y8-algo-19',8,'algo','mc','Insertion sort places each new item…',
+    ['Into its correct place in a sorted section','At the start always','At the end always','Randomly'],0,
+    'Build up a sorted list by inserting items one at a time.',3),
+  q('y8-algo-20',8,'algo','mc','In binary search, the WORST case for 100 items is about…',
+    ['7 comparisons','100','50','1'],0,
+    'log₂(100) ≈ 6.6 → ~7 comparisons.',4),
+  q('y8-py-19',8,'python','mc','"Hi " + name is an example of…',
+    ['String concatenation','Subtraction','Division','Type conversion'],0,
+    'The + operator on strings joins them together.',2),
+  q('y8-py-20',8,'python','mc','In Python, 7 // 2 gives…',
+    ['3','3.5','4','Error'],0,
+    '// is integer (floor) division — 7 ÷ 2 = 3 remainder 1, so 3.',3),
+  q('y8-bin-18',8,'binary','mc','How many bytes in 16 bits?',
+    ['1','2','4','8'],1,'16 ÷ 8 = 2 bytes.',1),
+  q('y8-logic-12',8,'logic','mc','In an XOR truth table, output is 1 when…',
+    ['Inputs are different','Inputs are the same','Both are 1','Both are 0'],0,
+    'XOR = exclusive OR: 1 when inputs disagree.',3),
+  q('y8-net-14',8,'net','mc','Higher bandwidth means…',
+    ['More data per second can pass','Lower internet speed','Smaller cables','Less memory'],0,
+    'Bandwidth = the size of the pipe; latency = the delay.',2),
+  q('y8-sec-11',8,'sec','mc','Best defence against ransomware:',
+    ['Regular offline backups','Click every email','Disable updates','Re-use passwords'],0,
+    'With offline backups, you can refuse to pay.',3),
+  q('y8-hw-7',8,'hw','mc','Secondary storage is for…',
+    ['Long-term file storage','The CPU\'s working memory','The clock','Pixels'],0,
+    'Examples: HDD, SSD, USB, optical disc. Survives a reboot.',2),
+
+  /* ===================== YEAR 9 ===================== */
+
+  /* ---- Y9 COMPUTATIONAL THINKING (4) ---- */
+  q('y9-ct-1',9,'ct','mc','Which problem is BEST solved with recursion?',
+    ['Tree traversal','Adding two numbers','Printing once','Saving a file'],0,
+    'Recursive structures (trees, fractals) suit recursive solutions.',4),
+  q('y9-ct-2',9,'ct','mc','"Big O" describes…',
+    ['How an algorithm scales as input grows','How big a file is','How tall a tower is','How long code is'],0,
+    'Big O is informal at KS3 but introduces growth rates.',4),
+  q('y9-ct-3',9,'ct','tf','True or False: A faster algorithm uses fewer steps as input grows.',
+    ['True','False'],0,'Efficiency = how many operations as data grows.',3),
+  q('y9-ct-4',9,'ct','mc','A "subroutine that returns a value" is called a…',
+    ['Function','Procedure','Variable','Constant'],0,
+    'Functions return values. Procedures just do something.',3),
+
+  /* ---- Y9 ALGORITHMS (12) ---- */
+  q('y9-algo-1',9,'algo','mc','In MERGE sort, the list is repeatedly…',
+    ['Split in half, sorted, and merged','Reversed','Doubled','Randomised'],0,
+    'Divide → conquer → merge. Very efficient on big lists.',4),
+  q('y9-algo-2',9,'algo','mc','Insertion sort works by…',
+    ['Inserting each item into its correct place','Halving the list','Randomising','Reversing'],0,
+    'Build up a sorted section one item at a time.',3),
+  q('y9-algo-3',9,'algo','mc','In the WORST case, linear search through n items takes…',
+    ['n comparisons','n²','log₂(n)','1'],0,
+    'Worst case: item is last or not present — check all n.',4),
+  q('y9-algo-4',9,'algo','mc','In the WORST case, binary search through n items takes…',
+    ['About log₂(n)','n','n²','1'],0,
+    'Each step halves the list, so log₂(n) comparisons max.',4),
+  q('y9-algo-5',9,'algo','order','Trace bubble sort on [4,2,3] — order the passes:',
+    ['Compare 4 & 2 → swap → [2,4,3]','Compare 4 & 3 → swap → [2,3,4]','Next pass: no swaps','Sorted'],[0,1,2,3],
+    'Each pass moves the largest unsorted to the end.',3),
+  q('y9-algo-6',9,'algo','mc','Which sort is BEST for a nearly-sorted list?',
+    ['Insertion sort','Bubble sort','Merge sort','None of these'],0,
+    'Insertion sort is O(n) on nearly-sorted data.',4),
+  q('y9-algo-7',9,'algo','mc','Why decompose code into functions?',
+    ['Reusable, testable, readable','To make it longer','To slow it down','To waste memory'],0,
+    'Functions make programs easier to maintain.',2),
+  q('y9-algo-8',9,'algo','mc','Pseudocode FOR i ← 1 TO 5 means…',
+    ['Repeat 5 times','Set i to 5','End the loop','Save i'],0,
+    'It\'s a fixed-count loop, like Python\'s for/range.',3),
+  q('y9-algo-9',9,'algo','mc','Trace this: x ← 3, x ← x + 2, OUTPUT x. The output is…',
+    ['5','3','2','x'],0,'3 + 2 = 5.',2),
+  q('y9-algo-10',9,'algo','mc','Trace: x ← 10. WHILE x > 5: x ← x - 1. Final x?',
+    ['5','10','4','0'],0,'Decrement until x = 5, then stop.',3),
+  q('y9-algo-11',9,'algo','mc','In a flowchart, a "NO" branch from a decision back to BEFORE the decision is a…',
+    ['Loop','Branch','Sequence','Input'],0,'Loops repeat until a condition changes.',3),
+  q('y9-algo-12',9,'algo','tf','True or False: All loops must eventually terminate.',
+    ['True','False'],0,'If they don\'t, you\'ve got an infinite loop — usually a bug.',2),
+
+  /* ---- Y9 BINARY & HEX (14) ---- */
+  q('y9-bin-1',9,'binary','mc','How many values fit in 1 byte?',
+    ['16','128','255','256'],3,'2⁸ = 256.',2),
+  q('y9-bin-2',9,'binary','fitb','Convert denary 100 into 8-bit binary.',
+    null,'01100100','64+32+4 = 100 → 01100100.',4,'64 + 32 + 4 = 100.'),
+  q('y9-bin-3',9,'binary','fitb','Convert binary 11001010 into denary.',
+    null,'202','128+64+8+2 = 202.',4),
+  q('y9-bin-4',9,'binary','mc','Hexadecimal uses what base?',
+    ['8','10','12','16'],3,'Hex = base 16. Digits 0-9 then A-F.',2),
+  q('y9-bin-5',9,'binary','mc','Hex A in denary is…',
+    ['9','10','11','12'],1,'A=10, B=11, C=12, D=13, E=14, F=15.',3),
+  q('y9-bin-6',9,'binary','mc','Hex F in denary is…',
+    ['14','15','16','20'],1,'F = 15. (Max single-digit hex.)',3),
+  q('y9-bin-7',9,'binary','mc','Hex 1A in denary is…',
+    ['10','16','20','26'],3,'1×16 + 10 = 26.',4),
+  q('y9-bin-8',9,'binary','fitb','Convert denary 255 into hex.',
+    null,'FF','255 = F×16 + F = FF.',4,'255 / 16 = 15 r 15. F and F.'),
+  q('y9-bin-9',9,'binary','mc','Why is hex used in computing?',
+    ['Each hex digit = exactly 4 bits → compact','It\'s prettier','Faster maths','Older than binary'],0,
+    '2 hex digits represent 1 byte — much easier to read than binary.',3),
+  q('y9-bin-10',9,'binary','fitb','Convert binary 11110000 into hex.',
+    null,'F0','1111 = F, 0000 = 0 → F0.',4),
+  q('y9-bin-11',9,'binary','mc','Add binary: 1010 + 0101 = ?',
+    ['1110','1111','0101','0000'],1,'10 + 5 = 15 → 1111.',3),
+  q('y9-bin-12',9,'binary','mc','Add binary: 0111 + 0001 = ?',
+    ['1000','0110','1001','1010'],0,'7 + 1 = 8 → 1000.',3),
+  q('y9-bin-13',9,'binary','mc','What is binary 100000 in denary?',
+    ['16','24','32','64'],2,'2⁵ = 32.',3),
+  q('y9-bin-14',9,'binary','match','Match the prefix to its meaning:',
+    [['Kilo','~1,000'],['Mega','~1,000,000'],['Giga','~1,000,000,000']],[0,1,2],
+    'Decimal prefixes for data sizes.',2),
+
+  /* ---- Y9 LOGIC (14) ---- */
+  q('y9-logic-1',9,'logic','mc','A AND B AND C — output is 1 when…',
+    ['ALL three are 1','At least one is 1','None are 1','Exactly two are 1'],0,
+    'AND chains require everything to be true.',3),
+  q('y9-logic-2',9,'logic','mc','A OR B OR C — output is 0 when…',
+    ['ALL are 0','Any is 1','Exactly one is 1','None of the above'],0,
+    'OR is only false when nothing is true.',3),
+  q('y9-logic-3',9,'logic','mc','A AND (NOT B). A=1, B=0. Output?',
+    ['0','1','Either','Error'],1,'NOT 0 = 1. 1 AND 1 = 1.',3),
+  q('y9-logic-4',9,'logic','mc','A AND (NOT B). A=1, B=1. Output?',
+    ['0','1','Either','Error'],0,'NOT 1 = 0. 1 AND 0 = 0.',3),
+  q('y9-logic-5',9,'logic','mc','(A OR B) AND C. A=0, B=1, C=1. Output?',
+    ['0','1','Either','Error'],1,'(0 OR 1)=1, 1 AND 1 = 1.',4),
+  q('y9-logic-6',9,'logic','mc','(A OR B) AND C. A=0, B=1, C=0. Output?',
+    ['0','1','Either','Error'],0,'(0 OR 1)=1, 1 AND 0 = 0.',4),
+  q('y9-logic-7',9,'logic','tf','True or False: A NOT gate has exactly one input.',
+    ['True','False'],0,'NOT is unary — flip one bit.',2),
+  q('y9-logic-8',9,'logic','mc','How many rows in a truth table with 3 inputs?',
+    ['3','6','8','9'],2,'2³ = 8.',3),
+  q('y9-logic-9',9,'logic','mc','How many rows in a truth table with 4 inputs?',
+    ['4','8','16','32'],2,'2⁴ = 16.',3),
+  q('y9-logic-10',9,'logic','mc','Which gate is equivalent to NOT (A AND B)?',
+    ['NAND','NOR','XOR','OR'],0,'NAND = NOT AND.',3),
+  q('y9-logic-11',9,'logic','mc','Which gate is equivalent to NOT (A OR B)?',
+    ['NOR','NAND','XOR','AND'],0,'NOR = NOT OR.',3),
+  q('y9-logic-12',9,'logic','mc','In Python, `True and False` evaluates to…',
+    ['False','True','None','Error'],0,'AND needs both True.',2),
+  q('y9-logic-13',9,'logic','mc','In Python, `not False` evaluates to…',
+    ['True','False','0','1'],0,'NOT flips False to True.',2),
+  q('y9-logic-14',9,'logic','mc','`(age >= 13) and (age <= 19)` is true for…',
+    ['Teens (13-19 inclusive)','Children only','Adults only','Everyone'],0,
+    'Both conditions must hold — that\'s the teen range.',3),
+
+  /* ---- Y9 PYTHON (18) ---- */
+  q('y9-py-1',9,'python','mc','A Python LIST is created with…',
+    ['Square brackets [ ]','Curly braces { }','Parentheses ( )','Angle brackets < >'],0,
+    '[1, 2, 3] is a list.',2),
+  q('y9-py-2',9,'python','mc','Access the first item of list a = [10,20,30] with…',
+    ['a[0]','a[1]','a(0)','a.first'],0,'Lists are 0-indexed.',2),
+  q('y9-py-3',9,'python','mc','len([1,2,3,4]) returns…',
+    ['3','4','5','Error'],1,'len() counts items.',2),
+  q('y9-py-4',9,'python','mc','Add an item to the end of a list with…',
+    ['list.append(x)','list.add(x)','list.push(x)','list.insert(x)'],0,'.append() puts x at the end.',3),
+  q('y9-py-5',9,'python','mc','Define a function in Python with…',
+    ['def','function','fun','func'],0,'`def name():` is the syntax.',2),
+  q('y9-py-6',9,'python','fitb','Complete: _____ greet(name):',
+    null,'def','def is the keyword to start a function.',2),
+  q('y9-py-7',9,'python','mc','A function can send a value back with…',
+    ['return','print','give','send'],0,'return ends the function and gives the value back.',2),
+  q('y9-py-8',9,'python','mc','What does this print? def f(x): return x*2 — print(f(5))',
+    ['5','10','55','f(5)'],1,'5 doubled is 10.',3),
+  q('y9-py-9',9,'python','mc','What is x after: x = [1,2,3]; x.append(4)?',
+    ['[1,2,3,4]','[1,2,3]','[4]','[4,1,2,3]'],0,'.append adds to the end.',2),
+  q('y9-py-10',9,'python','mc','What does `for letter in "hi":` loop over?',
+    ['Each character','The whole word','Just "h"','Nothing'],0,'Strings are iterable letter by letter.',3),
+  q('y9-py-11',9,'python','mc','Open a file for reading with…',
+    ['open("f.txt", "r")','open("f.txt", "w")','read("f.txt")','file.open("r")'],0,
+    '"r" = read mode.',4),
+  q('y9-py-12',9,'python','mc','Open a file for writing (overwrites) with…',
+    ['open("f.txt", "w")','open("f.txt", "r")','open("f.txt", "a")','open("f.txt", "x")'],0,
+    '"w" overwrites; "a" appends.',4),
+  q('y9-py-13',9,'python','fitb','In a function, the keyword to send a value back is _____.',
+    null,'return','return ends the function and gives back a value.',3),
+  q('y9-py-14',9,'python','mc','x = "hello"; print(x.upper()) outputs…',
+    ['hello','HELLO','Hello','hELLO'],1,'.upper() makes all uppercase.',2),
+  q('y9-py-15',9,'python','mc','x = "  hi  "; x.strip() returns…',
+    ['"hi"','"  hi  "','"HI"','""'],0,'.strip() removes surrounding whitespace.',3),
+  q('y9-py-16',9,'python','mc','Which is a Python dictionary?',
+    ['{"a": 1, "b": 2}','[1, 2, 3]','(1, 2)','<a=1>'],0,
+    'Dicts use {key: value} pairs.',3),
+  q('y9-py-17',9,'python','mc','d = {"name":"Sam"}. d["name"] returns…',
+    ['"Sam"','"name"','None','Error'],0,'Access dict values by key.',3),
+  q('y9-py-18',9,'python','order','Order these steps inside a function definition:',
+    ['def add(a, b):','    total = a + b','    return total','print(add(3, 4))'],[0,1,2,3],
+    'Define, do, return, call.',3),
+
+  /* ---- Y9 SELECTION & ITERATION (14) ---- */
+  q('y9-iter-1',9,'iter','mc','`if x > 0 and y > 0:` is True when…',
+    ['Both x and y are positive','Either is positive','Neither is positive','Always'],0,
+    'AND needs BOTH to be true.',2),
+  q('y9-iter-2',9,'iter','mc','`if x > 0 or y > 0:` is True when…',
+    ['At least one is positive','Both are positive only','Neither is positive','Always'],0,
+    'OR is true if at least one is true.',2),
+  q('y9-iter-3',9,'iter','mc','A nested loop is…',
+    ['A loop inside another loop','A broken loop','A function','A condition'],0,
+    'Nested loops let you scan grids, tables, etc.',3),
+  q('y9-iter-4',9,'iter','mc','for i in range(3): for j in range(2) — total iterations?',
+    ['5','6','8','3'],1,'3 × 2 = 6.',3),
+  q('y9-iter-5',9,'iter','mc','`break` in a loop…',
+    ['Exits the loop early','Skips one iteration','Restarts the loop','Renames variables'],0,
+    'break leaves the loop immediately.',3),
+  q('y9-iter-6',9,'iter','mc','`continue` in a loop…',
+    ['Skips to the next iteration','Exits the loop','Stops the program','Prints "continue"'],0,
+    'continue skips the rest of THIS iteration.',3),
+  q('y9-iter-7',9,'iter','mc','elif means…',
+    ['Else if','End if','Either if','Empty if'],0,'elif lets you chain conditions cleanly.',2),
+  q('y9-iter-8',9,'iter','order','Order lines of an even-number checker:',
+    ['n = int(input())','if n % 2 == 0:','    print("even")','else:'],[0,1,2,3],
+    'Get input → check remainder → branch.',3),
+  q('y9-iter-9',9,'iter','mc','total = 0\\nfor i in range(1, 4): total = total + i. Final total?',
+    ['3','6','10','0'],1,'1+2+3 = 6.',3),
+  q('y9-iter-10',9,'iter','mc','i = 1\\nwhile i < 5: i = i + 2. Final i?',
+    ['3','5','6','7'],1,'1 → 3 → 5 (stops since 5 not < 5).',4),
+  q('y9-iter-11',9,'iter','mc','`while True:` without break makes…',
+    ['An infinite loop','A counted loop','A function','A list'],0,
+    'No exit condition → never stops.',2),
+  q('y9-iter-12',9,'iter','tf','True or False: range(0) loops 0 times.',
+    ['True','False'],0,'Empty range = no iterations.',3),
+  q('y9-iter-13',9,'iter','mc','for i in range(10, 0, -1): does what?',
+    ['Counts 10 down to 1','Counts 0 to 10','Counts -1 to 10','Infinite loop'],0,
+    'The third arg is the step. -1 = count down.',4),
+  q('y9-iter-14',9,'iter','fitb','To stop a loop early, use the keyword _____.',
+    null,'break','break exits the nearest loop.',3),
+
+  /* ---- Y9 DATA REPRESENTATION (12) ---- */
+  q('y9-data-1',9,'data','mc','How many bits per pixel for 256 different colours?',
+    ['4','8','16','24'],1,'2⁸ = 256, so 8 bits per pixel.',3),
+  q('y9-data-2',9,'data','mc','24-bit colour gives how many possible colours?',
+    ['256','65,536','16,777,216','1,000,000,000'],2,
+    '2²⁴ = ~16.7 million. The "true colour" depth.',4),
+  q('y9-data-3',9,'data','mc','File size of a 100×100 24-bit image (uncompressed)?',
+    ['100×100×3 bytes','100×100 bits','100 bytes','100,000 bits'],0,
+    '24 bits = 3 bytes per pixel. 100×100×3 = 30,000 bytes.',4),
+  q('y9-data-4',9,'data','mc','Sound sample rate is measured in…',
+    ['Hertz (Hz)','Bytes','Pixels','Volts'],0,'Hz = samples per second.',3),
+  q('y9-data-5',9,'data','mc','Bit depth in sound = …',
+    ['Bits per sample (loudness detail)','Pitch','Volume','File size'],0,
+    'More bits per sample = finer loudness detail.',4),
+  q('y9-data-6',9,'data','mc','Lossy compression…',
+    ['Removes some data permanently','Loses no data','Increases file size','Encrypts data'],0,
+    'JPEG, MP3 throw out data the human eye/ear barely notices.',4),
+  q('y9-data-7',9,'data','mc','Lossless compression…',
+    ['Restores the original exactly','Throws out data','Encrypts data','Slows transmission'],0,
+    'PNG, ZIP — original can be reconstructed perfectly.',4),
+  q('y9-data-8',9,'data','mc','Which is LOSSY?',
+    ['JPEG','PNG','ZIP','FLAC'],0,'JPEG is the classic lossy image format.',3),
+  q('y9-data-9',9,'data','mc','Why use Unicode over ASCII today?',
+    ['It supports far more characters globally','It uses fewer bits','It\'s faster','It uses 4 bits'],0,
+    'Unicode covers every script on Earth (and emoji).',3),
+  q('y9-data-10',9,'data','mc','Metadata is…',
+    ['Data about data (date, size, author)','The main content','A virus','A backup'],0,
+    'Photos carry metadata: camera, location, date.',3),
+  q('y9-data-11',9,'data','tf','True or False: A higher bit depth in audio always means worse quality.',
+    ['True','False'],1,'Higher bit depth = MORE detail = BETTER quality.',2),
+  q('y9-data-12',9,'data','mc','Which is true?',
+    ['1 KB ≈ 1000 bytes','1 KB = 1 byte','1 KB = 1,000,000 bytes','1 KB = 10 bytes'],0,
+    'Decimal KB = 1000 bytes. (Binary KiB = 1024.)',2),
+
+  /* ---- Y9 NETWORKS (12) ---- */
+  q('y9-net-1',9,'net','mc','TCP/IP is…',
+    ['A set of protocols that powers the internet','A type of cable','A programming language','A monitor'],0,
+    'TCP + IP work together to send data reliably.',3),
+  q('y9-net-2',9,'net','mc','DNS does what?',
+    ['Translates domain names to IP addresses','Encrypts data','Compresses files','Stores passwords'],0,
+    'DNS = Domain Name System. Like a phonebook for the web.',3),
+  q('y9-net-3',9,'net','mc','Data is sent across networks in small chunks called…',
+    ['Packets','Pixels','Frames per second','Tokens'],0,
+    'Packets allow networks to share bandwidth efficiently.',2),
+  q('y9-net-4',9,'net','mc','Which is LAYER ORDER (bottom-up) for TCP/IP?',
+    ['Link → Internet → Transport → Application','Application → Transport → Internet → Link','Random','Same layer'],0,
+    'Lower layers carry higher layers.',4),
+  q('y9-net-5',9,'net','mc','Which protocol is used for sending email between servers?',
+    ['SMTP','HTTP','FTP','DNS'],0,'SMTP = Simple Mail Transfer Protocol.',3),
+  q('y9-net-6',9,'net','mc','Which protocol is used for transferring files?',
+    ['FTP','HTTP','SMTP','DNS'],0,'FTP = File Transfer Protocol.',3),
+  q('y9-net-7',9,'net','mc','A MAC address identifies…',
+    ['A specific network hardware device','A web page','A user','An OS'],0,
+    'MACs are assigned by manufacturers; they\'re unique to the device.',3),
+  q('y9-net-8',9,'net','mc','Bandwidth measures…',
+    ['Maximum data rate of a network','Network distance','Number of users','CPU speed'],0,
+    'Higher bandwidth = more data per second.',3),
+  q('y9-net-9',9,'net','mc','Latency is…',
+    ['Delay before data starts arriving','Total data','File size','Bandwidth'],0,
+    'Latency = the time it takes to start receiving.',3),
+  q('y9-net-10',9,'net','mc','Cloud storage means…',
+    ['Files stored on remote servers, accessed online','Inside your phone','Magic','Wi-Fi'],0,
+    'Cloud = someone else\'s computer, accessible anywhere.',2),
+  q('y9-net-11',9,'net','tf','True or False: HTTPS uses encryption to keep data secure.',
+    ['True','False'],0,'HTTPS encrypts traffic with TLS.',2),
+  q('y9-net-12',9,'net','match','Match the port to its protocol:',
+    [['Port 80','HTTP'],['Port 443','HTTPS'],['Port 25','SMTP']],[0,1,2],
+    'Standard ports help routers send traffic correctly.',4),
+
+  /* ---- Y9 CYBER SECURITY & ETHICS (12) ---- */
+  q('y9-sec-1',9,'sec','mc','A "denial of service" attack tries to…',
+    ['Overload a server so it can\'t serve users','Steal passwords','Print spam','Make ads pop up'],0,
+    'DDoS attacks flood servers with requests.',3),
+  q('y9-sec-2',9,'sec','mc','Ransomware does what?',
+    ['Encrypts your files and demands payment','Steals your mouse','Edits photos','Plays music'],0,
+    'Pay or lose your files — best defence: backups.',3),
+  q('y9-sec-3',9,'sec','mc','A "white hat" hacker…',
+    ['Helps find security flaws ethically','Breaks the law','Spreads malware','Sells data'],0,
+    'White hats are paid to test and report vulnerabilities.',3),
+  q('y9-sec-4',9,'sec','mc','Caesar cipher works by…',
+    ['Shifting each letter by a fixed amount','Reversing the message','Encrypting with a key file','Compressing data'],0,
+    'Ancient cipher — easy to crack today.',3),
+  q('y9-sec-5',9,'sec','mc','Symmetric encryption uses…',
+    ['The same key to encrypt and decrypt','Two different keys','No key','A picture'],0,
+    'Both sides need the secret key.',4),
+  q('y9-sec-6',9,'sec','mc','Asymmetric (public-key) encryption uses…',
+    ['A public key to encrypt, private key to decrypt','One key for both','No keys','Two private keys'],0,
+    'Anyone can encrypt, only the holder of the private key can read.',4),
+  q('y9-sec-7',9,'sec','tf','True or False: GDPR limits how organisations can store personal data.',
+    ['True','False'],0,'GDPR/UK DPA protects people\'s data rights.',2),
+  q('y9-sec-8',9,'sec','mc','Open source software means…',
+    ['Anyone can see and modify the source code','It\'s free','It has no licence','It\'s broken'],0,
+    'Open source = code is public, often free, often modifiable.',3),
+  q('y9-sec-9',9,'sec','mc','Which is an ethical AI concern?',
+    ['Bias in training data','Slow internet','Old monitors','Long file names'],0,
+    'AI bias arises when training data is unrepresentative.',3),
+  q('y9-sec-10',9,'sec','mc','Digital footprint means…',
+    ['The trail of data you leave online','A footprint icon','A photo of your foot','An app'],0,
+    'Everything you post/search/click contributes.',2),
+  q('y9-sec-11',9,'sec','mc','Best protection against ransomware:',
+    ['Regular offline backups','Random emails','Public Wi-Fi','Same password everywhere'],0,
+    'If you have backups, you can refuse to pay.',3),
+  q('y9-sec-12',9,'sec','mc','Two-factor authentication is strong because…',
+    ['It needs something you know AND something you have','It\'s long','It uses emoji','It\'s expensive'],0,
+    'Stealing your password alone isn\'t enough.',3),
+
+  /* ---- Y9 HTML / CSS / JS (6) ---- */
+  q('y9-web-1',9,'web','mc','In CSS, what does `.btn` select?',
+    ['Elements with class="btn"','The button tag','All <btn> tags','IDs called btn'],0,
+    'Dot = class selector.',3),
+  q('y9-web-2',9,'web','mc','In CSS, what does `#main` select?',
+    ['Elements with id="main"','All main tags','Classes called main','Comments'],0,
+    'Hash = ID selector. IDs are unique.',3),
+  q('y9-web-3',9,'web','mc','Which is JavaScript syntax to log to the console?',
+    ['console.log("hi")','print("hi")','log "hi"','echo "hi"'],0,
+    'JS uses console.log() for output to the dev console.',2),
+  q('y9-web-4',9,'web','mc','Which declares a variable in modern JS?',
+    ['let / const','var only','dim','int'],0,'let and const are modern; var is older.',3),
+  q('y9-web-5',9,'web','mc','In HTML, semantic tag for the main navigation?',
+    ['<nav>','<menu>','<links>','<bar>'],0,'<nav> is semantic and accessible.',3),
+  q('y9-web-6',9,'web','mc','`<button onclick="hello()">` triggers what?',
+    ['Calls hello() when clicked','Loads a page','Submits a form','Nothing'],0,
+    'onclick is an inline JS event handler.',2),
+
+  /* ---- Y9 EXTRA QUESTIONS (25 more) ---- */
+  q('y9-algo-13',9,'algo','mc','Trace: x ← 5. WHILE x > 0: x ← x - 2. Final x?',
+    ['-1','0','1','2'],0,'5 → 3 → 1 → -1. Loop stops because -1 is not > 0.',4),
+  q('y9-algo-14',9,'algo','mc','"Divide and conquer" means…',
+    ['Split a problem into subproblems, solve, combine','Skip steps','Ignore inputs','Sort first'],0,
+    'Used by merge sort, binary search, and many top algorithms.',4),
+  q('y9-algo-15',9,'algo','order','Order pseudocode for "is x even?":',
+    ['INPUT x','IF x MOD 2 = 0 THEN','  OUTPUT "even"','ELSE','  OUTPUT "odd"'],[0,1,2,3,4],
+    'MOD gives the remainder. Even numbers have remainder 0 when ÷ 2.',3),
+  q('y9-algo-16',9,'algo','mc','For 1024 items: binary search needs roughly…',
+    ['10 comparisons','100','1024','1'],0,
+    'log₂(1024) = 10. Very efficient!',4),
+  q('y9-algo-17',9,'algo','mc','Recursion is when a function…',
+    ['Calls itself','Has no parameters','Returns nothing','Repeats forever'],0,
+    'Recursion: a function calls itself with simpler input until a base case.',4),
+  q('y9-py-19',9,'python','mc','xs = [10,20,30,40]. What does xs[1:3] give?',
+    ['[20, 30]','[10, 20, 30]','[20, 30, 40]','[10, 20]'],0,
+    'Slicing: start is inclusive, stop is exclusive. Indices 1,2 → 20, 30.',4),
+  q('y9-py-20',9,'python','mc','try / except is used for…',
+    ['Catching errors so the program doesn\'t crash','Trying new features','Logging in','Sorting'],0,
+    'Wrap risky code in try; handle problems in except.',4),
+  q('y9-py-21',9,'python','mc','"Hello".lower() returns…',
+    ['"hello"','"HELLO"','"Hello"','""'],0,'.lower() returns the lowercase version.',2),
+  q('y9-py-22',9,'python','mc','d = {"x":1, "y":2}. d.get("z", 0) returns…',
+    ['0','None','Error','""'],0,
+    '.get(key, default) returns default if key is missing — safer than d["z"].',4),
+  q('y9-py-23',9,'python','mc','A list of dicts is useful for…',
+    ['Storing structured records (e.g. students)','Counting only','Single values','Math constants'],0,
+    'Each dict = a record; the list collects them.',4),
+  q('y9-iter-15',9,'iter','mc','for i in range(3): for j in range(2): — total inner iterations?',
+    ['5','6','8','2'],1,'3 × 2 = 6.',3),
+  q('y9-iter-16',9,'iter','mc','count = 0. while True: count += 1. if count == 3: break — final count?',
+    ['1','2','3','Infinite'],2,'Loops until break fires at count = 3.',3),
+  q('y9-iter-17',9,'iter','mc','[x*2 for x in [1,2,3]] gives…',
+    ['[2,4,6]','[1,2,3]','[1,4,9]','Error'],0,
+    'List comprehension: a compact way to build a new list.',4),
+  q('y9-bin-15',9,'binary','mc','Hex 2A in denary is…',
+    ['26','32','42','52'],2,'2×16 + 10 = 42.',4),
+  q('y9-bin-16',9,'binary','mc','Binary 1000 − 0011 = ?',
+    ['0101','0100','0110','0111'],0,'8 − 3 = 5 → 0101.',4),
+  q('y9-bin-17',9,'binary','mc','Two hex digits represent…',
+    ['1 byte (8 bits)','4 bits','16 bits','1 bit'],0,
+    'Each hex digit = 4 bits, so two hex digits = 8 bits = 1 byte.',3),
+  q('y9-net-13',9,'net','mc','A VPN is used to…',
+    ['Encrypt and tunnel your traffic privately','Speed up Wi-Fi','Print files','Save power'],0,
+    'VPNs hide your traffic from local networks and ISPs.',4),
+  q('y9-net-14',9,'net','mc','"Ping" measures…',
+    ['Round-trip time to a server','Disk space','RAM','CPU temperature'],0,
+    'Ping helps diagnose latency and connectivity.',3),
+  q('y9-net-15',9,'net','mc','Cookies are…',
+    ['Small data stored by sites in your browser','Snacks','Encrypted files','Viruses'],0,
+    'Cookies remember sessions, preferences, and logins.',3),
+  q('y9-sec-13',9,'sec','mc','A HASH function turns data into…',
+    ['A fixed-size fingerprint','Plain text','A photo','A network'],0,
+    'Hashes are one-way: easy to compute, hard to reverse.',4),
+  q('y9-sec-14',9,'sec','mc','"Salting" a password means…',
+    ['Adding random data before hashing','Encrypting it twice','Compressing it','Sharing it'],0,
+    'Salts stop attackers using pre-computed "rainbow tables".',4),
+  q('y9-sec-15',9,'sec','mc','A "zero-day" vulnerability is one…',
+    ['That has no known patch yet','Discovered years ago','Always harmless','In old hardware'],0,
+    'Zero-days are dangerous because there is no fix available.',4),
+  q('y9-logic-15',9,'logic','mc','(A AND B) OR (NOT A). A=0, B=0. Output?',
+    ['0','1','Either','Error'],1,'A AND B = 0. NOT A = 1. 0 OR 1 = 1.',4),
+  q('y9-logic-16',9,'logic','mc','NOT (A OR B) is equivalent to which gate?',
+    ['NOR','NAND','XOR','AND'],0,'NOR = NOT OR.',3),
+  q('y9-logic-17',9,'logic','mc','By De Morgan\'s laws, NOT (A AND B) equals…',
+    ['(NOT A) OR (NOT B)','(NOT A) AND (NOT B)','A AND B','A OR B'],0,
+    'De Morgan flips AND/OR and inverts each input.',4),
+
+  /* ---- Y9 SCRATCH — 5 new ---- */
+  q('y9-scratch-1',9,'scratch','mc','Scratch\'s main advantage over text-based languages is…',
+    ['No syntax errors; easier for beginners','Faster execution','Smaller file size','More AI features'],0,
+    'Block snapping prevents most syntax mistakes — great for learning logic first.',3),
+  q('y9-scratch-2',9,'scratch','mc','Moving from Scratch to Python, "forever" maps closest to…',
+    ['while True:','for i in range(10):','if x > 0:','def function():'],0,
+    'A "forever" loop is essentially while True in Python.',3),
+  q('y9-scratch-3',9,'scratch','mc','In Scratch, "stop all" does what?',
+    ['Stops every script in the project','Pauses just this sprite','Restarts the project','Mutes sound only'],0,
+    '"stop all" halts everything — useful for game-over states.',3),
+  q('y9-scratch-4',9,'scratch','mc','Which Scratch concept maps most directly to a "function" in Python?',
+    ['Custom block (My Block)','Variable','Sprite','Costume'],0,
+    'Custom blocks let you define reusable behaviour, just like functions.',3),
+  q('y9-scratch-5',9,'scratch','mc','In Scratch, "ask … and wait" then "answer" lets you…',
+    ['Take input from the user','Save to a file','Connect to a website','Render 3D graphics'],0,
+    'It\'s the Scratch equivalent of Python\'s input().',3),
+
+  /* ---- Y9 EXTRA general (12 more) ---- */
+  q('y9-algo-18',9,'algo','mc','"O(n)" describes an algorithm that…',
+    ['Takes time proportional to input size','Always takes 1 step','Doubles every step','Halves every step'],0,
+    'Linear search is O(n). Binary search is O(log n).',4),
+  q('y9-algo-19',9,'algo','mc','To search an UNSORTED list of 1000 items, worst case is…',
+    ['1000 comparisons (linear search)','10 comparisons (binary search)','1 comparison','100 comparisons'],0,
+    'You can\'t use binary search on unsorted data, so linear is the only safe choice.',4),
+  q('y9-py-24',9,'python','mc','xs = [1,2,3]. xs[-1] returns…',
+    ['3','1','-1','Error'],0,
+    'Negative indices count from the end. -1 = last item.',4),
+  q('y9-py-25',9,'python','mc','f"{x:.2f}" with x = 3.14159 prints…',
+    ['3.14','3.142','3','3.14159'],0,
+    'The .2f format spec rounds to 2 decimal places.',4),
+  q('y9-py-26',9,'python','mc','for k, v in d.items(): — iterates over a dictionary as…',
+    ['(key, value) pairs','Just keys','Just values','Random order only'],0,
+    '.items() returns key/value tuples.',4),
+  q('y9-iter-18',9,'iter','mc','enumerate(["a","b","c"]) yields…',
+    ['(0,"a"), (1,"b"), (2,"c")','"a","b","c"','(1,"a")…(3,"c")','Error'],0,
+    'enumerate gives index AND value while looping.',4),
+  q('y9-bin-18',9,'binary','mc','In "two\'s complement" representation, the leftmost bit is…',
+    ['The sign bit (1 = negative)','Always 0','Always 1','The biggest positive bit'],0,
+    'In two\'s complement, leading 1 means negative.',4),
+  q('y9-net-16',9,'net','mc','HTTPS uses which to secure traffic?',
+    ['TLS encryption','Wi-Fi','Bluetooth','FTP'],0,
+    'TLS (formerly SSL) provides encryption and authentication.',3),
+  q('y9-sec-16',9,'sec','mc','"Spear phishing" is…',
+    ['Phishing targeted at a specific person','Mass spam','A password manager','Antivirus'],0,
+    'Tailored phishing emails are harder to spot — and very dangerous.',4),
+  q('y9-logic-18',9,'logic','mc','NOT (A OR B) — for A=1, B=0 — output?',
+    ['0','1','Either','Error'],0,
+    'A OR B = 1. NOT 1 = 0.',3),
+  q('y9-data-13',9,'data','mc','Run-length encoding (RLE) is a kind of…',
+    ['Lossless compression','Lossy compression','Encryption','Hashing'],0,
+    'RLE replaces runs of the same value with (count, value).',3),
+  q('y9-data-14',9,'data','mc','Encoding "AAAABBBC" with RLE could give…',
+    ['4A3B1C','AAAA BBB C','ABBC','7 letters'],0,
+    'Count each run: 4 A\'s, 3 B\'s, 1 C.',4),
+];
+
+/* ============================================================
+   ACHIEVEMENTS — 24 badges
+   ============================================================ */
+const ACHIEVEMENTS = [
+  { id:'first-step',  name:'First Steps',       icon:'🌱', desc:'Answer your very first question.',                rule:s => s.totalAnswered >= 1 },
+  { id:'ten-strong',  name:'Ten Strong',        icon:'💪', desc:'Answer 10 questions.',                            rule:s => s.totalAnswered >= 10 },
+  { id:'fifty',       name:'Half Century',      icon:'🏏', desc:'Answer 50 questions.',                            rule:s => s.totalAnswered >= 50 },
+  { id:'hundred',     name:'Centurion',         icon:'💯', desc:'Answer 100 questions.',                           rule:s => s.totalAnswered >= 100 },
+  { id:'perfect',     name:'Flawless',          icon:'🎯', desc:'Get 10 questions correct in a row.',              rule:s => s.bestStreak >= 10 },
+  { id:'perfect20',   name:'Untouchable',       icon:'🛡️', desc:'Get 20 questions correct in a row.',              rule:s => s.bestStreak >= 20 },
+  { id:'streak3',     name:'Three-Day Streak',  icon:'🔥', desc:'Practice 3 days in a row.',                       rule:s => s.streakDays >= 3 },
+  { id:'streak7',     name:'Week Warrior',      icon:'⚡', desc:'Practice 7 days in a row.',                       rule:s => s.streakDays >= 7 },
+  { id:'streak30',    name:'Unstoppable',       icon:'🌟', desc:'Practice 30 days in a row.',                      rule:s => s.streakDays >= 30 },
+  { id:'binary-fan',  name:'Binary Brain',      icon:'🔢', desc:'Get 20 binary questions right.',                  rule:s => (s.perTopic?.binary?.correct||0) >= 20 },
+  { id:'pythonista',  name:'Pythonista',        icon:'🐍', desc:'Get 20 Python questions right.',                  rule:s => (s.perTopic?.python?.correct||0) >= 20 },
+  { id:'logic-lord',  name:'Logic Lord',        icon:'🔌', desc:'Get 15 logic questions right.',                   rule:s => (s.perTopic?.logic?.correct||0) >= 15 },
+  { id:'safe-surfer', name:'Safe Surfer',       icon:'🛟', desc:'Get 15 cyber-security questions right.',          rule:s => (s.perTopic?.sec?.correct||0) >= 15 },
+  { id:'webby',       name:'Web Wizard',        icon:'🎨', desc:'Get 15 web questions right.',                     rule:s => (s.perTopic?.web?.correct||0) >= 15 },
+  { id:'all-rounder', name:'Well Rounded',      icon:'🎓', desc:'Answer in 6 different topics.',                   rule:s => Object.keys(s.perTopic||{}).length >= 6 },
+  { id:'speedster',   name:'Speedster',         icon:'⚡', desc:'Finish a quiz in under 60 seconds.',              rule:s => s.fastestQuizSec && s.fastestQuizSec < 60 },
+  { id:'comeback',    name:'Comeback Kid',      icon:'🔁', desc:'Go from a wrong answer to a 5-streak.',           rule:s => s.comeback === true },
+  { id:'daily',       name:'Daily Dasher',      icon:'☀️', desc:'Complete a daily challenge.',                     rule:s => s.dailiesDone >= 1 },
+  { id:'boss1',       name:'Boss Slayer',       icon:'🐲', desc:'Defeat your first weekly boss.',                  rule:s => s.bossesBeaten >= 1 },
+  { id:'boss3',       name:'Triple Boss',       icon:'👑', desc:'Defeat 3 bosses.',                                rule:s => s.bossesBeaten >= 3 },
+  { id:'level5',      name:'Level 5',           icon:'⭐', desc:'Reach level 5.',                                  rule:s => s.level >= 5 },
+  { id:'level10',     name:'Level 10',          icon:'🌟', desc:'Reach level 10.',                                 rule:s => s.level >= 10 },
+  { id:'level20',     name:'Legend',            icon:'🏆', desc:'Reach level 20.',                                 rule:s => s.level >= 20 },
+  { id:'explorer',    name:'Explorer',          icon:'🧭', desc:'Try every theme at least once.',                  rule:s => (s.themesTried||[]).length >= 4 },
+];
+
+/* ============================================================
+   THEMES
+   ============================================================ */
+const THEMES = [
+  { id:'playful', name:'Playful', desc:'Bright violet & friendly mint.',            unlockXP:0    },
+  { id:'neon',    name:'Neon',    desc:'Cyberpunk dark with cyan glow.',            unlockXP:300  },
+  { id:'retro',   name:'Retro',   desc:'CRT scanlines and amber pixels.',           unlockXP:700  },
+  { id:'minimal', name:'Minimal', desc:'Quiet, monochrome, distraction-free.',      unlockXP:1200 },
+];
+
+/* ============================================================
+   AI RIVALS — leaderboard simulation
+   ============================================================ */
+const RIVALS = [
+  { name:'NovaByte',   emoji:'🦊', rate:0.85 },
+  { name:'PixelPanda', emoji:'🐼', rate:0.7  },
+  { name:'CodeFox',    emoji:'🦊', rate:1.05 },
+  { name:'BinaryBat',  emoji:'🦇', rate:0.6  },
+  { name:'LoopLion',   emoji:'🦁', rate:0.9  },
+  { name:'SyntaxSloth',emoji:'🦥', rate:0.45 },
+  { name:'CipherCat',  emoji:'🐱', rate:1.15 },
+  { name:'BugBeaver',  emoji:'🦫', rate:0.55 },
+];
+
+/* ============================================================
+   HOOKS
+   ============================================================ */
+const DEFAULT_PROGRESS = {
+  xp: 0, level: 1, streakDays: 0, bestStreak: 0, totalAnswered: 0, totalCorrect: 0,
+  lastPlayedISO: null, theme: 'playful', dark: false,
+  perTopic: {}, unlockedThemes: ['playful'], themesTried: ['playful'],
+  unlockedBadges: [], bossesBeaten: 0, dailiesDone: 0,
+  fastestQuizSec: null, comeback: false, dailyChallengeISO: null,
+  lastResults: null,
+};
+
+function loadProgress() {
+  try {
+    const raw = localStorage.getItem('cq:progress');
+    if (!raw) return { ...DEFAULT_PROGRESS };
+    return { ...DEFAULT_PROGRESS, ...JSON.parse(raw) };
+  } catch { return { ...DEFAULT_PROGRESS }; }
+}
+function saveProgress(p) { try { localStorage.setItem('cq:progress', JSON.stringify(p)); } catch {} }
+
+function computeLevel(xp) { return 1 + Math.floor(Math.sqrt(xp / 50)); }
+function xpForLevel(lvl) { return Math.pow(lvl - 1, 2) * 50; }
+function xpProgressInLevel(xp) {
+  const lvl = computeLevel(xp);
+  const cur = xpForLevel(lvl);
+  const nxt = xpForLevel(lvl + 1);
+  return { lvl, cur, nxt, pct: (xp - cur) / (nxt - cur) };
+}
+
+function todayISO() { return new Date().toISOString().slice(0, 10); }
+
+/* ============================================================
+   AUDIO — disabled by user request. All methods are no-ops.
+   ============================================================ */
+const Audio = {
+  correct() {}, wrong() {}, level() {}, tap() {}, boss() {},
+};
+
+/* ============================================================
+   CONFETTI
+   ============================================================ */
+function fireConfetti({ count = 40, palette } = {}) {
+  const colors = palette || ['#7c3aed', '#22c55e', '#f59e0b', '#ec4899', '#06b6d4'];
+  const root = document.body;
+  for (let i = 0; i < count; i++) {
+    const el = document.createElement('div');
+    el.className = 'confetti-piece';
+    el.style.left = (Math.random() * 100) + 'vw';
+    el.style.background = colors[Math.floor(Math.random() * colors.length)];
+    el.style.animationDuration = (1.4 + Math.random() * 1.6) + 's';
+    el.style.animationDelay = (Math.random() * 0.3) + 's';
+    el.style.transform = `translateY(0) rotate(${Math.random()*360}deg)`;
+    root.appendChild(el);
+    setTimeout(() => el.remove(), 4000);
+  }
+}
+
+/* ============================================================
+   QUESTION ENGINE
+   ============================================================ */
+// Fisher-Yates shuffle (in-place)
+function fyShuffle(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+// Randomise answer-option order for MC questions (and remap the answer index).
+// Other types keep their semantic ordering (TF, match, order, fitb).
+function shuffleQuestion(q) {
+  if (q.type !== 'mc' || !Array.isArray(q.options) || q.options.length < 2) return q;
+  const indices = q.options.map((_, i) => i);
+  fyShuffle(indices);
+  return {
+    ...q,
+    options: indices.map(i => q.options[i]),
+    answer:  indices.indexOf(q.answer),
+  };
+}
+
+function pickQuestionsFor(year, topicId, n = 10, seenIds = new Set(), targetDifficulty = 2) {
+  const pool = QUESTIONS.filter(q => q.year === year && (!topicId || q.topic === topicId));
+  const unseen = pool.filter(q => !seenIds.has(q.id));
+  const source = unseen.length >= n ? unseen : pool;
+  // Score combines difficulty match with strong randomness so each session feels fresh.
+  const scored = source.map(q => ({
+    q, s: -Math.abs(q.difficulty - targetDifficulty) * 0.5 + Math.random() * 2
+  })).sort((a, b) => b.s - a.s);
+  const picked = scored.slice(0, n).map(x => x.q);
+  fyShuffle(picked); // randomise final order
+  return picked.map(shuffleQuestion);
+}
+
+function pickDailyQuestion(year) {
+  // Deterministic per day so all students get the same daily challenge
+  const seed = parseInt(todayISO().replace(/-/g, ''));
+  const pool = QUESTIONS.filter(q => q.year === year && q.difficulty >= 2);
+  return shuffleQuestion(pool[seed % pool.length]);
+}
+
+function pickBossSet(year) {
+  const pool = QUESTIONS.filter(q => q.year === year);
+  const easy = pool.filter(q => q.difficulty <= 2);
+  const med  = pool.filter(q => q.difficulty === 3);
+  const hard = pool.filter(q => q.difficulty >= 4);
+  const sample = (arr, n) => fyShuffle([...arr]).slice(0, n);
+  return [...sample(easy, 4), ...sample(med, 6), ...sample(hard, 5)].map(shuffleQuestion);
+}
+
+/* ============================================================
+   COMPONENTS
+   ============================================================ */
+
+// --- Mascot SVG (reactive: idle | happy | sad | wow) ---------------------
+function Mascot({ size = 80, mood = 'idle' }) {
+  const eye = mood === 'sad' ? 5 : (mood === 'wow' ? 11 : 9);
+  const mouth = mood === 'sad'
+    ? <path d="M40 70 Q50 64 60 70" stroke="white" strokeWidth="3" fill="none" strokeLinecap="round" />
+    : mood === 'wow'
+      ? <circle cx="50" cy="68" r="4" fill="white" />
+      : <path d="M40 64 Q50 74 60 64" stroke="white" strokeWidth="3" fill="none" strokeLinecap="round" />;
+  const animClass =
+    mood === 'happy' ? 'anim-happy' :
+    mood === 'sad'   ? 'anim-sad'   :
+    mood === 'wow'   ? 'anim-pop'   :
+                       'anim-float';
+  // Cheek blush only when happy
+  const blush = mood === 'happy';
+  return (
+    <svg width={size} height={size} viewBox="0 0 100 100" className={animClass}>
+      <defs>
+        <linearGradient id="mg" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="var(--cq-primary)" />
+          <stop offset="1" stopColor="var(--cq-accent)" />
+        </linearGradient>
+        <radialGradient id="cheek">
+          <stop offset="0" stopColor="hsl(0 80% 70%)" stopOpacity=".9" />
+          <stop offset="1" stopColor="hsl(0 80% 70%)" stopOpacity="0" />
+        </radialGradient>
+      </defs>
+      <rect x="14" y="20" rx="22" ry="22" width="72" height="64" fill="url(#mg)" />
+      <rect x="22" y="32" rx="6" ry="6" width="56" height="34" fill="white" opacity=".15" />
+      <circle cx="38" cy="50" r={eye} fill="white" />
+      <circle cx="62" cy="50" r={eye} fill="white" />
+      <circle cx="40" cy="52" r="3" fill="#111" />
+      <circle cx="64" cy="52" r="3" fill="#111" />
+      {blush && <Fragment>
+        <circle cx="32" cy="62" r="8" fill="url(#cheek)" />
+        <circle cx="68" cy="62" r="8" fill="url(#cheek)" />
+      </Fragment>}
+      {mouth}
+      <rect x="46" y="8"  width="3" height="14" fill="var(--cq-primary)" />
+      <circle cx="47" cy="6" r="4" fill="var(--cq-accent)" />
+    </svg>
+  );
+}
+
+// --- Floating "+XP" toast (rises from a position then fades) -------------
+function XPFloat({ amount, x = '50%', y = '50%' }) {
+  return (
+    <span className="xp-float anim-xp-rise" style={{ left: x, top: y, transform: 'translateX(-50%)' }}>
+      +{amount} XP
+    </span>
+  );
+}
+
+// --- Combo banner (shows mid-screen when on a streak) --------------------
+function ComboBanner({ count }) {
+  return (
+    <div className="combo-banner anim-combo">
+      🔥 {count}× combo!
+    </div>
+  );
+}
+
+// --- Progress ring -------------------------------------------------------
+function Ring({ pct = 0, size = 56, stroke = 6, children }) {
+  const r = (size - stroke) / 2;
+  const c = 2 * Math.PI * r;
+  const off = c - Math.max(0, Math.min(1, pct)) * c;
+  return (
+    <div className="relative inline-flex items-center justify-center" style={{ width: size, height: size }}>
+      <svg width={size} height={size} className="-rotate-90">
+        <circle cx={size/2} cy={size/2} r={r} fill="none" strokeWidth={stroke} className="ring-track" />
+        <circle cx={size/2} cy={size/2} r={r} fill="none" strokeWidth={stroke} strokeLinecap="round"
+                strokeDasharray={c} strokeDashoffset={off} className="ring-fill" />
+      </svg>
+      <div className="absolute text-xs font-bold">{children}</div>
+    </div>
+  );
+}
+
+// --- XP bar --------------------------------------------------------------
+function XPBar({ xp }) {
+  const { lvl, pct, cur, nxt } = xpProgressInLevel(xp);
+  return (
+    <div className="flex items-center gap-2">
+      <div className="font-display text-sm bg-primary text-white rounded-full w-7 h-7 flex items-center justify-center shadow-glow">{lvl}</div>
+      <div className="hidden sm:flex flex-col">
+        <div className="text-[10px] text-muted leading-none">{xp - cur} / {nxt - cur} XP</div>
+        <div className="w-32 h-2 bg-sunken rounded-full overflow-hidden mt-1">
+          <div className="h-full bg-primary transition-all duration-700" style={{ width: `${pct * 100}%` }} />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// --- Streak flame --------------------------------------------------------
+function StreakFlame({ days }) {
+  return (
+    <div className="pill anim-flame" title={`${days}-day streak`}>
+      <span>🔥</span><span>{days}</span>
+    </div>
+  );
+}
+
+// --- Header bar ----------------------------------------------------------
+function Header({ progress, onNav, currentPage }) {
+  return (
+    <header className="sticky top-0 z-30 backdrop-blur-xl border-b border-line bg-bg/80">
+      <div className="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between gap-2">
+        <button onClick={() => onNav({ page: 'home' })} className="flex items-center gap-2 font-display text-lg">
+          <span className="inline-flex w-9 h-9 rounded-xl bg-primary text-white items-center justify-center text-base shadow-glow">⌬</span>
+          <span className="hidden sm:inline">ComputeQuest</span>
+        </button>
+        <div className="flex items-center gap-2">
+          <StreakFlame days={progress.streakDays} />
+          <XPBar xp={progress.xp} />
+          {currentPage !== 'home' && (
+            <button onClick={() => onNav({ page: 'achievements' })} className="btn-ghost !py-1.5 !px-3 text-sm hidden md:inline-flex">🏅 Badges</button>
+          )}
+          <button onClick={() => onNav({ page: 'settings' })} className="btn-ghost !py-1.5 !px-3 text-sm">⚙</button>
+        </div>
+      </div>
+    </header>
+  );
+}
+
+// --- Confetti container --------------------------------------------------
+function CelebrateBurst({ trigger }) {
+  useEffect(() => { if (trigger) fireConfetti(); }, [trigger]);
+  return null;
+}
+
+/* ============================================================
+   QUESTION RENDERERS
+   ============================================================ */
+
+function ChoiceButton({ children, onClick, state, disabled }) {
+  const base = 'choice w-full text-left rounded-2xl border-2 p-4 font-medium transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0';
+  let style = 'bg-surface border-line';
+  if (state === 'correct') style = 'choice-correct';
+  if (state === 'wrong')   style = 'choice-wrong';
+  if (state === 'fadeOut') style = 'opacity-50 bg-surface border-line';
+  return (
+    <button className={`${base} ${style}`} onClick={onClick} disabled={disabled}>
+      {children}
+    </button>
+  );
+}
+
+function MCQuestion({ question, onAnswer, locked, picked }) {
+  return (
+    <div className="grid gap-3">
+      {question.options.map((opt, i) => {
+        let state = null;
+        if (locked) {
+          if (i === question.answer) state = 'correct';
+          else if (i === picked)     state = 'wrong';
+          else                       state = 'fadeOut';
+        }
+        return (
+          <ChoiceButton key={i} state={state} disabled={locked}
+            onClick={() => onAnswer(i)}>
+            <span className="inline-flex items-center gap-3">
+              <span className="w-7 h-7 rounded-lg bg-sunken text-sm font-bold inline-flex items-center justify-center">
+                {'ABCD'[i]}
+              </span>
+              <span>{opt}</span>
+            </span>
+          </ChoiceButton>
+        );
+      })}
+    </div>
+  );
+}
+
+function TFQuestion({ question, onAnswer, locked, picked }) {
+  return (
+    <div className="grid grid-cols-2 gap-3">
+      {question.options.map((opt, i) => {
+        let state = null;
+        if (locked) {
+          if (i === question.answer) state = 'correct';
+          else if (i === picked)     state = 'wrong';
+        }
+        return (
+          <ChoiceButton key={i} state={state} disabled={locked} onClick={() => onAnswer(i)}>
+            <div className="text-center font-display text-xl py-3">
+              {i === 0 ? '✅ ' : '❌ '} {opt}
+            </div>
+          </ChoiceButton>
+        );
+      })}
+    </div>
+  );
+}
+
+function FillBlankQuestion({ question, onAnswer, locked }) {
+  const [val, setVal] = useState('');
+  const isBinary = /binary|hex/i.test(question.prompt);
+  return (
+    <div className="grid gap-3">
+      <input
+        autoFocus
+        className={`input text-lg ${isBinary ? 'font-mono tracking-widest' : ''}`}
+        placeholder="Type your answer…"
+        value={val}
+        disabled={locked}
+        onChange={e => setVal(e.target.value)}
+        onKeyDown={e => { if (e.key === 'Enter' && val.trim()) onAnswer(val.trim()); }}
+      />
+      <button className="btn-primary" disabled={locked || !val.trim()} onClick={() => onAnswer(val.trim())}>
+        Submit answer
+      </button>
+    </div>
+  );
+}
+
+function MatchQuestion({ question, onAnswer, locked }) {
+  // question.options = [[left, right], ...]; question.answer = expected mapping indices for left→right
+  const lefts  = question.options.map(p => p[0]);
+  const rights = useMemo(() => {
+    const shuffled = question.options.map((p, i) => ({ text: p[1], origIdx: i }));
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+  }, [question.id]);
+
+  const [selectedLeft, setSelectedLeft] = useState(null);
+  const [pairs, setPairs] = useState({}); // leftIdx -> rightOrigIdx
+  const used = new Set(Object.values(pairs));
+
+  const handleRight = (rOrigIdx) => {
+    if (selectedLeft === null) return;
+    setPairs(p => ({ ...p, [selectedLeft]: rOrigIdx }));
+    setSelectedLeft(null);
+  };
+
+  useEffect(() => {
+    if (Object.keys(pairs).length === lefts.length && !locked) {
+      // Compute correctness — true if every leftIdx maps to its same right (origIdx === leftIdx)
+      const allRight = lefts.every((_, i) => pairs[i] === i);
+      onAnswer(allRight ? 'correct' : pairs);
+    }
+  }, [pairs]);
+
+  return (
+    <div className="grid grid-cols-2 gap-3">
+      <div className="grid gap-2">
+        {lefts.map((l, i) => {
+          const matched = pairs[i] !== undefined;
+          const correct = locked && matched && pairs[i] === i;
+          const wrong   = locked && matched && pairs[i] !== i;
+          const sel     = selectedLeft === i;
+          return (
+            <button key={i}
+              className={`text-left rounded-2xl border-2 p-3 font-medium transition
+                ${matched ? 'opacity-70' : ''}
+                ${sel ? 'border-primary bg-sunken' : 'border-line bg-surface'}
+                ${correct ? 'choice-correct' : ''} ${wrong ? 'choice-wrong' : ''}`}
+              disabled={locked || matched}
+              onClick={() => setSelectedLeft(i)}>
+              {l}
+            </button>
+          );
+        })}
+      </div>
+      <div className="grid gap-2">
+        {rights.map(r => {
+          const isUsed = used.has(r.origIdx);
+          return (
+            <button key={r.origIdx}
+              className={`text-left rounded-2xl border-2 p-3 font-medium transition
+                ${isUsed ? 'opacity-50' : ''}
+                border-line bg-surface hover:border-primary`}
+              disabled={isUsed || selectedLeft === null || locked}
+              onClick={() => handleRight(r.origIdx)}>
+              {r.text}
+            </button>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+function OrderQuestion({ question, onAnswer, locked }) {
+  // Build shuffled list, then let user EITHER drag to reorder OR click to assign positions.
+  const initial = useMemo(() => {
+    const arr = question.options.map((t, i) => ({ text: t, origIdx: i }));
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+  }, [question.id]);
+
+  const [list, setList] = useState(initial);
+  const [dragIdx, setDragIdx] = useState(null);
+  const [overIdx, setOverIdx] = useState(null);
+  const [submitted, setSubmitted] = useState(false);
+
+  const onDragStart = (i) => (e) => {
+    if (locked) return;
+    setDragIdx(i);
+    e.dataTransfer.effectAllowed = 'move';
+    try { e.dataTransfer.setData('text/plain', String(i)); } catch {}
+  };
+  const onDragOver = (i) => (e) => { e.preventDefault(); setOverIdx(i); };
+  const onDrop = (i) => (e) => {
+    e.preventDefault();
+    if (dragIdx === null || dragIdx === i) return;
+    const next = [...list];
+    const [moved] = next.splice(dragIdx, 1);
+    next.splice(i, 0, moved);
+    setList(next);
+    setDragIdx(null);
+    setOverIdx(null);
+  };
+  const onDragEnd = () => { setDragIdx(null); setOverIdx(null); };
+
+  // Move up/down buttons for keyboard / touch fallback
+  const move = (i, dir) => {
+    if (locked) return;
+    const j = i + dir;
+    if (j < 0 || j >= list.length) return;
+    const next = [...list];
+    [next[i], next[j]] = [next[j], next[i]];
+    setList(next);
+  };
+
+  const submit = () => {
+    if (locked || submitted) return;
+    setSubmitted(true);
+    const correctOrder = list.every((item, i) => item.origIdx === i);
+    onAnswer(correctOrder ? 'correct' : list.map(x => x.origIdx));
+  };
+
+  return (
+    <div>
+      <div className="mb-3 text-sm text-muted">
+        ↕️ Drag (or use ▲ ▼) to put the steps in order, then submit:
+      </div>
+      <div className="grid gap-2">
+        {list.map((s, i) => {
+          const dragging = dragIdx === i;
+          const over     = overIdx === i && dragIdx !== null && dragIdx !== i;
+          const isCorrectPos = locked && s.origIdx === i;
+          const isWrongPos   = locked && s.origIdx !== i;
+          return (
+            <div key={s.origIdx}
+              draggable={!locked}
+              onDragStart={onDragStart(i)}
+              onDragOver={onDragOver(i)}
+              onDrop={onDrop(i)}
+              onDragEnd={onDragEnd}
+              className={`drag-item flex items-center gap-2 rounded-2xl border-2 p-3 transition
+                ${dragging ? 'drag-dragging' : ''}
+                ${over ? 'drag-over' : 'border-line bg-surface'}
+                ${isCorrectPos ? 'choice-correct' : ''} ${isWrongPos ? 'choice-wrong' : ''}`}>
+              <span className="w-7 h-7 rounded-lg text-sm font-bold inline-flex items-center justify-center bg-primary text-white">{i + 1}</span>
+              <span className="flex-1">{s.text}</span>
+              <span className="text-muted text-lg select-none hidden sm:inline">⋮⋮</span>
+              <div className="flex flex-col gap-1 sm:hidden">
+                <button onClick={() => move(i, -1)} disabled={locked || i === 0} className="px-2 rounded bg-sunken text-xs">▲</button>
+                <button onClick={() => move(i,  1)} disabled={locked || i === list.length - 1} className="px-2 rounded bg-sunken text-xs">▼</button>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+      {!locked && (
+        <button onClick={submit} className="btn-primary w-full mt-3" disabled={submitted}>
+          Submit order
+        </button>
+      )}
+    </div>
+  );
+}
+
+function QuestionRenderer({ question, onAnswer, locked, picked }) {
+  switch (question.type) {
+    case 'mc':    return <MCQuestion       question={question} onAnswer={onAnswer} locked={locked} picked={picked} />;
+    case 'tf':    return <TFQuestion       question={question} onAnswer={onAnswer} locked={locked} picked={picked} />;
+    case 'fitb':  return <FillBlankQuestion question={question} onAnswer={onAnswer} locked={locked} />;
+    case 'match': return <MatchQuestion    question={question} onAnswer={onAnswer} locked={locked} />;
+    case 'order': return <OrderQuestion    question={question} onAnswer={onAnswer} locked={locked} />;
+    default:      return <MCQuestion       question={question} onAnswer={onAnswer} locked={locked} picked={picked} />;
+  }
+}
+
+function checkAnswer(question, picked) {
+  if (picked === 'correct') return true;
+  if (question.type === 'mc' || question.type === 'tf') return picked === question.answer;
+  if (question.type === 'fitb') {
+    const a = String(question.answer).trim().toLowerCase();
+    const p = String(picked).trim().toLowerCase();
+    return a === p;
+  }
+  return false;
+}
+
+/* ============================================================
+   PAGES
+   ============================================================ */
+
+// --- HOME ----------------------------------------------------------------
+function HomePage({ onYear, progress }) {
+  const yearCards = [
+    { y: 7, emoji: '🌱', tone: 'from-emerald-400 to-teal-500', tag: 'Start here',  blurb: 'Computational thinking, binary, hardware, Scratch.' },
+    { y: 8, emoji: '⚡', tone: 'from-violet-500 to-fuchsia-500', tag: 'Step up',    blurb: 'Algorithms, Python basics, logic gates, networks.' },
+    { y: 9, emoji: '🚀', tone: 'from-amber-400 to-rose-500',   tag: 'Get serious', blurb: 'Sorting, hex, encryption, full Python toolkit.' },
+  ];
+  return (
+    <div className="hero-bg relative overflow-hidden">
+      {/* Subtle floating background particles */}
+      <div className="bg-particles" aria-hidden="true">
+        {Array.from({ length: 14 }).map((_, i) => (
+          <span key={i} style={{
+            left: `${(i * 73) % 100}%`,
+            top:  `${(i * 47) % 100}%`,
+            width:  `${6 + (i % 4) * 4}px`,
+            height: `${6 + (i % 4) * 4}px`,
+            background: ['var(--cq-primary)','var(--cq-accent)','var(--cq-warn)'][i % 3],
+            animationDelay: `${i * 0.7}s`,
+            animationDuration: `${18 + (i % 5) * 4}s`,
+          }} />
+        ))}
+      </div>
+      <div className="max-w-5xl mx-auto px-4 pt-10 pb-16 relative">
+        <div className="grid md:grid-cols-2 gap-8 items-center anim-slideUp">
+          <div>
+            <div className="flex flex-wrap gap-2 mb-3">
+              <span className="chip">⌬ KS3 Computing · OCR-aligned · Free forever</span>
+              <span className="chip">👨‍🏫 By Mr Borketey · Harris Purley</span>
+            </div>
+            <h1 className="font-display text-5xl md:text-6xl leading-[1.05]">
+              Practice <span className="text-primary">Computing</span>.<br/>
+              Earn XP. <span className="text-accent">Have fun.</span>
+            </h1>
+            <p className="text-muted mt-4 text-lg max-w-md">
+              Bite-sized practice for Year 7, 8 and 9. No login. No nags. Start in five seconds.
+            </p>
+            <div className="flex gap-2 mt-6 flex-wrap">
+              <span className="chip">🎯 {QUESTIONS.length} questions ready</span>
+              <span className="chip">🔥 Streaks & badges</span>
+              <span className="chip">🎨 4 unlockable themes</span>
+              <span className="chip">📵 Works offline</span>
+            </div>
+          </div>
+          <div className="flex justify-center">
+            <Mascot size={180} mood="happy" />
+          </div>
+        </div>
+
+        <h2 className="font-display text-2xl mt-12 mb-4">Pick your year</h2>
+        <div className="grid md:grid-cols-3 gap-4">
+          {yearCards.map(c => {
+            const count = QUESTIONS.filter(q => q.year === c.y).length;
+            return (
+              <button key={c.y}
+                onClick={() => onYear(c.y)}
+                className="card tilt text-left p-6 transition anim-pop relative overflow-hidden">
+                <div className={`absolute inset-0 opacity-10 bg-gradient-to-br ${c.tone}`} />
+                <div className="relative">
+                  <div className="text-4xl mb-2">{c.emoji}</div>
+                  <div className="chip mb-2">{c.tag}</div>
+                  <div className="font-display text-3xl">Year {c.y}</div>
+                  <div className="text-muted mt-1">{c.blurb}</div>
+                  <div className="flex items-center justify-between mt-4 pt-4 border-t border-line">
+                    <span className="text-sm text-muted">{count} questions ready</span>
+                    <span className="btn-primary !py-1.5 !px-4 text-sm">Play →</span>
+                  </div>
+                </div>
+              </button>
+            );
+          })}
+        </div>
+
+        <div className="mt-12 grid md:grid-cols-3 gap-3 text-sm">
+          {[
+            ['🧠','Thinking','Decomposition, abstraction, patterns'],
+            ['🐍','Python','Variables, loops, functions, files'],
+            ['🔢','Binary & Hex','Convert, add, understand'],
+            ['🔌','Logic Gates','AND, OR, NOT, truth tables'],
+            ['🌐','Networks','LAN, WAN, TCP/IP, DNS'],
+            ['🛡️','Cyber Security','Passwords, phishing, encryption'],
+          ].map(([e,n,d]) => (
+            <div key={n} className="card p-4">
+              <div className="text-2xl">{e}</div>
+              <div className="font-display text-lg mt-1">{n}</div>
+              <div className="text-muted">{d}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// --- DASHBOARD -----------------------------------------------------------
+function DashboardPage({ year, progress, onNav }) {
+  const topics = TOPICS.filter(t => t.years.includes(year));
+  const daily = useMemo(() => pickDailyQuestion(year), [year]);
+  const dailyDoneToday = progress.dailyChallengeISO === todayISO();
+
+  return (
+    <div className="max-w-5xl mx-auto px-4 py-6">
+      <div className="flex items-center justify-between gap-3 flex-wrap">
+        <div>
+          <button className="text-sm text-muted hover:text-ink" onClick={() => onNav({ page: 'home' })}>← All years</button>
+          <h1 className="font-display text-3xl md:text-4xl mt-1">Year {year} dashboard</h1>
+          <p className="text-muted">Pick a topic, take the daily, or fight this week's boss.</p>
+        </div>
+        <div className="flex gap-2">
+          <button className="btn-ghost" onClick={() => onNav({ page: 'leaderboard', year })}>🏆 Leaderboard</button>
+          <button className="btn-ghost" onClick={() => onNav({ page: 'achievements' })}>🏅 Badges</button>
+        </div>
+      </div>
+
+      {/* Hero strip */}
+      <div className="grid md:grid-cols-2 gap-4 mt-6">
+        <div className="card p-5 relative overflow-hidden anim-slideUp">
+          <div className="absolute top-0 right-0 w-32 h-32 -mr-8 -mt-8 rounded-full bg-primary opacity-20 anim-spin-slow" />
+          <div className="flex items-start justify-between relative">
+            <div>
+              <div className="chip mb-2">☀ Daily challenge</div>
+              <div className="font-display text-xl">One question. 2× XP.</div>
+              <div className="text-muted text-sm mt-1">Fresh every day at midnight.</div>
+            </div>
+            <div className="text-4xl">{dailyDoneToday ? '✅' : '🎁'}</div>
+          </div>
+          <button
+            disabled={dailyDoneToday}
+            onClick={() => onNav({ page: 'quiz', year, topicId: null, mode: 'daily' })}
+            className="btn-primary mt-4">
+            {dailyDoneToday ? 'Come back tomorrow' : 'Play daily'}
+          </button>
+        </div>
+
+        <div className="card p-5 relative overflow-hidden anim-slideUp">
+          <div className="absolute top-0 right-0 w-32 h-32 -mr-8 -mt-8 rounded-full bg-accent opacity-20 anim-spin-slow" />
+          <div className="flex items-start justify-between relative">
+            <div>
+              <div className="chip mb-2">🐲 Weekly boss</div>
+              <div className="font-display text-xl">Boss battle</div>
+              <div className="text-muted text-sm mt-1">15 timed questions. Triple XP if you win.</div>
+            </div>
+            <div className="text-4xl">⚔️</div>
+          </div>
+          <button onClick={() => onNav({ page: 'boss', year })} className="btn-primary mt-4">
+            Enter the boss arena
+          </button>
+        </div>
+      </div>
+
+      {/* Topics */}
+      <h2 className="font-display text-2xl mt-10 mb-4">Topics</h2>
+      <div className="grid md:grid-cols-3 sm:grid-cols-2 gap-4">
+        {topics.map(t => {
+          const stats = progress.perTopic[t.id] || { correct: 0, attempts: 0 };
+          const pct = stats.attempts ? stats.correct / stats.attempts : 0;
+          const qcount = QUESTIONS.filter(q => q.year === year && q.topic === t.id).length;
+          return (
+            <button key={t.id}
+              onClick={() => onNav({ page: 'quiz', year, topicId: t.id })}
+              className="card tilt p-5 text-left transition anim-pop">
+              <div className="flex items-center justify-between">
+                <div className="text-3xl">{t.emoji}</div>
+                <Ring pct={pct} size={48} stroke={4}>{Math.round(pct * 100)}%</Ring>
+              </div>
+              <div className="font-display text-lg mt-2">{t.name}</div>
+              <div className="text-muted text-sm">{t.desc}</div>
+              <div className="text-xs text-muted mt-3">{qcount} questions · {stats.correct} right</div>
+            </button>
+          );
+        })}
+      </div>
+
+      {/* Stats */}
+      <div className="grid sm:grid-cols-4 gap-3 mt-10">
+        {[
+          ['XP',           progress.xp,           '⚡'],
+          ['Level',        progress.level,        '⭐'],
+          ['Day streak',   progress.streakDays,   '🔥'],
+          ['Total correct',progress.totalCorrect, '✅'],
+        ].map(([label, val, icon]) => (
+          <div key={label} className="card p-4">
+            <div className="text-xl">{icon}</div>
+            <div className="font-display text-2xl">{val}</div>
+            <div className="text-muted text-sm">{label}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// --- QUIZ ----------------------------------------------------------------
+function QuizPage({ year, topicId, mode = 'quiz', progress, setProgress, onNav }) {
+  const totalQ = mode === 'daily' ? 1 : 10;
+  const questions = useMemo(() => {
+    if (mode === 'daily') return [pickDailyQuestion(year)];
+    const seen = new Set();
+    const t = progress.perTopic[topicId];
+    const target = t && t.attempts > 0 ? Math.min(5, Math.max(1, Math.round(t.correct / t.attempts * 4 + 1))) : 2;
+    return pickQuestionsFor(year, topicId, totalQ, seen, target);
+  }, [year, topicId, mode]);
+
+  const [idx, setIdx] = useState(0);
+  const [picked, setPicked] = useState(null);
+  const [locked, setLocked] = useState(false);
+  const [revealHint, setRevealHint] = useState(false);
+  const [sessionCorrect, setSessionCorrect] = useState(0);
+  const [sessionStreak, setSessionStreak] = useState(0);
+  const [shake, setShake] = useState(false);
+  const [startedAt] = useState(Date.now());
+  const [xpFloatKey, setXpFloatKey] = useState(0);
+  const [xpFloatAmt, setXpFloatAmt] = useState(0);
+  const [comboKey, setComboKey] = useState(0);
+  const [comboCount, setComboCount] = useState(0);
+
+  const cur = questions[idx];
+  const topic = topicId ? TOPIC_BY[topicId] : null;
+  const lastCorrect = locked && checkAnswer(cur, picked);
+  const mascotMood = !locked ? 'idle' : (lastCorrect ? 'happy' : 'sad');
+
+  const handleAnswer = (chosen) => {
+    if (locked) return;
+    const correct = checkAnswer(cur, chosen);
+    setPicked(chosen);
+    setLocked(true);
+
+    if (correct) {
+      Audio.correct();
+      fireConfetti({ count: 18 });
+      setSessionCorrect(c => c + 1);
+      const newStreak = sessionStreak + 1;
+      setSessionStreak(newStreak);
+      const earned = mode === 'daily' ? cur.xp * 2 : cur.xp;
+      setXpFloatAmt(earned);
+      setXpFloatKey(k => k + 1);
+      if (newStreak === 3 || newStreak === 5 || newStreak === 10 || newStreak === 20) {
+        setComboCount(newStreak);
+        setComboKey(k => k + 1);
+      }
+    } else {
+      Audio.wrong();
+      setShake(true);
+      setTimeout(() => setShake(false), 500);
+      setSessionStreak(0);
+    }
+
+    // Update global progress
+    setProgress(p => {
+      const np = { ...p };
+      np.totalAnswered = (p.totalAnswered || 0) + 1;
+      if (correct) {
+        np.totalCorrect = (p.totalCorrect || 0) + 1;
+        np.xp = (p.xp || 0) + (mode === 'daily' ? cur.xp * 2 : cur.xp);
+      }
+      np.level = computeLevel(np.xp);
+      np.bestStreak = Math.max(p.bestStreak || 0, sessionStreak + (correct ? 1 : 0));
+      if (cur.topic) {
+        const t = np.perTopic[cur.topic] || { correct: 0, attempts: 0, elo: 1000 };
+        const delta = correct ? 16 : -12;
+        np.perTopic = { ...np.perTopic, [cur.topic]: {
+          correct: t.correct + (correct ? 1 : 0),
+          attempts: t.attempts + 1,
+          elo: Math.max(800, t.elo + delta),
+        }};
+      }
+      // streak day
+      const today = todayISO();
+      if (p.lastPlayedISO !== today) {
+        const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0,10);
+        np.streakDays = p.lastPlayedISO === yesterday ? (p.streakDays || 0) + 1 : 1;
+        np.lastPlayedISO = today;
+      }
+      if (mode === 'daily' && correct) {
+        np.dailyChallengeISO = today;
+        np.dailiesDone = (p.dailiesDone || 0) + 1;
+      }
+      // comeback achievement check
+      if (sessionStreak === 0 && correct && p.totalAnswered > 0) {
+        // we'd need to track consecutive — approximated via sessionStreak below
+      }
+      // Award badges
+      const unlocked = new Set(np.unlockedBadges);
+      ACHIEVEMENTS.forEach(a => { if (a.rule(np)) unlocked.add(a.id); });
+      np.unlockedBadges = [...unlocked];
+      // Unlock themes by XP
+      THEMES.forEach(t => { if (np.xp >= t.unlockXP && !np.unlockedThemes.includes(t.id)) np.unlockedThemes = [...np.unlockedThemes, t.id]; });
+      return np;
+    });
+  };
+
+  const next = () => {
+    if (idx + 1 >= questions.length) {
+      // End of quiz
+      const elapsed = Math.round((Date.now() - startedAt) / 1000);
+      setProgress(p => {
+        const np = { ...p };
+        if (elapsed < (p.fastestQuizSec || Infinity) && questions.length === 10) np.fastestQuizSec = elapsed;
+        np.lastResults = { year, topicId, mode, sessionCorrect, total: questions.length, elapsedSec: elapsed };
+        return np;
+      });
+      onNav({ page: 'results', year, topicId, mode });
+      return;
+    }
+    setIdx(i => i + 1);
+    setPicked(null);
+    setLocked(false);
+    setRevealHint(false);
+  };
+
+  if (!cur) return null;
+
+  return (
+    <div className="max-w-2xl mx-auto px-4 py-6">
+      {comboKey > 0 && <ComboBanner key={comboKey} count={comboCount} />}
+      <div className="flex items-center justify-between mb-4">
+        <button className="text-sm text-muted hover:text-ink flex items-center gap-1" onClick={() => onNav({ page: 'dashboard', year })}>
+          ← {topic ? topic.name : (mode === 'daily' ? 'Daily challenge' : 'Quiz')}
+        </button>
+        <div className="flex items-center gap-3">
+          {sessionStreak >= 2 && (
+            <span className="streak-meter text-xs anim-count" key={'sm'+sessionStreak}>🔥 {sessionStreak} streak</span>
+          )}
+          <div className="flex gap-1">
+            {questions.map((_, i) => (
+              <span key={i} className={`w-2 h-2 rounded-full transition ${i < idx ? 'bg-success' : i === idx ? 'bg-primary scale-125' : 'bg-line'}`} />
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div className="relative">
+        {locked && lastCorrect && xpFloatKey > 0 && (
+          <span key={'xp'+xpFloatKey} className="xp-float anim-xp-rise"
+                style={{ right: '24px', top: '24px' }}>+{xpFloatAmt} XP</span>
+        )}
+        <div className="absolute -right-2 -top-6 hidden sm:block z-20 pointer-events-none">
+          <Mascot size={64} mood={mascotMood} />
+        </div>
+      <div className={`card p-5 md:p-7 ${shake ? 'anim-shake' : 'anim-pop'}`} key={cur.id}>
+        <div className="flex items-center justify-between gap-2 mb-3">
+          <div className="flex gap-2 flex-wrap">
+            {topic && <span className="chip">{topic.emoji} {topic.name}</span>}
+            <span className="chip">Difficulty {'⭐'.repeat(cur.difficulty)}</span>
+            {mode === 'daily' && <span className="chip">2× XP</span>}
+          </div>
+          <span className="chip">+{cur.xp} XP</span>
+        </div>
+
+        <h2 className="font-display text-xl md:text-2xl leading-snug mb-5">{cur.prompt}</h2>
+
+        <QuestionRenderer question={cur} onAnswer={handleAnswer} locked={locked} picked={picked} />
+
+        {!locked && cur.hint && (
+          <div className="mt-4">
+            {!revealHint ? (
+              <button className="btn-ghost text-sm" onClick={() => setRevealHint(true)}>💡 Use a hint</button>
+            ) : (
+              <div className="card p-3 mt-1 bg-sunken border-warn"><span className="font-semibold">Hint:</span> {cur.hint}</div>
+            )}
+          </div>
+        )}
+
+        {locked && (
+          <div className="mt-5 anim-slideUp">
+            <div className={`card p-4 ${checkAnswer(cur, picked) ? 'border-success' : 'border-danger'}`}>
+              <div className="font-display text-lg mb-1">
+                {checkAnswer(cur, picked) ? '🎉 Correct!' : '🤏 Not quite.'}
+              </div>
+              <div className="text-muted">{cur.explanation}</div>
+              {!checkAnswer(cur, picked) && cur.type === 'fitb' && (
+                <div className="mt-2 text-sm">Answer: <span className="font-mono">{cur.answer}</span></div>
+              )}
+            </div>
+            <button onClick={next} className="btn-primary w-full mt-4">
+              {idx + 1 >= questions.length ? 'See results' : 'Next question →'}
+            </button>
+          </div>
+        )}
+      </div>
+      </div>
+    </div>
+  );
+}
+
+// --- RESULTS -------------------------------------------------------------
+function ResultsPage({ progress, onNav }) {
+  const r = progress.lastResults || { sessionCorrect: 0, total: 1, elapsedSec: 0, year: 7, topicId: null, mode: 'quiz' };
+  const pct = Math.round((r.sessionCorrect / r.total) * 100);
+  const great = pct >= 80;
+  const grade = pct >= 90 ? '🏆' : pct >= 70 ? '🥇' : pct >= 50 ? '🥈' : '🥉';
+
+  useEffect(() => { if (great) fireConfetti({ count: 60 }); }, []);
+
+  return (
+    <div className="max-w-2xl mx-auto px-4 py-8">
+      <div className="card p-6 md:p-10 text-center anim-pop">
+        <div className="text-6xl">{grade}</div>
+        <h1 className="font-display text-3xl mt-2">{great ? 'Nice work!' : 'Keep going!'}</h1>
+        <p className="text-muted">You answered {r.sessionCorrect} / {r.total} correctly.</p>
+
+        <div className="grid grid-cols-3 gap-3 mt-6">
+          <div className="card p-3"><div className="text-2xl">{pct}%</div><div className="text-xs text-muted">Accuracy</div></div>
+          <div className="card p-3"><div className="text-2xl">{r.elapsedSec}s</div><div className="text-xs text-muted">Time</div></div>
+          <div className="card p-3"><div className="text-2xl">+{r.sessionCorrect * 14}</div><div className="text-xs text-muted">~XP earned</div></div>
+        </div>
+
+        <div className="flex gap-2 mt-6 flex-wrap justify-center">
+          <button onClick={() => onNav({ page: 'quiz', year: r.year, topicId: r.topicId, mode: r.mode })} className="btn-primary">Play again</button>
+          <button onClick={() => onNav({ page: 'dashboard', year: r.year })} className="btn-ghost">Pick another topic</button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// --- BOSS BATTLE ---------------------------------------------------------
+function BossPage({ year, progress, setProgress, onNav }) {
+  const bossList = ['🐲 Dragon of Decomposition','👾 Bug of Bytes','🤖 Robot of Recursion'];
+  const boss = bossList[progress.bossesBeaten % bossList.length];
+  const [phase, setPhase] = useState('intro'); // intro | fight | done
+  const [qs] = useState(() => pickBossSet(year));
+  const [idx, setIdx] = useState(0);
+  const [picked, setPicked] = useState(null);
+  const [locked, setLocked] = useState(false);
+  const [bossHP, setBossHP] = useState(100);
+  const [playerHP, setPlayerHP] = useState(100);
+  const [timeLeft, setTimeLeft] = useState(20);
+  const [correct, setCorrect] = useState(0);
+  const [shake, setShake] = useState(false);
+  const timerRef = useRef();
+
+  useEffect(() => {
+    if (phase !== 'fight' || locked) return;
+    timerRef.current = setInterval(() => {
+      setTimeLeft(t => {
+        if (t <= 1) { handleTimeout(); return 20; }
+        return t - 1;
+      });
+    }, 1000);
+    return () => clearInterval(timerRef.current);
+  }, [phase, locked, idx]);
+
+  const handleTimeout = () => {
+    setLocked(true);
+    setPlayerHP(h => Math.max(0, h - 15));
+    Audio.wrong();
+    setShake(true); setTimeout(()=>setShake(false), 500);
+  };
+
+  const handleAnswer = (chosen) => {
+    if (locked) return;
+    clearInterval(timerRef.current);
+    const ok = checkAnswer(qs[idx], chosen);
+    setPicked(chosen); setLocked(true);
+    if (ok) {
+      Audio.correct(); fireConfetti({ count: 14 });
+      setBossHP(h => Math.max(0, h - Math.round(100 / qs.length) - 2));
+      setCorrect(c => c + 1);
+    } else {
+      Audio.wrong();
+      setPlayerHP(h => Math.max(0, h - 10));
+      setShake(true); setTimeout(()=>setShake(false), 500);
+    }
+  };
+
+  const next = () => {
+    if (bossHP <= 0 || playerHP <= 0 || idx + 1 >= qs.length) {
+      setPhase('done');
+      const win = bossHP <= 0 || correct >= Math.ceil(qs.length * 0.7);
+      if (win) {
+        Audio.level();
+        fireConfetti({ count: 100 });
+        setProgress(p => {
+          const np = { ...p };
+          np.bossesBeaten = (p.bossesBeaten || 0) + 1;
+          np.xp = (p.xp || 0) + 250;
+          np.level = computeLevel(np.xp);
+          const unlocked = new Set(np.unlockedBadges);
+          ACHIEVEMENTS.forEach(a => { if (a.rule(np)) unlocked.add(a.id); });
+          np.unlockedBadges = [...unlocked];
+          THEMES.forEach(t => { if (np.xp >= t.unlockXP && !np.unlockedThemes.includes(t.id)) np.unlockedThemes = [...np.unlockedThemes, t.id]; });
+          return np;
+        });
+      }
+      return;
+    }
+    setIdx(i => i + 1);
+    setPicked(null);
+    setLocked(false);
+    setTimeLeft(20);
+  };
+
+  if (phase === 'intro') {
+    return (
+      <div className="max-w-2xl mx-auto px-4 py-10 text-center">
+        <div className="card p-8 anim-pop">
+          <div className="text-6xl anim-float">{boss.split(' ')[0]}</div>
+          <h1 className="font-display text-3xl mt-2">{boss.slice(2)}</h1>
+          <p className="text-muted mt-2">15 timed questions. 20 seconds each.<br/>Wrong answers cost HP. Win to earn 250 XP and a badge.</p>
+          <button className="btn-primary mt-6" onClick={() => { Audio.boss(); setPhase('fight'); }}>Begin battle ⚔️</button>
+          <button className="btn-ghost mt-2 ml-2" onClick={() => onNav({ page: 'dashboard', year })}>Retreat</button>
+        </div>
+      </div>
+    );
+  }
+
+  if (phase === 'done') {
+    const win = bossHP <= 0 || correct >= Math.ceil(qs.length * 0.7);
+    return (
+      <div className="max-w-2xl mx-auto px-4 py-10 text-center">
+        <div className="card p-8 anim-pop">
+          <div className="text-6xl">{win ? '🏆' : '💀'}</div>
+          <h1 className="font-display text-3xl mt-2">{win ? 'Victory!' : 'Defeated'}</h1>
+          <p className="text-muted mt-2">
+            {win ? `You answered ${correct}/${qs.length} correctly and beat ${boss.split(' ').slice(1).join(' ')}!` : 'Boss too tough. Train more and try again.'}
+          </p>
+          <div className="flex gap-2 justify-center mt-6">
+            <button className="btn-primary" onClick={() => onNav({ page: 'dashboard', year })}>Back to dashboard</button>
+            <button className="btn-ghost" onClick={() => { setIdx(0); setBossHP(100); setPlayerHP(100); setCorrect(0); setPhase('intro'); }}>Try again</button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  const cur = qs[idx];
+  return (
+    <div className="max-w-2xl mx-auto px-4 py-6">
+      {/* HP bars */}
+      <div className="grid grid-cols-2 gap-3 mb-3">
+        <div className="card p-3">
+          <div className="flex justify-between text-xs"><span>You</span><span>{playerHP}/100</span></div>
+          <div className="h-2 bg-sunken rounded-full overflow-hidden mt-1">
+            <div className="h-full bg-success transition-all" style={{ width: `${playerHP}%` }} />
+          </div>
+        </div>
+        <div className="card p-3">
+          <div className="flex justify-between text-xs"><span>{boss}</span><span>{bossHP}/100</span></div>
+          <div className="h-2 bg-sunken rounded-full overflow-hidden mt-1">
+            <div className="h-full bg-danger transition-all" style={{ width: `${bossHP}%` }} />
+          </div>
+        </div>
+      </div>
+
+      <div className="flex items-center justify-between mb-2">
+        <span className="text-sm text-muted">Q {idx+1} / {qs.length}</span>
+        <span className={`pill ${timeLeft <= 5 ? 'anim-pulse-glow text-danger' : ''}`}>⏱ {timeLeft}s</span>
+      </div>
+
+      <div className={`card p-5 ${shake ? 'anim-shake' : 'anim-pop'}`} key={cur.id}>
+        <div className="chip mb-2">{TOPIC_BY[cur.topic]?.emoji} {TOPIC_BY[cur.topic]?.name}</div>
+        <h2 className="font-display text-lg mb-4">{cur.prompt}</h2>
+        <QuestionRenderer question={cur} onAnswer={handleAnswer} locked={locked} picked={picked} />
+        {locked && (
+          <div className="mt-4">
+            <div className={`card p-3 ${checkAnswer(cur, picked) ? 'border-success' : 'border-danger'}`}>
+              {checkAnswer(cur, picked) ? '✅ Critical hit!' : '💢 Miss.'} <span className="text-muted">{cur.explanation}</span>
+            </div>
+            <button className="btn-primary w-full mt-3" onClick={next}>{idx + 1 >= qs.length ? 'Finish' : 'Next →'}</button>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+// --- ACHIEVEMENTS --------------------------------------------------------
+function AchievementsPage({ progress, onNav }) {
+  return (
+    <div className="max-w-5xl mx-auto px-4 py-6">
+      <button className="text-sm text-muted hover:text-ink" onClick={() => onNav({ page: 'home' })}>← Home</button>
+      <h1 className="font-display text-3xl mt-1">Achievements</h1>
+      <p className="text-muted">Earn badges by playing. {progress.unlockedBadges.length} / {ACHIEVEMENTS.length} unlocked.</p>
+
+      <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-3 mt-6">
+        {ACHIEVEMENTS.map(a => {
+          const got = progress.unlockedBadges.includes(a.id);
+          return (
+            <div key={a.id} className={`card p-4 transition ${got ? '' : 'opacity-50'}`}>
+              <div className="flex items-center gap-3">
+                <div className={`text-3xl ${got ? '' : 'grayscale'}`}>{a.icon}</div>
+                <div>
+                  <div className="font-display">{a.name}</div>
+                  <div className="text-muted text-xs">{a.desc}</div>
+                </div>
+              </div>
+              {got && <div className="mt-2 chip text-success border-success">Unlocked ✨</div>}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+// --- LEADERBOARD ---------------------------------------------------------
+function LeaderboardPage({ year, progress, onNav }) {
+  // Simulated leaderboard: rivals' XP grows over time using their rate; deterministic per day
+  const baseTime = Date.parse('2024-01-01');
+  const daysSince = (Date.now() - baseTime) / 86400000;
+  const rivals = RIVALS.map(r => ({
+    name: r.name, emoji: r.emoji,
+    xp: Math.round(r.rate * (progress.xp + 80 + ((Math.sin(r.name.length + daysSince) + 1) * 200)))
+  }));
+  const me = { name: 'You', emoji: '🫵', xp: progress.xp };
+  const all = [...rivals, me].sort((a, b) => b.xp - a.xp);
+
+  return (
+    <div className="max-w-2xl mx-auto px-4 py-6">
+      <button className="text-sm text-muted hover:text-ink" onClick={() => onNav({ page: 'dashboard', year: year || 7 })}>← Back</button>
+      <h1 className="font-display text-3xl mt-1">Leaderboard</h1>
+      <p className="text-muted">Friendly rivals at your XP band. They aren't real people — no accounts here.</p>
+
+      <div className="card divide-y divide-line mt-6">
+        {all.map((p, i) => (
+          <div key={p.name} className={`flex items-center gap-3 p-3 ${p.name === 'You' ? 'bg-sunken' : ''}`}>
+            <div className="w-7 text-center font-display">{i + 1}</div>
+            <div className="text-2xl">{p.emoji}</div>
+            <div className="flex-1">
+              <div className="font-semibold">{p.name}</div>
+              <div className="text-xs text-muted">{p.xp} XP · Level {computeLevel(p.xp)}</div>
+            </div>
+            {i === 0 && <span>🥇</span>}
+            {i === 1 && <span>🥈</span>}
+            {i === 2 && <span>🥉</span>}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// --- SETTINGS / THEMES ---------------------------------------------------
+function SettingsPage({ progress, setProgress, onNav }) {
+  return (
+    <div className="max-w-2xl mx-auto px-4 py-6">
+      <button className="text-sm text-muted hover:text-ink" onClick={() => onNav({ page: 'home' })}>← Home</button>
+      <h1 className="font-display text-3xl mt-1">Settings</h1>
+
+      <h2 className="font-display text-xl mt-6 mb-3">Theme</h2>
+      <div className="grid sm:grid-cols-2 gap-3">
+        {THEMES.map(t => {
+          const unlocked = progress.unlockedThemes.includes(t.id);
+          const active = progress.theme === t.id;
+          return (
+            <button key={t.id} disabled={!unlocked}
+              onClick={() => setProgress(p => ({
+                ...p, theme: t.id,
+                themesTried: [...new Set([...(p.themesTried || []), t.id])]
+              }))}
+              className={`card p-4 text-left transition ${unlocked ? '' : 'opacity-50 cursor-not-allowed'}
+                          ${active ? 'border-primary shadow-glow' : ''}`}>
+              <div className="font-display text-lg">{t.name}{active && ' · Active'}</div>
+              <div className="text-muted text-sm">{t.desc}</div>
+              {!unlocked && <div className="chip mt-2">🔒 Unlock at {t.unlockXP} XP</div>}
+              {unlocked && !active && <div className="chip mt-2">Use this theme</div>}
+            </button>
+          );
+        })}
+      </div>
+
+      <h2 className="font-display text-xl mt-8 mb-3">Display</h2>
+      <button className="card p-4 w-full text-left flex items-center justify-between"
+        onClick={() => setProgress(p => ({ ...p, dark: !p.dark }))}>
+        <div>
+          <div className="font-display">Dark mode</div>
+          <div className="text-muted text-sm">Easier on the eyes at night.</div>
+        </div>
+        <div className={`w-12 h-6 rounded-full transition ${progress.dark ? 'bg-primary' : 'bg-line'} relative`}>
+          <div className={`absolute top-0.5 ${progress.dark ? 'right-0.5' : 'left-0.5'} w-5 h-5 rounded-full bg-white transition-all`} />
+        </div>
+      </button>
+
+      <h2 className="font-display text-xl mt-8 mb-3">About</h2>
+      <div className="card p-5">
+        <div className="flex items-center gap-3 mb-3">
+          <Mascot size={56} mood="happy" />
+          <div>
+            <div className="font-display text-lg">ComputeQuest</div>
+            <div className="text-muted text-sm">A free, no-login Computing practice tool for UK KS3 students.</div>
+          </div>
+        </div>
+        <div className="grid sm:grid-cols-2 gap-2 text-sm mt-3">
+          <div className="pill"><span>👨‍🏫</span><span>Created by <strong className="ml-1">Mr Borketey</strong></span></div>
+          <div className="pill"><span>📧</span><a href="mailto:j.borketey@harrispurley.org.uk" className="text-primary">j.borketey@harrispurley.org.uk</a></div>
+          <div className="pill"><span>🎓</span><span>Aligned to OCR KS3 Computing</span></div>
+          <div className="pill"><span>📚</span><span>{QUESTIONS.length}+ questions in the bank</span></div>
+        </div>
+        <div className="text-xs text-muted mt-4 leading-relaxed">
+          <strong className="text-ink">Copyright notice.</strong> © 2026 Mr Borketey. All rights reserved.
+          ComputeQuest™, including its question bank, design, code and gamification system, is the intellectual property of the author.
+          Permission is granted for non-commercial classroom use within schools.
+          Unauthorised commercial redistribution, resale, republication, or removal of attribution is strictly prohibited.
+        </div>
+      </div>
+
+      <h2 className="font-display text-xl mt-8 mb-3">Danger zone</h2>
+      <button className="card p-4 w-full text-left border-danger"
+        onClick={() => { if (confirm('Reset all progress?')) { localStorage.removeItem('cq:progress'); window.location.reload(); } }}>
+        <div className="font-display text-danger">Reset all progress</div>
+        <div className="text-muted text-sm">Clears XP, streaks, badges and themes.</div>
+      </button>
+    </div>
+  );
+}
+
+/* ============================================================
+   APP ROOT
+   ============================================================ */
+function App() {
+  const [progress, setProgressState] = useState(loadProgress);
+  const [route, setRoute] = useState({ page: 'home' });
+
+  const setProgress = useCallback(updater => {
+    setProgressState(prev => {
+      const next = typeof updater === 'function' ? updater(prev) : updater;
+      saveProgress(next);
+      return next;
+    });
+  }, []);
+
+  // Apply theme + dark mode to <html>
+  useEffect(() => {
+    const root = document.documentElement;
+    root.setAttribute('data-theme', progress.theme || 'playful');
+    root.classList.toggle('cq-dark', !!progress.dark);
+    root.classList.toggle('cq-light', !progress.dark);
+  }, [progress.theme, progress.dark]);
+
+  // Recompute streak on load
+  useEffect(() => {
+    if (!progress.lastPlayedISO) return;
+    const today = todayISO();
+    const yest  = new Date(Date.now() - 86400000).toISOString().slice(0,10);
+    if (progress.lastPlayedISO !== today && progress.lastPlayedISO !== yest && progress.streakDays !== 0) {
+      setProgress(p => ({ ...p, streakDays: 0 }));
+    }
+  }, []);
+
+  const nav = useCallback((next) => { Audio.tap(); setRoute(next); window.scrollTo({ top:0, behavior:'smooth' }); }, []);
+
+  let view;
+  switch (route.page) {
+    case 'dashboard':    view = <DashboardPage year={route.year} progress={progress} onNav={nav} />; break;
+    case 'quiz':         view = <QuizPage year={route.year} topicId={route.topicId} mode={route.mode} progress={progress} setProgress={setProgress} onNav={nav} />; break;
+    case 'results':      view = <ResultsPage progress={progress} onNav={nav} />; break;
+    case 'boss':         view = <BossPage year={route.year} progress={progress} setProgress={setProgress} onNav={nav} />; break;
+    case 'achievements': view = <AchievementsPage progress={progress} onNav={nav} />; break;
+    case 'leaderboard':  view = <LeaderboardPage year={route.year} progress={progress} onNav={nav} />; break;
+    case 'settings':     view = <SettingsPage progress={progress} setProgress={setProgress} onNav={nav} />; break;
+    default:             view = <HomePage progress={progress} onYear={(y) => nav({ page: 'dashboard', year: y })} />;
+  }
+
+  return (
+    <Fragment>
+      <Header progress={progress} onNav={nav} currentPage={route.page} />
+      <main key={route.page + (route.year || '') + (route.topicId || '')} className="anim-slideUp">
+        {view}
+      </main>
+      <footer className="max-w-5xl mx-auto px-4 py-10 text-center text-muted text-xs space-y-2">
+        <div className="font-display text-sm text-ink">
+          ComputeQuest · Free practice for KS3 Computing · OCR-aligned · No login, no tracking.
+        </div>
+        <div>
+          Created by <span className="text-ink font-semibold">Mr Borketey</span> ·
+          <a href="mailto:j.borketey@harrispurley.org.uk" className="text-primary hover:underline ml-1">j.borketey@harrispurley.org.uk</a>
+        </div>
+        <div>
+          © 2026 Mr Borketey. All rights reserved. ComputeQuest™ — content, code and design are the intellectual property of the author.
+          Unauthorised commercial redistribution, resale or republication is prohibited. Permission is granted for non-commercial classroom use.
+        </div>
+      </footer>
+    </Fragment>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>
