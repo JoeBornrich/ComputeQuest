@@ -286,6 +286,120 @@
     .btn-primary { padding: 1rem 1.4rem; }
   }
 
+  /* ============================
+     CHATBOT (QUANTA)
+     ============================ */
+  .cq-fab {
+    position: fixed; bottom: 22px; right: 22px;
+    width: 62px; height: 62px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--cq-primary), var(--cq-accent));
+    color: white; font-size: 28px;
+    display: inline-flex; align-items: center; justify-content: center;
+    box-shadow: var(--cq-shadow-glow);
+    z-index: 80; cursor: pointer; border: none;
+    transition: transform .22s cubic-bezier(.34,1.56,.64,1);
+  }
+  .cq-fab:hover { transform: scale(1.08) rotate(-4deg); }
+  .cq-fab::after {
+    content:''; position:absolute; inset:-4px; border-radius:50%;
+    border:2px solid var(--cq-primary); opacity:.5;
+    animation: pulse-glow 2.4s infinite;
+  }
+
+  .cq-bot-badge {
+    position: absolute; top: -4px; right: -4px;
+    width: 18px; height: 18px; border-radius: 50%;
+    background: var(--cq-warn); color: white;
+    font-size: 11px; font-weight: 800;
+    display: inline-flex; align-items: center; justify-content: center;
+    animation: pop .5s cubic-bezier(.34,1.56,.64,1);
+  }
+
+  .cq-panel {
+    position: fixed; bottom: 100px; right: 22px;
+    width: 380px; max-width: calc(100vw - 44px);
+    height: 560px; max-height: calc(100vh - 140px);
+    background: var(--cq-surface);
+    border: 1px solid var(--cq-line);
+    border-radius: 22px;
+    box-shadow: 0 24px 70px hsl(258 60% 20% / .35);
+    z-index: 90;
+    display: flex; flex-direction: column;
+    overflow: hidden;
+  }
+  @media (max-width: 480px) {
+    .cq-panel { right: 12px; left: 12px; width: auto; bottom: 92px; }
+  }
+
+  .cq-panel-header {
+    display: flex; align-items: center; gap: 10px;
+    padding: 12px 14px;
+    background: linear-gradient(135deg, var(--cq-primary), var(--cq-accent));
+    color: white;
+  }
+  .cq-panel-header .name { font-family: var(--cq-font-display); font-weight: 800; }
+  .cq-panel-header .role { font-size: .72rem; opacity: .85; }
+  .cq-close-btn { margin-left: auto; background: rgba(255,255,255,.18); border: none; color: white; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; font-size: 18px; line-height: 1; }
+  .cq-close-btn:hover { background: rgba(255,255,255,.3); }
+
+  .cq-messages {
+    flex: 1; overflow-y: auto;
+    padding: 14px; display: flex; flex-direction: column; gap: 8px;
+    background: var(--cq-bg);
+  }
+  .cq-msg {
+    max-width: 86%; padding: 9px 13px; border-radius: 16px;
+    line-height: 1.45; font-size: .92rem;
+    white-space: pre-wrap; word-wrap: break-word;
+    animation: slideUp .22s ease-out both;
+  }
+  .cq-msg-user { align-self: flex-end; background: var(--cq-primary); color: white; border-bottom-right-radius: 4px; }
+  .cq-msg-bot  { align-self: flex-start; background: var(--cq-surface); border: 1px solid var(--cq-line); border-bottom-left-radius: 4px; }
+  .cq-msg-bot strong { color: var(--cq-primary); }
+
+  .cq-typing { display: inline-flex; align-items: center; gap: 4px; }
+  .cq-typing span {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--cq-muted);
+    animation: typing-bounce 1.2s infinite ease-in-out;
+  }
+  .cq-typing span:nth-child(2) { animation-delay: .15s; }
+  .cq-typing span:nth-child(3) { animation-delay: .3s; }
+  @keyframes typing-bounce {
+    0%,80%,100% { transform: scale(.6); opacity:.4; }
+    40% { transform: scale(1); opacity:1; }
+  }
+
+  .cq-suggestions {
+    display: flex; gap: 6px; flex-wrap: wrap;
+    padding: 10px 12px 0;
+    background: var(--cq-bg);
+  }
+  .cq-suggestions button {
+    background: var(--cq-sunken); color: var(--cq-ink);
+    border: 1px solid var(--cq-line); border-radius: 999px;
+    font-size: .78rem; padding: 6px 10px; cursor: pointer;
+    transition: all .15s;
+  }
+  .cq-suggestions button:hover { background: var(--cq-primary); color: white; border-color: var(--cq-primary); }
+
+  .cq-input-row {
+    display: flex; gap: 8px; padding: 10px 12px 12px;
+    background: var(--cq-bg); border-top: 1px solid var(--cq-line);
+  }
+  .cq-input-row input {
+    flex: 1; background: var(--cq-surface); color: var(--cq-ink);
+    border: 1px solid var(--cq-line); border-radius: 12px;
+    padding: .6rem .9rem; font-family: inherit; font-size: .92rem;
+  }
+  .cq-input-row input:focus { outline: none; border-color: var(--cq-primary); }
+  .cq-send-btn {
+    background: var(--cq-primary); color: white;
+    border: none; border-radius: 12px;
+    padding: 0 14px; font-weight: 700; cursor: pointer;
+  }
+  .cq-send-btn:disabled { opacity: .4; cursor: not-allowed; }
+
   .anim-pop     { animation: pop .35s cubic-bezier(.34,1.56,.64,1) both; }
   .anim-slideUp { animation: slideUp .28s ease-out both; }
   .anim-shake   { animation: shake .42s ease-in-out both; }
@@ -1769,6 +1883,199 @@ const QUESTIONS = [
   q('y9-data-14',9,'data','mc','Encoding "AAAABBBC" with RLE could give…',
     ['4A3B1C','AAAA BBB C','ABBC','7 letters'],0,
     'Count each run: 4 A\'s, 3 B\'s, 1 C.',4),
+
+  /* ===========================================================
+     CHALLENGE QUESTIONS — extra-hard, multi-step (Y7/Y8/Y9)
+     =========================================================== */
+
+  /* ---- Y7 challenge (12) ---- */
+  q('y7-ch-1',7,'binary','fitb','Add the binary numbers 0110 + 0011. Give the 4-bit result.',
+    null,'1001','6 + 3 = 9 → 1001. Watch for carries: 0+1=1, 1+1=10 (carry), 1+1+0=10 (carry), 0+0+1=1.',4,
+    'Convert each to denary, add, then convert back.'),
+  q('y7-ch-2',7,'binary','mc','Which 4-bit binary number is the largest?',
+    ['1010','1100','1001','0111'],1,
+    '1100 = 12. The others are 10, 9 and 7.',4),
+  q('y7-ch-3',7,'binary','fitb','Convert binary 11010 into denary.',
+    null,'26','16 + 8 + 2 = 26.',4,'Place values from the right: 1, 2, 4, 8, 16…'),
+  q('y7-ch-4',7,'ct','order','Order the steps of a "linear search" algorithm for finding 7 in a list:',
+    ['Start at the first item','Compare it to 7','If it matches, stop and return found','Otherwise move to the next item'],[0,1,2,3],
+    'Linear search walks through each item in order until it finds the target or runs out.',4),
+  q('y7-ch-5',7,'algo','mc','A flowchart has a decision "Is x > 0?" leading back to a process box, which feeds back into the decision. This is…',
+    ['A loop','A simple sequence','An input','A subroutine'],0,
+    'When the flow can return to a decision and repeat, it\'s a loop.',4),
+  q('y7-ch-6',7,'python','mc','Trace: x = 5\\ny = x * 2\\nx = x + 1 — what are x and y at the end?',
+    ['x=6, y=10','x=5, y=10','x=6, y=12','x=5, y=11'],0,
+    'y is set from x BEFORE x is changed. y = 10 stays; x becomes 6.',4),
+  q('y7-ch-7',7,'python','mc','Trace: a = 3\\nb = 4\\na = b\\nb = a — final values of a and b?',
+    ['a=4, b=4','a=3, b=4','a=4, b=3','a=3, b=3'],0,
+    'a becomes 4. Then b is set to the NEW a (which is 4), not the original. Classic swap bug!',5),
+  q('y7-ch-8',7,'logic','mc','In a real security door: it opens only if the badge IS valid AND PIN IS correct. Which gate?',
+    ['AND','OR','NOT','XOR'],0,
+    'Both conditions must be true — that\'s AND.',4),
+  q('y7-ch-9',7,'hw','mc','You open 10 browser tabs and the computer slows. What runs out first?',
+    ['RAM','Hard drive space','CPU cores','USB ports'],0,
+    'Each tab uses RAM. When RAM fills, the system swaps to disk and slows down.',4),
+  q('y7-ch-10',7,'data','mc','A 1-bit image is 4 pixels wide and 4 tall. Its total size is…',
+    ['16 bits','4 bits','8 bytes','64 bytes'],0,
+    '4 × 4 = 16 pixels, 1 bit each = 16 bits total.',4),
+  q('y7-ch-11',7,'scratch','order','Order the Scratch blocks to make a sprite move 10 steps repeatedly when flag clicked:',
+    ['when 🚩 clicked','forever','  move 10 steps','  wait 1 secs'],[0,1,2,3],
+    'Loops wrap the action. The flag event triggers the loop.',4),
+  q('y7-ch-12',7,'sec','mc','You receive a text: "Your bank account is locked, click this link". This is most likely…',
+    ['A phishing attempt','A normal bank message','A free reward','A friend\'s joke'],0,
+    'Real banks never text random links. Never click — go to the bank\'s app directly.',4),
+
+  /* ---- Y8 challenge (22) ---- */
+  q('y8-ch-1',8,'binary','fitb','Convert denary 200 into 8-bit binary.',
+    null,'11001000','128 + 64 + 8 = 200 → 11001000.',5,
+    '128 + 64 = 192. You need 8 more.'),
+  q('y8-ch-2',8,'binary','fitb','Add binary 1011 + 1101. Give the 5-bit result.',
+    null,'11000','11 + 13 = 24 → 11000.',5,
+    'Watch carries! 1+1=10 (carry the 1).'),
+  q('y8-ch-3',8,'binary','mc','Hex C5 in denary is…',
+    ['125','195','197','205'],2,
+    '12×16 + 5 = 192 + 5 = 197.',5),
+  q('y8-ch-4',8,'binary','mc','Binary 11010110 in hex is…',
+    ['D6','C5','B7','E2'],0,
+    'Split into nibbles: 1101 = D, 0110 = 6 → D6.',5),
+  q('y8-ch-5',8,'logic','mc','(A AND B) OR (NOT A). With A=0, B=1, the output is…',
+    ['0','1','Undefined','Either'],1,
+    'A AND B = 0. NOT A = 1. 0 OR 1 = 1.',5),
+  q('y8-ch-6',8,'logic','mc','Truth table with inputs A,B,C has how many rows?',
+    ['3','6','8','9'],2,
+    '2³ = 8 — every combination of three inputs.',4),
+  q('y8-ch-7',8,'logic','mc','Which expression is TRUE only when both A and B are FALSE?',
+    ['NOT (A OR B)','A AND B','A OR B','NOT A AND B'],0,
+    'NOT (A OR B) — known as NOR — is true only when both inputs are false.',5),
+  q('y8-ch-8',8,'python','mc','Trace:\\ntotal = 0\\nfor i in range(1, 5):\\n    total += i\\nWhat is total?',
+    ['10','15','5','4'],0,
+    '1+2+3+4 = 10. range(1,5) stops BEFORE 5.',4),
+  q('y8-ch-9',8,'python','mc','Trace:\\nn = 10\\nwhile n > 0:\\n    n -= 3\\nWhat is n at the end?',
+    ['-2','0','1','4'],0,
+    '10 → 7 → 4 → 1 → -2 (loop ends because -2 isn\'t > 0).',5),
+  q('y8-ch-10',8,'python','mc','Output: print(2 ** 3)',
+    ['6','8','9','23'],1,
+    '** is exponentiation. 2³ = 8.',4),
+  q('y8-ch-11',8,'python','mc','Output: print("Hi" * 3)',
+    ['HiHiHi','Hi Hi Hi','9','Error'],0,
+    'Multiplying a string repeats it.',4),
+  q('y8-ch-12',8,'python','mc','int("8") + "8" raises an error because…',
+    ['You can\'t add int and string','"8" is invalid','Python only supports int','Print is missing'],0,
+    'Python won\'t mix types in +. You\'d need int("8") + int("8") = 16, or "8" + "8" = "88".',5),
+  q('y8-ch-13',8,'iter','mc','How many TIMES does the inner line run? for i in range(3): for j in range(4): print(j)',
+    ['3','4','7','12'],3,
+    'Nested loops multiply: 3 × 4 = 12.',5),
+  q('y8-ch-14',8,'algo','order','Order the bubble-sort pass on [3, 1, 4, 2]:',
+    ['Compare 3 & 1 → swap → [1,3,4,2]','Compare 3 & 4 → no swap','Compare 4 & 2 → swap → [1,3,2,4]','Pass complete'],[0,1,2,3],
+    'Bubble sort compares pairs and swaps when out of order.',5),
+  q('y8-ch-15',8,'algo','mc','Binary search on a SORTED list of 16 items: worst-case comparisons?',
+    ['2','4','8','16'],1,
+    'log₂(16) = 4. Each comparison halves the list.',5),
+  q('y8-ch-16',8,'algo','mc','If linear search takes 8 comparisons WORST CASE, how many items are in the list?',
+    ['3','4','8','16'],2,
+    'Worst case for linear = checking every item. 8 comparisons → 8 items.',4),
+  q('y8-ch-17',8,'data','mc','A bitmap image is 20×30 pixels with 8-bit colour depth. Size?',
+    ['600 bits','600 bytes','4800 bits','4800 bytes'],2,
+    '20 × 30 = 600 pixels × 8 bits = 4800 bits.',5),
+  q('y8-ch-18',8,'data','mc','To double a sound\'s file size you could…',
+    ['Double the sample rate','Halve the bit depth','Compress more','Lower the volume'],0,
+    'More samples per second = more data, similar to more pixels in an image.',4),
+  q('y8-ch-19',8,'net','mc','Why does HTTPS exist alongside HTTP?',
+    ['To encrypt traffic between client and server','To make pages faster','To use more bandwidth','To replace TCP'],0,
+    'HTTPS = HTTP + TLS encryption. It stops eavesdroppers reading the traffic.',4),
+  q('y8-ch-20',8,'net','mc','Which is NOT an advantage of a star topology?',
+    ['If the central switch fails, the network goes down','Easy to add/remove devices','Less collision','Fast performance'],0,
+    'Star\'s weakness: a single point of failure (the hub/switch).',5),
+  q('y8-ch-21',8,'sec','mc','Best PASSWORD policy combines…',
+    ['Length, complexity, uniqueness, 2FA','Length only','Symbols only','Short and easy'],0,
+    'Long + complex + unique + 2FA is the gold standard.',4),
+  q('y8-ch-22',8,'scratch','mc','In Scratch, you want sprite A to broadcast "go" and sprite B to react. Which set-up works?',
+    ['A: broadcast "go"; B: when I receive "go" → do something','Both broadcast','Neither uses events','Only one sprite is needed'],0,
+    'Broadcasts pair a sender with one or more receivers using the "when I receive" hat block.',4),
+
+  /* ---- Y9 challenge (26) ---- */
+  q('y9-ch-1',9,'binary','fitb','Convert denary 156 into 8-bit binary.',
+    null,'10011100','128 + 16 + 8 + 4 = 156 → 10011100.',5,
+    '128 needs 28 more. 16 + 8 + 4 = 28.'),
+  q('y9-ch-2',9,'binary','fitb','Convert hex A5 into 8-bit binary.',
+    null,'10100101','A = 1010, 5 = 0101. Just stick them together.',5,
+    'Each hex digit = exactly 4 bits.'),
+  q('y9-ch-3',9,'binary','mc','In 8-bit two\'s complement, the binary 11111111 represents…',
+    ['-1','255','127','-128'],0,
+    'In two\'s complement, all 1s = -1. (255 only if unsigned.)',5),
+  q('y9-ch-4',9,'binary','mc','In 8-bit two\'s complement, what\'s the range of values?',
+    ['0 to 255','-127 to 127','-128 to 127','-128 to 128'],2,
+    'One bit becomes the sign. Half the range is negative; half (including 0) is positive.',5),
+  q('y9-ch-5',9,'binary','mc','Hex AB + Hex 1 = ?',
+    ['AC','AD','BB','BC'],0,
+    '171 + 1 = 172 → AC. (B = 11, + 1 = 12 = C.)',4),
+  q('y9-ch-6',9,'binary','fitb','Convert binary 10110101 into hex.',
+    null,'B5','1011 = B, 0101 = 5 → B5.',5),
+
+  q('y9-ch-7',9,'logic','mc','Simplify: NOT (NOT A) = ?',
+    ['A','NOT A','1','0'],0,
+    'Double negation cancels out — basic algebra of logic.',4),
+  q('y9-ch-8',9,'logic','mc','By De Morgan: NOT (A AND B) = ?',
+    ['(NOT A) OR (NOT B)','(NOT A) AND (NOT B)','A OR B','A AND B'],0,
+    'Flip AND↔OR and invert each input.',5),
+  q('y9-ch-9',9,'logic','mc','(A XOR B) AND A. With A=1, B=0, output?',
+    ['0','1','Either','Error'],1,
+    'A XOR B = 1 (they differ). 1 AND 1 = 1.',5),
+  q('y9-ch-10',9,'logic','mc','How many rows in a truth table with 5 inputs?',
+    ['10','16','32','64'],2,
+    '2⁵ = 32.',4),
+
+  q('y9-ch-11',9,'python','mc','Trace:\\ndef mystery(x):\\n    return x * x + 1\\nprint(mystery(4))',
+    ['16','17','9','8'],1,
+    '4 × 4 = 16, then + 1 = 17.',4),
+  q('y9-ch-12',9,'python','mc','Trace:\\nxs = [3, 1, 4, 1, 5]\\nprint(len(xs) + max(xs))',
+    ['9','10','11','13'],1,
+    'len = 5, max = 5. 5 + 5 = 10.',5),
+  q('y9-ch-13',9,'python','mc','Trace:\\ntotal = 0\\nfor i in range(1, 11):\\n    if i % 2 == 0:\\n        total += i\\nprint(total)',
+    ['30','25','55','20'],0,
+    'Sums even numbers 2+4+6+8+10 = 30.',5),
+  q('y9-ch-14',9,'python','mc','Trace:\\ndef f(n):\\n    if n <= 1: return 1\\n    return n * f(n - 1)\\nprint(f(4))',
+    ['10','16','24','120'],2,
+    'Recursive factorial: 4! = 4×3×2×1 = 24.',5),
+  q('y9-ch-15',9,'python','mc','Output: print("hello world".count("l"))',
+    ['2','3','4','1'],1,
+    'There are three l\'s in "hello world".',4),
+  q('y9-ch-16',9,'python','mc','Output: print([i*2 for i in range(4)])',
+    ['[0,2,4,6]','[2,4,6,8]','[0,1,2,3]','[1,2,4,8]'],0,
+    'List comp: i=0→0, i=1→2, i=2→4, i=3→6.',5),
+  q('y9-ch-17',9,'python','mc','What does this do?\\nxs = [3,1,4,1,5]\\nxs.sort()\\nprint(xs[0])',
+    ['Prints 1','Prints 3','Prints 5','Errors'],0,
+    '.sort() sorts in place ascending. xs[0] is now 1 — the smallest.',5),
+  q('y9-ch-18',9,'python','mc','What is wrong with: if x = 5:',
+    ['Should use == for comparison','Missing import','Wrong colon','Nothing'],0,
+    '= assigns, == compares. Classic beginner trap.',4),
+
+  q('y9-ch-19',9,'iter','mc','Trace:\\nfor i in range(3):\\n    for j in range(2):\\n        print(i, j)\\nHow many lines are printed?',
+    ['5','6','8','9'],1,
+    'Outer 3 × inner 2 = 6 lines.',5),
+  q('y9-ch-20',9,'iter','mc','Trace:\\ncount = 0\\nfor x in [10, 20, 30, 40]:\\n    if x > 15: count += 1\\nprint(count)',
+    ['1','2','3','4'],2,
+    '20, 30, 40 are all > 15. So count = 3.',4),
+
+  q('y9-ch-21',9,'algo','mc','Big-O of binary search?',
+    ['O(1)','O(log n)','O(n)','O(n²)'],1,
+    'Each step halves the input → logarithmic.',5),
+  q('y9-ch-22',9,'algo','mc','Big-O of bubble sort (worst case)?',
+    ['O(1)','O(log n)','O(n)','O(n²)'],3,
+    'Nested loops over the list → quadratic.',5),
+  q('y9-ch-23',9,'algo','mc','A list of 1024 sorted items: max comparisons for binary search?',
+    ['10','100','512','1024'],0,
+    'log₂(1024) = 10.',5),
+
+  q('y9-ch-24',9,'sec','mc','Caesar shift of 3: "ABC" becomes…',
+    ['DEF','XYZ','ABCABC','BCD'],0,
+    'Each letter slides forward 3 places.',4),
+  q('y9-ch-25',9,'sec','mc','Why is a one-way HASH used to store passwords?',
+    ['So even if the database leaks, the original passwords aren\'t exposed','It is faster than encryption','It saves space','To compress them'],0,
+    'Hashes are one-way: can verify a guess by re-hashing, but can\'t reverse to the original.',5),
+  q('y9-ch-26',9,'net','mc','When you type "google.com" and hit Enter, what happens FIRST?',
+    ['DNS lookup converts the name to an IP address','Cache loads the page','SSL handshake','HTML renders'],0,
+    'Before connecting, the browser needs an IP — DNS provides it.',5),
 ];
 
 /* ============================================================
@@ -1865,6 +2172,129 @@ const Audio = {
 };
 
 /* ============================================================
+   ANALYTICS — local usage tracking (per device)
+   ============================================================ */
+const TEACHER_EMAIL = 'j.borketey@harrispurley.org.uk';
+const ANALYTICS_KEY = 'cq:analytics';
+const SESSION_KEY   = 'cq:session';
+
+function defaultAnalytics() {
+  return {
+    firstSeen: todayISO(),
+    daily: {},
+    totals: { visits: 0, questions: 0, correct: 0, quizzes: 0, chatbotMessages: 0, bossesWon: 0 },
+  };
+}
+function loadAnalytics() {
+  try {
+    const raw = localStorage.getItem(ANALYTICS_KEY);
+    if (!raw) return defaultAnalytics();
+    return { ...defaultAnalytics(), ...JSON.parse(raw) };
+  } catch { return defaultAnalytics(); }
+}
+function saveAnalytics(a) { try { localStorage.setItem(ANALYTICS_KEY, JSON.stringify(a)); } catch {} }
+
+function ensureToday(a) {
+  const k = todayISO();
+  if (!a.daily[k]) {
+    a.daily[k] = { visits: 0, questions: 0, correct: 0, quizzes: 0, chatbotMessages: 0, topics: [], bossesWon: 0, firstSeen: new Date().toISOString() };
+  }
+  return a.daily[k];
+}
+
+const Track = {
+  visit() {
+    // One "visit" per browser tab session
+    const already = sessionStorage.getItem(SESSION_KEY);
+    if (already === todayISO()) return;
+    sessionStorage.setItem(SESSION_KEY, todayISO());
+    const a = loadAnalytics();
+    const t = ensureToday(a);
+    t.visits += 1;
+    a.totals.visits += 1;
+    saveAnalytics(a);
+  },
+  answer(correct, topicId) {
+    const a = loadAnalytics();
+    const t = ensureToday(a);
+    t.questions += 1; a.totals.questions += 1;
+    if (correct) { t.correct += 1; a.totals.correct += 1; }
+    if (topicId && !t.topics.includes(topicId)) t.topics.push(topicId);
+    saveAnalytics(a);
+  },
+  quizDone() {
+    const a = loadAnalytics();
+    const t = ensureToday(a);
+    t.quizzes += 1; a.totals.quizzes += 1;
+    saveAnalytics(a);
+  },
+  bossWon() {
+    const a = loadAnalytics();
+    const t = ensureToday(a);
+    t.bossesWon += 1; a.totals.bossesWon = (a.totals.bossesWon || 0) + 1;
+    saveAnalytics(a);
+  },
+  chatMsg() {
+    const a = loadAnalytics();
+    const t = ensureToday(a);
+    t.chatbotMessages += 1; a.totals.chatbotMessages += 1;
+    saveAnalytics(a);
+  },
+};
+
+function buildEmailReport() {
+  const a = loadAnalytics();
+  const today = a.daily[todayISO()] || {};
+  const totals = a.totals;
+  const recent = Object.entries(a.daily).sort((x,y) => y[0].localeCompare(x[0])).slice(0, 7);
+  const acc = (c, q) => q ? Math.round(c/q*100)+'%' : '—';
+
+  const lines = [
+    'ComputeQuest — Daily Usage Report',
+    '═══════════════════════════════════',
+    `Date: ${todayISO()}`,
+    `First seen on this device: ${a.firstSeen}`,
+    '',
+    '── TODAY ──',
+    `Visits:              ${today.visits || 0}`,
+    `Quizzes completed:   ${today.quizzes || 0}`,
+    `Bosses won:          ${today.bossesWon || 0}`,
+    `Questions answered:  ${today.questions || 0}`,
+    `Correct:             ${today.correct || 0}   (accuracy ${acc(today.correct, today.questions)})`,
+    `Topics practised:    ${(today.topics || []).join(', ') || '—'}`,
+    `Chatbot messages:    ${today.chatbotMessages || 0}`,
+    '',
+    '── ALL-TIME (this device) ──',
+    `Visits:              ${totals.visits}`,
+    `Quizzes completed:   ${totals.quizzes}`,
+    `Bosses won:          ${totals.bossesWon || 0}`,
+    `Questions answered:  ${totals.questions}`,
+    `Correct:             ${totals.correct}   (accuracy ${acc(totals.correct, totals.questions)})`,
+    `Chatbot messages:    ${totals.chatbotMessages}`,
+    '',
+    '── LAST 7 DAYS ──',
+    ...recent.map(([d, x]) =>
+      `${d}: ${x.visits || 0} visits, ${x.questions || 0} Qs (${acc(x.correct, x.questions)}), ${x.quizzes || 0} quizzes`
+    ),
+    '',
+    '── NOTES ──',
+    'This report shows usage from ONE device only.',
+    'School-wide aggregate stats would require a server backend.',
+    'For now, each student can email their own report from Settings → Teacher view.',
+    '',
+    `— Sent from ComputeQuest by Mr Borketey`,
+  ];
+  return lines.join('\n');
+}
+
+function mailReportToTeacher() {
+  const subject = `ComputeQuest usage — ${todayISO()}`;
+  const body = buildEmailReport();
+  const href = `mailto:${TEACHER_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  window.location.href = href;
+}
+
+/* ============================================================
    CONFETTI
    ============================================================ */
 function fireConfetti({ count = 40, palette } = {}) {
@@ -1908,7 +2338,7 @@ function shuffleQuestion(q) {
   };
 }
 
-function pickQuestionsFor(year, topicId, n = 10, seenIds = new Set(), targetDifficulty = 2) {
+function pickQuestionsFor(year, topicId, n = 15, seenIds = new Set(), targetDifficulty = 2) {
   const pool = QUESTIONS.filter(q => q.year === year && (!topicId || q.topic === topicId));
   const unseen = pool.filter(q => !seenIds.has(q.id));
   const source = unseen.length >= n ? unseen : pool;
@@ -1934,7 +2364,8 @@ function pickBossSet(year) {
   const med  = pool.filter(q => q.difficulty === 3);
   const hard = pool.filter(q => q.difficulty >= 4);
   const sample = (arr, n) => fyShuffle([...arr]).slice(0, n);
-  return [...sample(easy, 4), ...sample(med, 6), ...sample(hard, 5)].map(shuffleQuestion);
+  // 20 questions: 5 easy, 8 medium, 7 hard — escalating difficulty
+  return [...sample(easy, 5), ...sample(med, 8), ...sample(hard, 7)].map(shuffleQuestion);
 }
 
 /* ============================================================
@@ -2386,9 +2817,10 @@ function HomePage({ onYear, progress }) {
               Bite-sized practice for Year 7, 8 and 9. No login. No nags. Start in five seconds.
             </p>
             <div className="flex gap-2 mt-6 flex-wrap">
-              <span className="chip">🎯 {QUESTIONS.length} questions ready</span>
+              <span className="chip">🎯 {QUESTIONS.length} questions</span>
               <span className="chip">🔥 Streaks & badges</span>
               <span className="chip">🎨 4 unlockable themes</span>
+              <span className="chip">🤖 Quanta — built-in helper</span>
               <span className="chip">📵 Works offline</span>
             </div>
           </div>
@@ -2488,7 +2920,7 @@ function DashboardPage({ year, progress, onNav }) {
             <div>
               <div className="chip mb-2">🐲 Weekly boss</div>
               <div className="font-display text-xl">Boss battle</div>
-              <div className="text-muted text-sm mt-1">15 timed questions. Triple XP if you win.</div>
+              <div className="text-muted text-sm mt-1">20 timed questions. Triple XP if you win.</div>
             </div>
             <div className="text-4xl">⚔️</div>
           </div>
@@ -2542,7 +2974,7 @@ function DashboardPage({ year, progress, onNav }) {
 
 // --- QUIZ ----------------------------------------------------------------
 function QuizPage({ year, topicId, mode = 'quiz', progress, setProgress, onNav }) {
-  const totalQ = mode === 'daily' ? 1 : 10;
+  const totalQ = mode === 'daily' ? 1 : 15;
   const questions = useMemo(() => {
     if (mode === 'daily') return [pickDailyQuestion(year)];
     const seen = new Set();
@@ -2569,11 +3001,19 @@ function QuizPage({ year, topicId, mode = 'quiz', progress, setProgress, onNav }
   const lastCorrect = locked && checkAnswer(cur, picked);
   const mascotMood = !locked ? 'idle' : (lastCorrect ? 'happy' : 'sad');
 
+  // Tell the chatbot which question the student is on right now
+  const quizCtxRef = React.useContext(QuizCtx);
+  useEffect(() => {
+    quizCtxRef.setCurrent({ question: cur, topic, locked, year, mode });
+    return () => quizCtxRef.setCurrent(null);
+  }, [cur && cur.id, locked]);
+
   const handleAnswer = (chosen) => {
     if (locked) return;
     const correct = checkAnswer(cur, chosen);
     setPicked(chosen);
     setLocked(true);
+    Track.answer(correct, cur.topic);
 
     if (correct) {
       Audio.correct();
@@ -2643,9 +3083,10 @@ function QuizPage({ year, topicId, mode = 'quiz', progress, setProgress, onNav }
     if (idx + 1 >= questions.length) {
       // End of quiz
       const elapsed = Math.round((Date.now() - startedAt) / 1000);
+      Track.quizDone();
       setProgress(p => {
         const np = { ...p };
-        if (elapsed < (p.fastestQuizSec || Infinity) && questions.length === 10) np.fastestQuizSec = elapsed;
+        if (elapsed < (p.fastestQuizSec || Infinity) && questions.length === 15) np.fastestQuizSec = elapsed;
         np.lastResults = { year, topicId, mode, sessionCorrect, total: questions.length, elapsedSec: elapsed };
         return np;
       });
@@ -2779,6 +3220,18 @@ function BossPage({ year, progress, setProgress, onNav }) {
   const [correct, setCorrect] = useState(0);
   const [shake, setShake] = useState(false);
   const timerRef = useRef();
+  const quizCtxRef = React.useContext(QuizCtx);
+
+  // Keep the chatbot informed about the current boss question
+  useEffect(() => {
+    const q = qs[idx];
+    if (phase === 'fight' && q) {
+      quizCtxRef.setCurrent({ question: q, topic: TOPIC_BY[q.topic], locked, year, mode: 'boss' });
+    } else {
+      quizCtxRef.setCurrent(null);
+    }
+    return () => quizCtxRef.setCurrent(null);
+  }, [phase, idx, locked]);
 
   useEffect(() => {
     if (phase !== 'fight' || locked) return;
@@ -2803,6 +3256,7 @@ function BossPage({ year, progress, setProgress, onNav }) {
     clearInterval(timerRef.current);
     const ok = checkAnswer(qs[idx], chosen);
     setPicked(chosen); setLocked(true);
+    Track.answer(ok, qs[idx].topic);
     if (ok) {
       Audio.correct(); fireConfetti({ count: 14 });
       setBossHP(h => Math.max(0, h - Math.round(100 / qs.length) - 2));
@@ -2821,6 +3275,7 @@ function BossPage({ year, progress, setProgress, onNav }) {
       if (win) {
         Audio.level();
         fireConfetti({ count: 100 });
+        Track.bossWon();
         setProgress(p => {
           const np = { ...p };
           np.bossesBeaten = (p.bossesBeaten || 0) + 1;
@@ -2847,7 +3302,7 @@ function BossPage({ year, progress, setProgress, onNav }) {
         <div className="card p-8 anim-pop">
           <div className="text-6xl anim-float">{boss.split(' ')[0]}</div>
           <h1 className="font-display text-3xl mt-2">{boss.slice(2)}</h1>
-          <p className="text-muted mt-2">15 timed questions. 20 seconds each.<br/>Wrong answers cost HP. Win to earn 250 XP and a badge.</p>
+          <p className="text-muted mt-2">20 timed questions. 20 seconds each.<br/>Wrong answers cost HP. Win to earn 250 XP and a badge.</p>
           <button className="btn-primary mt-6" onClick={() => { Audio.boss(); setPhase('fight'); }}>Begin battle ⚔️</button>
           <button className="btn-ghost mt-2 ml-2" onClick={() => onNav({ page: 'dashboard', year })}>Retreat</button>
         </div>
@@ -3045,6 +3500,28 @@ function SettingsPage({ progress, setProgress, onNav }) {
         </div>
       </div>
 
+      <h2 className="font-display text-xl mt-8 mb-3">Teacher tools</h2>
+      <button onClick={() => onNav({ page: 'teacher' })} className="card p-4 w-full text-left hover:border-primary transition">
+        <div className="flex items-center gap-3">
+          <div className="text-3xl">👨‍🏫</div>
+          <div className="flex-1">
+            <div className="font-display">Teacher dashboard</div>
+            <div className="text-muted text-sm">See usage stats and email today's report to Mr Borketey.</div>
+          </div>
+          <div className="text-muted">→</div>
+        </div>
+      </button>
+      <button onClick={mailReportToTeacher} className="card p-4 w-full text-left mt-2 hover:border-primary transition">
+        <div className="flex items-center gap-3">
+          <div className="text-3xl">📧</div>
+          <div className="flex-1">
+            <div className="font-display">Email today's report now</div>
+            <div className="text-muted text-sm">Opens your email app, pre-filled to {TEACHER_EMAIL}.</div>
+          </div>
+          <div className="text-muted">→</div>
+        </div>
+      </button>
+
       <h2 className="font-display text-xl mt-8 mb-3">Danger zone</h2>
       <button className="card p-4 w-full text-left border-danger"
         onClick={() => { if (confirm('Reset all progress?')) { localStorage.removeItem('cq:progress'); window.location.reload(); } }}>
@@ -3055,12 +3532,440 @@ function SettingsPage({ progress, setProgress, onNav }) {
   );
 }
 
+// --- TEACHER DASHBOARD ---------------------------------------------------
+function TeacherPage({ onNav }) {
+  const [, force] = useState(0);
+  const refresh = () => force(n => n + 1);
+  const a = loadAnalytics();
+  const today = a.daily[todayISO()] || { visits:0, questions:0, correct:0, quizzes:0, chatbotMessages:0, topics:[], bossesWon:0 };
+  const totals = a.totals;
+  const recent = Object.entries(a.daily).sort((x, y) => y[0].localeCompare(x[0])).slice(0, 14);
+  const acc = (c, q) => q ? Math.round(c/q*100) : 0;
+
+  return (
+    <div className="max-w-3xl mx-auto px-4 py-6">
+      <button onClick={() => onNav({ page: 'home' })} className="text-sm text-muted hover:text-ink">← Back</button>
+      <div className="flex items-center gap-3 mt-1">
+        <span className="text-4xl">👨‍🏫</span>
+        <div>
+          <h1 className="font-display text-3xl leading-tight">Teacher dashboard</h1>
+          <p className="text-muted text-sm">Local usage on this device. Mr Borketey — share with your class to gather data.</p>
+        </div>
+      </div>
+
+      {/* TODAY stat tiles */}
+      <h2 className="font-display text-xl mt-6 mb-3">Today</h2>
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+        {[
+          ['👁️','Visits',         today.visits],
+          ['📝','Questions',      today.questions],
+          ['✅','Correct',        today.correct + ' (' + acc(today.correct, today.questions) + '%)'],
+          ['🎯','Quizzes done',   today.quizzes],
+          ['🐲','Bosses won',     today.bossesWon || 0],
+          ['💬','Chat msgs',      today.chatbotMessages],
+          ['📚','Topics today',   (today.topics || []).length],
+          ['🕐','First seen',     a.firstSeen],
+        ].map(([icon, label, val]) => (
+          <div key={label} className="card p-3">
+            <div className="text-2xl">{icon}</div>
+            <div className="font-display text-xl leading-tight">{val}</div>
+            <div className="text-muted text-xs">{label}</div>
+          </div>
+        ))}
+      </div>
+
+      {/* Send report */}
+      <div className="card p-5 mt-6 anim-pop">
+        <div className="flex items-start justify-between gap-3 flex-wrap">
+          <div>
+            <div className="font-display text-lg">📧 Email today's report</div>
+            <div className="text-muted text-sm max-w-md">
+              Opens your default email app with a full report pre-filled — addressed to
+              <span className="text-primary"> {TEACHER_EMAIL}</span>.
+            </div>
+          </div>
+          <div className="flex gap-2">
+            <button className="btn-primary" onClick={mailReportToTeacher}>Send report</button>
+            <button className="btn-ghost" onClick={() => { navigator.clipboard?.writeText(buildEmailReport()); alert('Report copied to clipboard.'); }}>Copy text</button>
+          </div>
+        </div>
+      </div>
+
+      {/* All-time */}
+      <h2 className="font-display text-xl mt-6 mb-3">All time (this device)</h2>
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+        <div className="card p-3"><div className="text-2xl">👁️</div><div className="font-display text-xl">{totals.visits}</div><div className="text-muted text-xs">Visits</div></div>
+        <div className="card p-3"><div className="text-2xl">📝</div><div className="font-display text-xl">{totals.questions}</div><div className="text-muted text-xs">Questions</div></div>
+        <div className="card p-3"><div className="text-2xl">✅</div><div className="font-display text-xl">{totals.correct} ({acc(totals.correct, totals.questions)}%)</div><div className="text-muted text-xs">Correct</div></div>
+        <div className="card p-3"><div className="text-2xl">💬</div><div className="font-display text-xl">{totals.chatbotMessages}</div><div className="text-muted text-xs">Chat msgs</div></div>
+      </div>
+
+      {/* Daily breakdown */}
+      <h2 className="font-display text-xl mt-6 mb-3">Last 14 days</h2>
+      <div className="card overflow-x-auto">
+        <table className="w-full text-sm">
+          <thead className="bg-sunken">
+            <tr className="text-left">
+              <th className="p-2 font-display">Date</th>
+              <th className="p-2 font-display text-right">Visits</th>
+              <th className="p-2 font-display text-right">Qs</th>
+              <th className="p-2 font-display text-right">Correct</th>
+              <th className="p-2 font-display text-right">Quizzes</th>
+              <th className="p-2 font-display text-right">Chat</th>
+            </tr>
+          </thead>
+          <tbody>
+            {recent.length === 0 && <tr><td colSpan="6" className="p-3 text-center text-muted">No activity yet.</td></tr>}
+            {recent.map(([date, d]) => (
+              <tr key={date} className="border-t border-line">
+                <td className="p-2 font-mono text-xs">{date}</td>
+                <td className="p-2 text-right">{d.visits || 0}</td>
+                <td className="p-2 text-right">{d.questions || 0}</td>
+                <td className="p-2 text-right">{d.correct || 0} ({acc(d.correct, d.questions)}%)</td>
+                <td className="p-2 text-right">{d.quizzes || 0}</td>
+                <td className="p-2 text-right">{d.chatbotMessages || 0}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      {/* Honest disclaimer */}
+      <div className="card p-4 mt-6 border-warn">
+        <div className="font-display text-base">ℹ️ How this works</div>
+        <div className="text-muted text-sm mt-1 leading-relaxed">
+          ComputeQuest is a static web app — there's no server. Usage data lives in <span className="font-mono">localStorage</span> on
+          THIS device only. For school-wide stats, ask each student to click "Send report" once a day,
+          or upgrade to a hosted version with a backend later.
+        </div>
+      </div>
+
+      {/* Refresh + clear */}
+      <div className="flex gap-2 mt-4">
+        <button className="btn-ghost" onClick={refresh}>🔄 Refresh</button>
+        <button className="btn-ghost" onClick={() => { if (confirm('Clear all usage analytics on this device?')) { localStorage.removeItem(ANALYTICS_KEY); refresh(); } }}>🗑️ Clear analytics</button>
+      </div>
+    </div>
+  );
+}
+
+/* ============================================================
+   CHATBOT — "Quanta" — local rule-based assistant
+   ============================================================ */
+
+// Quiz context lets the chatbot know what question the student is on right now.
+const QuizCtx = React.createContext({ current: null, setCurrent: () => {} });
+
+// Knowledge base — concise, KS3-friendly explanations
+const KB = {
+  binary:    'Binary uses only 0 and 1. Each bit doubles in value from right: 1, 2, 4, 8, 16, 32, 64, 128. 8 bits = 1 byte. Example: 1010 = 8 + 2 = 10. 🔢',
+  bit:       'A bit is the smallest unit of data — just 0 or 1. 8 bits make a byte. Computers use bits because electrical signals are easily on (1) or off (0).',
+  byte:      'A byte = 8 bits. It can represent 256 different values (0–255). Roughly enough to store one character of text.',
+  hex:       'Hexadecimal is base 16. Digits go 0-9, then A-F (A=10, B=11 … F=15). Two hex digits = one byte. Example: FF = 255.',
+  algorithm: 'An algorithm is a clear, ordered set of step-by-step instructions to solve a problem. Like a cooking recipe — precise, finite, unambiguous!',
+  flowchart: 'A flowchart shows an algorithm visually. 🟦 Oval = start/end · Rectangle = process · Diamond = decision · Parallelogram = input/output. Arrows show order.',
+  pseudocode:'Pseudocode is English-like code used to plan algorithms before writing the real thing. It focuses on logic, not syntax.',
+  decomp:    'Decomposition means breaking a big problem into smaller, more manageable parts. Think: "plan a party" → invites, food, music, decorations.',
+  abstract:  'Abstraction means removing unnecessary detail so you can focus on what matters. A Tube map is pure abstraction — it shows lines, not real geography.',
+  python:    'Python is a popular text-based language. `print()` shows output. `input()` asks the user. `#` starts a comment. Indentation groups code together.',
+  variable:  'A variable stores data with a name. In Python: `score = 0`. You can use `score` later, change it (`score = score + 1`), and print it.',
+  loop:      'Loops repeat code. `for i in range(5):` runs 5 times. `while x < 10:` keeps going as long as the condition is True. Use `break` to leave early.',
+  if:        '`if` makes a decision. `if score > 50: print("Pass")`. Use `else:` for the opposite case, and `elif` to chain conditions.',
+  list:      'A list holds many values in order. In Python: `xs = [1, 2, 3]`. Access with `xs[0]` (first item). Add with `xs.append(4)`. Length with `len(xs)`.',
+  function:  'A function is a named, reusable block of code. `def greet(name): print("Hi " + name)`. Call it with `greet("Sam")`.',
+  logic:     'Logic gates are tiny circuits. AND = both inputs must be 1. OR = at least one input is 1. NOT = flips 0↔1. They\'re the building blocks of every computer.',
+  truthtable:'A truth table lists every possible input combination and the matching output for a circuit. 2 inputs = 4 rows. 3 inputs = 8 rows.',
+  network:   'A network = two or more devices that share data. LAN = small area (home, school). WAN = wide area. The internet is the biggest WAN.',
+  ip:        'An IP address is a unique number identifying a device on a network — like a postal address for data. Example: 192.168.1.10.',
+  http:      'HTTP = HyperText Transfer Protocol — the rules browsers use to ask servers for web pages. HTTPS adds encryption (TLS) so traffic is private.',
+  dns:       'DNS = Domain Name System. It translates human-friendly names like google.com into IP addresses. Think of it as the internet\'s phonebook.',
+  html:      'HTML structures web pages with tags. `<h1>` = main heading · `<p>` = paragraph · `<a href="…">link</a>` · `<img src="…">`. Tags usually come in pairs.',
+  css:       'CSS styles web pages. `color: red;` sets text colour. `background-color: blue;` sets the background. `font-size: 20px;` sets size. Selectors: `.class`, `#id`.',
+  scratch:   'Scratch is a block-based language by MIT. You snap coloured blocks together. Sprites are characters; the stage is where they act. No syntax errors!',
+  sprite:    'A sprite in Scratch is an object/character. Each sprite has its own scripts and costumes (different appearances).',
+  broadcast: 'In Scratch, broadcast sends a message to ALL sprites. Useful for triggering things across multiple sprites at once.',
+  password:  'A strong password is long, mixes letters/numbers/symbols, and is unique to each site. A passphrase like "BlueTiger$Eats77Pizza" is great and memorable.',
+  phishing:  'Phishing = fake messages that trick you into giving away info. Always check the sender, hover over links before clicking, and never share passwords.',
+  malware:   'Malware = MALicious softWARE — viruses, worms, ransomware, spyware. Defences: antivirus, careful clicking, regular updates, backups.',
+  encrypt:   'Encryption scrambles data with a key. Only those with the key can unscramble it. HTTPS uses encryption to keep web traffic private.',
+  hash:      'A hash function turns any data into a fixed-size fingerprint. One-way (easy to compute, hard to reverse). Used for passwords and integrity checks.',
+  cpu:       'CPU = Central Processing Unit, the "brain" of a computer. It runs the fetch-decode-execute cycle continuously to process instructions.',
+  ram:       'RAM = Random Access Memory. Fast, short-term memory the CPU uses while programs run. Volatile — loses data when power is off.',
+  rom:       'ROM = Read Only Memory. Holds essential startup instructions that don\'t change. Non-volatile.',
+  gpu:       'GPU = Graphics Processing Unit. Great at many small calculations in parallel — perfect for graphics and AI workloads.',
+  os:        'An Operating System (Windows, macOS, Linux, Android, iOS) manages hardware and lets programs run. The bridge between you and the metal.',
+  ethics:    'Computing ethics: respect privacy, avoid bias, credit creators, be honest, don\'t hack others. The Computer Misuse Act (UK) makes unauthorised access a crime.',
+};
+
+// Topic keyword → KB key
+function detectTopic(msg) {
+  const m = msg.toLowerCase();
+  const tests = [
+    [/binary|0s? and 1s?/, 'binary'], [/\bbit\b/, 'bit'], [/\bbyte\b/, 'byte'],
+    [/hex|hexadecimal/, 'hex'],
+    [/algorithm/, 'algorithm'], [/flowchart/, 'flowchart'], [/pseudocode/, 'pseudocode'],
+    [/decompos/, 'decomp'], [/abstract/, 'abstract'],
+    [/python/, 'python'], [/variable/, 'variable'],
+    [/loop|iteration|for loop|while loop|repeat/, 'loop'],
+    [/\bif\b|selection|condition/, 'if'],
+    [/\blist\b|array/, 'list'], [/function|def\b|method/, 'function'],
+    [/logic gate|and gate|or gate|not gate|boolean/, 'logic'],
+    [/truth table/, 'truthtable'],
+    [/network|lan\b|wan\b/, 'network'], [/ip address|^ip\b/, 'ip'],
+    [/https?|protocol/, 'http'], [/\bdns\b/, 'dns'],
+    [/html|hyper.?text/, 'html'], [/css|style/, 'css'],
+    [/scratch/, 'scratch'], [/sprite/, 'sprite'], [/broadcast/, 'broadcast'],
+    [/password/, 'password'], [/phishing/, 'phishing'], [/malware|virus|ransom/, 'malware'],
+    [/encrypt|decrypt|cipher/, 'encrypt'], [/\bhash|salt/, 'hash'],
+    [/\bcpu\b/, 'cpu'], [/\bram\b/, 'ram'], [/\brom\b/, 'rom'], [/\bgpu\b/, 'gpu'],
+    [/operating system|\bos\b/, 'os'],
+    [/ethic|gdpr|misuse/, 'ethics'],
+  ];
+  for (const [re, key] of tests) if (re.test(m)) return key;
+  return null;
+}
+
+function pickOne(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+
+// Teaching-only hint — never reveals the answer.
+// Uses the question's hint, eliminates *one* very-wrong option, or asks a Socratic prompt.
+function teachingHint(q) {
+  if (q.hint) return `🧠 ${q.hint}\n\nThink it through — you've got this.`;
+
+  if (q.type === 'mc' && Array.isArray(q.options) && q.options.length >= 4) {
+    // Eliminate ONE option (never more — don't make it too easy)
+    const wrongs = q.options.map((_, i) => i).filter(i => i !== q.answer);
+    const elim = wrongs[Math.floor(Math.random() * wrongs.length)];
+    return `🧠 I won't tell you the answer — but I'll narrow it down. It's definitely **not** "${q.options[elim]}". Now compare what's left carefully. 💪`;
+  }
+  if (q.type === 'tf') {
+    return `🧠 Try to think of an example AND a counter-example. If you can find even one case where the statement breaks, it's False. If it always holds, it's True.`;
+  }
+  if (q.type === 'fitb') {
+    const a = String(q.answer);
+    if (/^[01]+$/.test(a)) {
+      return `🧠 Binary tip: write out the place values (128 64 32 16 8 4 2 1) and find which add up to the number. Each column you use puts a 1; otherwise 0. The answer needs ${a.length} bits.`;
+    }
+    return `🧠 Look for a keyword in the question that points to a single concept. The answer is a short, specific word.`;
+  }
+  if (q.type === 'order') {
+    return `🧠 Ask yourself: what MUST happen first? What couldn't possibly happen until something else has? Build the sequence one step at a time.`;
+  }
+  if (q.type === 'match') {
+    return `🧠 Read both columns fully first. Find the pairing you're *most* sure of and lock it in — then it's easier to match the rest.`;
+  }
+  return `🧠 Re-read the question slowly. Underline keywords in your head. What's it really asking?`;
+}
+
+// Concept-level explanation (no answer leak) — used when student asks "explain"
+function conceptHelp(q) {
+  const t = q.topic;
+  const map = {
+    binary: KB.binary, bit: KB.bit, byte: KB.byte, hex: KB.hex,
+    ct: KB.decomp, algo: KB.algorithm, flowchart: KB.flowchart,
+    python: KB.python, iter: KB.loop, logic: KB.logic, data: KB.bit,
+    hw: KB.cpu, net: KB.network, sec: KB.password,
+    web: KB.html, scratch: KB.scratch,
+  };
+  return map[t] || 'Think about the topic this question relates to and what you know about it.';
+}
+
+// Main intent + response generator
+function generateReply(message, ctx) {
+  const m = message.toLowerCase().trim();
+  if (!m) return 'Type something and I\'ll do my best to help! 😊';
+
+  // Greetings & social
+  if (/^(hi|hello|hey|sup|yo|hiya|hola)\b/.test(m)) {
+    return pickOne([
+      'Hey! 👋 Need a hint, a clue, or an explanation?',
+      'Hi there! Ask me anything about computing.',
+      'Hello! I can help with the current question or any KS3 topic — what\'s up?',
+    ]);
+  }
+  if (/(thanks|thank you|^ty\b|cheers|appreciate|nice one)/i.test(m)) {
+    return pickOne(['You\'re welcome! 🌟 Keep going!', 'Anytime — you\'ve got this! 💪', 'No worries 🙂 Smash the next one!']);
+  }
+  if (/^(who are you|what are you|your name)/i.test(m)) {
+    return 'I\'m **Quanta** — your computing buddy! 🤖 Ask me for hints on the current question, or about any KS3 topic like binary, Python, logic gates, networks…';
+  }
+  if (/joke|funny/i.test(m)) {
+    return pickOne([
+      'Why do programmers prefer dark mode? Because light attracts bugs! 🐛',
+      'How many programmers does it take to change a lightbulb? None — it\'s a hardware problem. 💡',
+      'There are 10 types of people in the world: those who understand binary, and those who don\'t. 😄',
+    ]);
+  }
+
+  // Quiz-context-aware replies — NEVER reveal the answer
+  if (ctx && ctx.question) {
+    const q = ctx.question;
+
+    // Student asking for the answer — politely refuse, give a teaching hint
+    if (/(give up|reveal|tell me|show me|just the answer|what's the answer|what is the answer|answer please)/i.test(m)) {
+      return pickOne([
+        `🙅 I won't give you the answer — Mr Borketey wants you thinking, not copying! But here's a clue:\n\n${teachingHint(q)}`,
+        `🚫 No spoilers from me — figuring it out is how you actually learn. Try this:\n\n${teachingHint(q)}`,
+        `💡 I'm here to *teach*, not to do it for you. Have a proper think:\n\n${teachingHint(q)}`,
+      ]);
+    }
+    // Hint / help / stuck — teach
+    if (/(hint|clue|help|stuck|don't know|dunno|nudge|tip|teach me|coach)/i.test(m)) {
+      return teachingHint(q);
+    }
+    // Explain — concept-level only (no spoiler) before answering; full explanation after
+    if (/(explain|why|how come|because|reason|teach)/i.test(m)) {
+      if (ctx.locked) {
+        // After they've answered, explanation is on the card — point them there
+        return `📖 The explanation appears under the question card after you answer. The big idea here is:\n\n${conceptHelp(q)}`;
+      }
+      return `📖 I can teach you the *concept* without spoiling it:\n\n${conceptHelp(q)}\n\nNow look at the question again with that in mind.`;
+    }
+    if (/(harder|easier|change topic|different)/i.test(m)) {
+      return 'Go back to the dashboard to pick a different topic or boss battle. I\'ll come with you!';
+    }
+    if (/(too hard|impossible|i can't|cant)/i.test(m)) {
+      return pickOne([
+        `You've got this 💪 — start by ruling out the most clearly wrong option. ${teachingHint(q)}`,
+        `Take a breath and re-read. No question is impossible — just one step away.\n\n${teachingHint(q)}`,
+        `Tough question, but you can crack it. Here's a way in:\n\n${teachingHint(q)}`,
+      ]);
+    }
+  }
+
+  // Topic queries
+  const key = detectTopic(m);
+  if (key && KB[key]) return KB[key];
+
+  // Question-shape detection (e.g. "what is …")
+  if (/^(what|how|why)\b/i.test(m)) {
+    return pickOne([
+      'I\'m not 100% sure on that one, but I know lots about KS3 topics: try "what is binary?", "explain loops", "how does HTTPS work?"',
+      'Hmm, can you ask using a keyword? I respond well to topic names like "binary", "logic gate", "Python", "encryption", "network"…',
+    ]);
+  }
+
+  // Fallback
+  return pickOne([
+    'I didn\'t catch that. Try a topic word like "binary", "python", "scratch", or click a suggestion below 👇',
+    'Hmm, I\'m not sure. I know most KS3 computing topics — try asking "what is …?" with a topic name.',
+    'Not sure on that one! On a quiz, ask for a "hint" or just say "answer" to reveal it.',
+  ]);
+}
+
+function Chatbot() {
+  const [open, setOpen] = useState(false);
+  const [unread, setUnread] = useState(0);
+  const [messages, setMessages] = useState([
+    { from: 'bot', text: 'Hi! I\'m **Quanta** 🤖 your study buddy. I won\'t give you answers — but I\'ll give you clues, teach you the concept, and help you figure things out yourself. Ask me anything! 🌟' }
+  ]);
+  const [input, setInput] = useState('');
+  const [typing, setTyping] = useState(false);
+  const { current: quizCtx } = React.useContext(QuizCtx);
+  const endRef = useRef();
+
+  // Context-aware suggestions (no "reveal the answer" — Quanta teaches, never tells)
+  const suggestions = quizCtx && quizCtx.question
+    ? ['💡 Give me a clue', '🧠 Teach me this concept', '😵 I\'m stuck']
+    : ['What is binary?', 'How do loops work?', 'Explain logic gates', 'What is HTML?'];
+
+  const push = (m) => setMessages(prev => [...prev, m]);
+
+  const ask = (text) => {
+    if (!text.trim()) return;
+    push({ from: 'user', text });
+    setInput('');
+    setTyping(true);
+    Track.chatMsg();
+    // Slight delay so it feels conversational
+    setTimeout(() => {
+      const reply = generateReply(text, quizCtx);
+      push({ from: 'bot', text: reply });
+      setTyping(false);
+      if (!open) setUnread(u => u + 1);
+    }, 450 + Math.random() * 350);
+  };
+
+  useEffect(() => {
+    if (open) setUnread(0);
+  }, [open]);
+
+  useEffect(() => {
+    endRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' });
+  }, [messages, typing, open]);
+
+  // Render bold **text** in messages
+  const renderText = (txt) => {
+    const parts = txt.split(/(\*\*[^*]+\*\*)/g);
+    return parts.map((p, i) =>
+      p.startsWith('**') && p.endsWith('**')
+        ? <strong key={i}>{p.slice(2, -2)}</strong>
+        : <Fragment key={i}>{p}</Fragment>
+    );
+  };
+
+  return (
+    <Fragment>
+      <button className="cq-fab" aria-label="Ask Quanta for help"
+              onClick={() => setOpen(o => !o)}>
+        {open ? '✕' : '💬'}
+        {!open && unread > 0 && <span className="cq-bot-badge">{unread}</span>}
+      </button>
+
+      {open && (
+        <div className="cq-panel anim-pop" role="dialog" aria-label="Chat with Quanta">
+          <div className="cq-panel-header">
+            <Mascot size={36} mood="happy" />
+            <div className="leading-tight">
+              <div className="name">Quanta</div>
+              <div className="role">Your computing buddy</div>
+            </div>
+            <button className="cq-close-btn" onClick={() => setOpen(false)} aria-label="Close">✕</button>
+          </div>
+
+          <div className="cq-messages">
+            {messages.map((m, i) => (
+              <div key={i} className={`cq-msg ${m.from === 'user' ? 'cq-msg-user' : 'cq-msg-bot'}`}>
+                {renderText(m.text)}
+              </div>
+            ))}
+            {typing && (
+              <div className="cq-msg cq-msg-bot">
+                <div className="cq-typing"><span/><span/><span/></div>
+              </div>
+            )}
+            <div ref={endRef}></div>
+          </div>
+
+          <div className="cq-suggestions">
+            {suggestions.map(s => (
+              <button key={s} onClick={() => ask(s.replace(/^[^\w]+/, '').trim())}>{s}</button>
+            ))}
+          </div>
+
+          <div className="cq-input-row">
+            <input
+              value={input}
+              onChange={e => setInput(e.target.value)}
+              onKeyDown={e => { if (e.key === 'Enter') ask(input); }}
+              placeholder={quizCtx ? 'Ask for a hint or explain…' : 'Ask me a computing question…'}
+              aria-label="Type your question" />
+            <button className="cq-send-btn" onClick={() => ask(input)} disabled={!input.trim()}>Send</button>
+          </div>
+        </div>
+      )}
+    </Fragment>
+  );
+}
+
 /* ============================================================
    APP ROOT
    ============================================================ */
 function App() {
   const [progress, setProgressState] = useState(loadProgress);
   const [route, setRoute] = useState({ page: 'home' });
+  const [quizCurrent, setQuizCurrent] = useState(null);
+  const quizCtxValue = useMemo(() => ({ current: quizCurrent, setCurrent: setQuizCurrent }), [quizCurrent]);
 
   const setProgress = useCallback(updater => {
     setProgressState(prev => {
@@ -3078,8 +3983,10 @@ function App() {
     root.classList.toggle('cq-light', !progress.dark);
   }, [progress.theme, progress.dark]);
 
-  // Recompute streak on load
+  // Recompute streak on load + log a visit + handle deep-link hash
   useEffect(() => {
+    Track.visit();
+    if (window.location.hash === '#teacher') setRoute({ page: 'teacher' });
     if (!progress.lastPlayedISO) return;
     const today = todayISO();
     const yest  = new Date(Date.now() - 86400000).toISOString().slice(0,10);
@@ -3099,15 +4006,17 @@ function App() {
     case 'achievements': view = <AchievementsPage progress={progress} onNav={nav} />; break;
     case 'leaderboard':  view = <LeaderboardPage year={route.year} progress={progress} onNav={nav} />; break;
     case 'settings':     view = <SettingsPage progress={progress} setProgress={setProgress} onNav={nav} />; break;
+    case 'teacher':      view = <TeacherPage onNav={nav} />; break;
     default:             view = <HomePage progress={progress} onYear={(y) => nav({ page: 'dashboard', year: y })} />;
   }
 
   return (
-    <Fragment>
+    <QuizCtx.Provider value={quizCtxValue}>
       <Header progress={progress} onNav={nav} currentPage={route.page} />
       <main key={route.page + (route.year || '') + (route.topicId || '')} className="anim-slideUp">
         {view}
       </main>
+      <Chatbot />
       <footer className="max-w-5xl mx-auto px-4 py-10 text-center text-muted text-xs space-y-2">
         <div className="font-display text-sm text-ink">
           ComputeQuest · Free practice for KS3 Computing · OCR-aligned · No login, no tracking.
@@ -3121,7 +4030,7 @@ function App() {
           Unauthorised commercial redistribution, resale or republication is prohibited. Permission is granted for non-commercial classroom use.
         </div>
       </footer>
-    </Fragment>
+    </QuizCtx.Provider>
   );
 }
 
