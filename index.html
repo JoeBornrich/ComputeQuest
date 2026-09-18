@@ -12,7 +12,30 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&family=JetBrains+Mono:wght@400;600&family=VT323&display=swap" rel="stylesheet">
-<script src="https://cdn.tailwindcss.com"></script>
+<!-- Load Tailwind with fallback CDNs (some school networks block one CDN but allow another) -->
+<script>
+(function () {
+  var TAILWIND_URLS = [
+    'https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css',
+    'https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css'
+  ];
+  var TAILWIND_RUNTIME = [
+    'https://cdn.tailwindcss.com',
+    'https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4'
+  ];
+  window.__cqCdn = window.__cqCdn || { tailwind: 'pending', react: 'pending', reactDom: 'pending' };
+  var i = 0;
+  function tryNext() {
+    if (i >= TAILWIND_RUNTIME.length) { window.__cqCdn.tailwind = 'failed'; return; }
+    var s = document.createElement('script');
+    s.src = TAILWIND_RUNTIME[i++];
+    s.onload = function () { window.__cqCdn.tailwind = 'ok:' + s.src; };
+    s.onerror = tryNext;
+    document.head.appendChild(s);
+  }
+  tryNext();
+})();
+</script>
 <script>
   tailwind.config = {
     darkMode: ['class', '.cq-dark'],
@@ -279,6 +302,258 @@
     color: white; font-weight: 800;
     box-shadow: 0 4px 16px hsl(38 92% 55% / .35);
   }
+
+  /* ============================================================
+     INLINE TAILWIND FALLBACK — hand-written utilities so the app
+     looks correct even when Tailwind's CDN is blocked (school firewalls).
+     Tailwind loads on top and overrides where present.
+     ============================================================ */
+  *, *::before, *::after { box-sizing: border-box; }
+  body { margin: 0; }
+
+  /* Display */
+  .block { display: block; } .inline { display: inline; }
+  .inline-block { display: inline-block; }
+  .inline-flex { display: inline-flex; }
+  .flex { display: flex; }
+  .grid { display: grid; }
+  .hidden { display: none; }
+  .table { display: table; }
+  @media (min-width: 640px) {
+    .sm\:inline { display: inline; } .sm\:block { display: block; }
+    .sm\:inline-flex { display: inline-flex; } .sm\:hidden { display: none; }
+    .sm\:grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
+    .sm\:grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
+    .sm\:grid-cols-4 { grid-template-columns: repeat(4, 1fr); }
+    .sm\:grid-cols-5 { grid-template-columns: repeat(5, 1fr); }
+    .sm\:col-span-2 { grid-column: span 2; }
+  }
+  @media (min-width: 768px) {
+    .md\:inline { display: inline; } .md\:block { display: block; }
+    .md\:inline-flex { display: inline-flex; } .md\:hidden { display: none; }
+    .md\:grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
+    .md\:grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
+    .md\:grid-cols-4 { grid-template-columns: repeat(4, 1fr); }
+    .md\:text-6xl { font-size: 3.75rem; line-height: 1; }
+    .md\:text-2xl { font-size: 1.5rem; }
+    .md\:p-7 { padding: 1.75rem; }
+    .md\:p-10 { padding: 2.5rem; }
+  }
+
+  /* Flex helpers */
+  .flex-1 { flex: 1 1 0%; } .flex-col { flex-direction: column; }
+  .flex-wrap { flex-wrap: wrap; } .flex-none { flex: none; }
+  .items-start { align-items: flex-start; } .items-center { align-items: center; }
+  .items-end { align-items: flex-end; } .items-baseline { align-items: baseline; }
+  .justify-start { justify-content: flex-start; } .justify-center { justify-content: center; }
+  .justify-end { justify-content: flex-end; } .justify-between { justify-content: space-between; }
+  .justify-around { justify-content: space-around; }
+  .self-start { align-self: flex-start; } .self-center { align-self: center; }
+  .self-end { align-self: flex-end; } .self-stretch { align-self: stretch; }
+
+  /* Grid gap */
+  .gap-0 { gap: 0; } .gap-1 { gap: .25rem; } .gap-2 { gap: .5rem; }
+  .gap-3 { gap: .75rem; } .gap-4 { gap: 1rem; } .gap-5 { gap: 1.25rem; }
+  .gap-6 { gap: 1.5rem; } .gap-8 { gap: 2rem; }
+  .grid-cols-1 { grid-template-columns: 1fr; }
+  .grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
+  .grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
+  .grid-cols-4 { grid-template-columns: repeat(4, 1fr); }
+
+  /* Sizing */
+  .w-full { width: 100%; } .h-full { height: 100%; }
+  .w-2 { width: .5rem; } .h-2 { height: .5rem; }
+  .w-3 { width: .75rem; } .h-3 { height: .75rem; }
+  .w-5 { width: 1.25rem; } .h-5 { height: 1.25rem; }
+  .w-6 { width: 1.5rem; } .h-6 { height: 1.5rem; }
+  .w-7 { width: 1.75rem; } .h-7 { height: 1.75rem; }
+  .w-8 { width: 2rem; } .h-8 { height: 2rem; }
+  .w-9 { width: 2.25rem; } .h-9 { height: 2.25rem; }
+  .w-10 { width: 2.5rem; } .h-10 { height: 2.5rem; }
+  .w-12 { width: 3rem; } .h-12 { height: 3rem; }
+  .w-14 { width: 3.5rem; } .h-14 { height: 3.5rem; }
+  .w-16 { width: 4rem; } .h-16 { height: 4rem; }
+  .w-32 { width: 8rem; } .w-40 { width: 10rem; }
+  .min-h-screen { min-height: 100vh; }
+  .min-w-\[120px\] { min-width: 120px; }
+  .min-w-\[140px\] { min-width: 140px; }
+  .min-w-\[160px\] { min-width: 160px; }
+  .min-w-\[200px\] { min-width: 200px; }
+  .max-w-md { max-width: 28rem; }
+  .max-w-2xl { max-width: 42rem; }
+  .max-w-3xl { max-width: 48rem; }
+  .max-w-4xl { max-width: 56rem; }
+  .max-w-5xl { max-width: 64rem; }
+  .max-w-6xl { max-width: 72rem; }
+  .mx-auto { margin-left: auto; margin-right: auto; }
+
+  /* Padding & margin */
+  .p-0 { padding: 0; } .p-1 { padding: .25rem; } .p-2 { padding: .5rem; }
+  .p-3 { padding: .75rem; } .p-4 { padding: 1rem; } .p-5 { padding: 1.25rem; }
+  .p-6 { padding: 1.5rem; } .p-8 { padding: 2rem; } .p-10 { padding: 2.5rem; }
+  .px-2 { padding-left: .5rem; padding-right: .5rem; }
+  .px-3 { padding-left: .75rem; padding-right: .75rem; }
+  .px-4 { padding-left: 1rem; padding-right: 1rem; }
+  .py-1 { padding-top: .25rem; padding-bottom: .25rem; }
+  .py-2 { padding-top: .5rem; padding-bottom: .5rem; }
+  .py-3 { padding-top: .75rem; padding-bottom: .75rem; }
+  .py-4 { padding-top: 1rem; padding-bottom: 1rem; }
+  .py-6 { padding-top: 1.5rem; padding-bottom: 1.5rem; }
+  .py-8 { padding-top: 2rem; padding-bottom: 2rem; }
+  .py-10 { padding-top: 2.5rem; padding-bottom: 2.5rem; }
+  .pt-4 { padding-top: 1rem; }
+  .pb-16 { padding-bottom: 4rem; }
+  .m-0 { margin: 0; }
+  .mt-1 { margin-top: .25rem; } .mt-2 { margin-top: .5rem; } .mt-3 { margin-top: .75rem; }
+  .mt-4 { margin-top: 1rem; } .mt-5 { margin-top: 1.25rem; } .mt-6 { margin-top: 1.5rem; }
+  .mt-8 { margin-top: 2rem; } .mt-10 { margin-top: 2.5rem; } .mt-12 { margin-top: 3rem; }
+  .mb-1 { margin-bottom: .25rem; } .mb-2 { margin-bottom: .5rem; }
+  .mb-3 { margin-bottom: .75rem; } .mb-4 { margin-bottom: 1rem; } .mb-5 { margin-bottom: 1.25rem; }
+  .ml-1 { margin-left: .25rem; } .ml-2 { margin-left: .5rem; } .ml-auto { margin-left: auto; }
+  .mr-1 { margin-right: .25rem; }
+  .-mt-6 { margin-top: -1.5rem; }
+  .-mt-8 { margin-top: -2rem; }
+  .-mr-8 { margin-right: -2rem; }
+  .-right-2 { right: -.5rem; }
+  .space-y-1 > * + * { margin-top: .25rem; }
+  .space-y-2 > * + * { margin-top: .5rem; }
+  .divide-y > * + * { border-top: 1px solid var(--cq-line); }
+  .divide-line > * + * { border-color: var(--cq-line); }
+
+  /* Text */
+  .text-xs { font-size: .75rem; line-height: 1.25; }
+  .text-sm { font-size: .875rem; line-height: 1.35; }
+  .text-base { font-size: 1rem; line-height: 1.5; }
+  .text-lg { font-size: 1.125rem; line-height: 1.4; }
+  .text-xl { font-size: 1.25rem; line-height: 1.4; }
+  .text-2xl { font-size: 1.5rem; line-height: 1.3; }
+  .text-3xl { font-size: 1.875rem; line-height: 1.2; }
+  .text-4xl { font-size: 2.25rem; line-height: 1.15; }
+  .text-5xl { font-size: 3rem; line-height: 1.1; }
+  .text-6xl { font-size: 3.75rem; line-height: 1; }
+  .text-\[10px\] { font-size: 10px; }
+  .text-\[11px\] { font-size: 11px; }
+  .text-left { text-align: left; } .text-center { text-align: center; } .text-right { text-align: right; }
+  .font-normal { font-weight: 400; } .font-medium { font-weight: 500; }
+  .font-semibold { font-weight: 600; } .font-bold { font-weight: 700; }
+  .font-mono { font-family: 'JetBrains Mono', ui-monospace, monospace; }
+  .leading-tight { line-height: 1.2; } .leading-snug { line-height: 1.35; }
+  .leading-relaxed { line-height: 1.65; } .leading-none { line-height: 1; }
+  .whitespace-pre-wrap { white-space: pre-wrap; } .whitespace-pre { white-space: pre; }
+  .capitalize { text-transform: capitalize; } .uppercase { text-transform: uppercase; }
+  .tracking-widest { letter-spacing: .1em; }
+  .text-white { color: white; }
+  .text-primary { color: var(--cq-primary); }
+  .text-accent  { color: var(--cq-accent); }
+  .text-muted   { color: var(--cq-muted); }
+  .text-ink     { color: var(--cq-ink); }
+  .text-danger  { color: var(--cq-danger); }
+  .text-success { color: var(--cq-success); }
+  .text-warn    { color: var(--cq-warn); }
+  .hover\:text-ink:hover { color: var(--cq-ink); }
+  .hover\:underline:hover { text-decoration: underline; }
+
+  /* Background */
+  .bg-primary { background-color: var(--cq-primary); }
+  .bg-accent  { background-color: var(--cq-accent); }
+  .bg-surface { background-color: var(--cq-surface); }
+  .bg-sunken  { background-color: var(--cq-sunken); }
+  .bg-line    { background-color: var(--cq-line); }
+  .bg-bg      { background-color: var(--cq-bg); }
+  .bg-danger  { background-color: var(--cq-danger); }
+  .bg-success { background-color: var(--cq-success); }
+  .bg-warn    { background-color: var(--cq-warn); }
+  .bg-transparent { background: transparent; }
+  .bg-bg\/80 { background-color: var(--cq-bg); }
+  .hover\:bg-sunken:hover { background-color: var(--cq-sunken); }
+  .backdrop-blur-xl { backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+
+  /* Border */
+  .border { border: 1px solid var(--cq-line); }
+  .border-2 { border-width: 2px; border-style: solid; border-color: var(--cq-line); }
+  .border-t { border-top: 1px solid var(--cq-line); }
+  .border-b { border-bottom: 1px solid var(--cq-line); }
+  .border-l { border-left: 1px solid var(--cq-line); }
+  .border-line { border-color: var(--cq-line); }
+  .border-primary { border-color: var(--cq-primary); }
+  .border-accent  { border-color: var(--cq-accent); }
+  .border-danger  { border-color: var(--cq-danger); }
+  .border-success { border-color: var(--cq-success); }
+  .border-warn    { border-color: var(--cq-warn); }
+  .border-muted   { border-color: var(--cq-muted); }
+  .hover\:border-primary:hover { border-color: var(--cq-primary); }
+
+  /* Radius */
+  .rounded    { border-radius: .375rem; }
+  .rounded-md { border-radius: .375rem; }
+  .rounded-lg { border-radius: .5rem; }
+  .rounded-xl { border-radius: .75rem; }
+  .rounded-2xl { border-radius: 1rem; }
+  .rounded-3xl { border-radius: 1.5rem; }
+  .rounded-full { border-radius: 9999px; }
+  .rounded-card { border-radius: 20px; }
+  .rounded-pill { border-radius: 999px; }
+
+  /* Position */
+  .relative { position: relative; }
+  .absolute { position: absolute; }
+  .fixed    { position: fixed; }
+  .sticky   { position: sticky; }
+  .top-0    { top: 0; }
+  .top-3    { top: .75rem; }
+  .right-0  { right: 0; }
+  .right-3  { right: .75rem; }
+  .left-0   { left: 0; }
+  .bottom-0 { bottom: 0; }
+  .inset-0  { top: 0; right: 0; bottom: 0; left: 0; }
+  .z-10 { z-index: 10; } .z-20 { z-index: 20; } .z-30 { z-index: 30; }
+
+  /* Overflow */
+  .overflow-hidden { overflow: hidden; } .overflow-auto { overflow: auto; }
+  .overflow-x-auto { overflow-x: auto; } .overflow-y-auto { overflow-y: auto; }
+
+  /* Opacity */
+  .opacity-0 { opacity: 0; } .opacity-40 { opacity: .4; }
+  .opacity-50 { opacity: .5; } .opacity-70 { opacity: .7; } .opacity-90 { opacity: .9; }
+
+  /* Cursor */
+  .cursor-pointer { cursor: pointer; } .cursor-not-allowed { cursor: not-allowed; }
+
+  /* Transitions */
+  .transition { transition: all .2s ease; }
+  .transition-all { transition: all .2s ease; }
+  .duration-200 { transition-duration: .2s; }
+  .duration-700 { transition-duration: .7s; }
+
+  /* Transforms */
+  .transform { transform: translateZ(0); }
+  .-translate-y-1 { transform: translateY(-.25rem); }
+  .hover\:-translate-y-1:hover { transform: translateY(-.25rem); }
+  .-rotate-90 { transform: rotate(-90deg); }
+  .scale-125 { transform: scale(1.25); }
+
+  /* Shadows (map to existing tokens) */
+  .shadow      { box-shadow: 0 1px 2px rgba(0,0,0,.05); }
+  .shadow-lg   { box-shadow: 0 10px 24px rgba(0,0,0,.12); }
+  .shadow-card { box-shadow: var(--cq-shadow-card); }
+  .shadow-glow { box-shadow: var(--cq-shadow-glow); }
+
+  /* Font families */
+  .font-display { font-family: var(--cq-font-display), 'Plus Jakarta Sans', system-ui, sans-serif; font-weight: 800; letter-spacing: -0.02em; }
+  .font-sans    { font-family: var(--cq-font-sans), 'Inter', system-ui, sans-serif; }
+
+  /* Buttons — reset native */
+  button { font-family: inherit; font-size: inherit; color: inherit; background: none; border: none; cursor: pointer; padding: 0; }
+  button:disabled { cursor: not-allowed; }
+
+  /* Inputs / textarea — reset native, our .input helper is defined elsewhere */
+  input, textarea, select { font-family: inherit; font-size: inherit; color: inherit; }
+
+  /* Table (used in Teacher dashboard) */
+  table { border-collapse: collapse; }
+
+  /* Grayscale filter */
+  .grayscale { filter: grayscale(1); }
 
   /* Larger touch targets on mobile */
   @media (max-width: 640px) {
@@ -834,20 +1109,43 @@
     showError('PROMISE REJECTION: ' + (e.reason && (e.reason.message || e.reason) || 'unknown'));
   });
 
-  // Detect CDN load progress
+  // Live CDN progress reporting (helps diagnose school-network blocks)
+  function cdnDesc() {
+    var c = window.__cqCdn || {};
+    var lines = [];
+    for (var k in c) if (Object.prototype.hasOwnProperty.call(c, k)) {
+      var v = c[k];
+      if (v === 'pending') lines.push('· ' + k + ': loading…');
+      else if (v === 'failed') lines.push('✗ ' + k + ': BLOCKED');
+      else lines.push('✓ ' + k + ': loaded');
+    }
+    return lines.join('\n');
+  }
+  var statusIv = setInterval(function () {
+    if (!document.getElementById('cq-boot')) { clearInterval(statusIv); return; }
+    var el = document.getElementById('cq-boot-status');
+    if (el) el.innerHTML = 'Loading libraries…<br><span style="font-size:11px;color:#8a8798;white-space:pre-line">' + cdnDesc() + '</span>';
+  }, 400);
+
   function waitFor(name, test, onReady) {
     var t0 = Date.now();
     (function check() {
       if (test()) return onReady(Date.now() - t0);
-      if (Date.now() - t0 > 45000) {
-        showError('Timeout waiting for ' + name + '. Check your internet — the app needs to download React, Tailwind and Babel from the CDN on first load.');
+      if (Date.now() - t0 > 30000) {
+        var c = window.__cqCdn || {};
+        var blocked = [];
+        for (var k in c) if (c[k] === 'failed') blocked.push(k);
+        var msg = 'Timeout waiting for ' + name + '.\n\n' + cdnDesc();
+        if (blocked.length) msg += '\n\nYour network is blocking one or more CDNs above. Ask your school IT to allow:\n · cdnjs.cloudflare.com\n · cdn.jsdelivr.net\n · unpkg.com\n\nOr open this file from a home network / phone hotspot.';
+        showError(msg);
         return;
       }
       setTimeout(check, 200);
     })();
   }
   waitFor('React', function () { return window.React && window.ReactDOM; }, function (ms) {
-    if (status) status.textContent = 'Starting the app… (React loaded in ' + ms + 'ms)';
+    clearInterval(statusIv);
+    if (status) status.textContent = 'Starting the app… (libraries loaded in ' + ms + 'ms)';
     var t0 = Date.now();
     var iv = setInterval(function () {
       if (!document.getElementById('cq-boot')) { clearInterval(iv); return; }
@@ -860,10 +1158,49 @@
 })();
 </script>
 
-<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<!-- React + ReactDOM loaded with fallback CDNs (cdnjs → jsdelivr → unpkg). Runs synchronously via document.write so scripts below still see React. -->
+<script>
+(function () {
+  window.__cqCdn = window.__cqCdn || {};
+  var REACT_URLS = [
+    'https://cdnjs.cloudflare.com/ajax/libs/react/18.3.1/umd/react.production.min.js',
+    'https://cdn.jsdelivr.net/npm/react@18.3.1/umd/react.production.min.js',
+    'https://unpkg.com/react@18.3.1/umd/react.production.min.js'
+  ];
+  var RDOM_URLS = [
+    'https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.3.1/umd/react-dom.production.min.js',
+    'https://cdn.jsdelivr.net/npm/react-dom@18.3.1/umd/react-dom.production.min.js',
+    'https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js'
+  ];
+  function loadNext(name, urls, i, done) {
+    if (i >= urls.length) { window.__cqCdn[name] = 'failed'; done && done(false); return; }
+    var s = document.createElement('script');
+    s.src = urls[i];
+    s.onload = function () { window.__cqCdn[name] = 'ok:' + s.src; done && done(true); };
+    s.onerror = function () { loadNext(name, urls, i + 1, done); };
+    document.head.appendChild(s);
+  }
+  window.__cqLoadReact = new Promise(function (resolve) {
+    loadNext('react', REACT_URLS, 0, function () {
+      loadNext('reactDom', RDOM_URLS, 0, resolve);
+    });
+  });
+})();
+</script>
 <script>
 /* Pre-compiled from JSX for faster browser load. */
+/* Wait for React (loaded above with CDN fallbacks) before starting the app. */
+(window.__cqLoadReact || Promise.resolve(true)).then(function (ok) {
+  if (!window.React || !window.ReactDOM) {
+    var s = document.getElementById('cq-boot-status');
+    var e = document.getElementById('cq-boot-error');
+    if (s) s.textContent = 'Could not load React from any CDN.';
+    if (e) {
+      e.style.display = 'block';
+      e.textContent = 'Blocked CDNs: your network is preventing React from loading.\n\nTried: cdnjs.cloudflare.com, cdn.jsdelivr.net, unpkg.com.\n\nAsk your school IT to allow one of these, or open the file on a home network / phone hotspot.';
+    }
+    return;
+  }
 const {
   useState,
   useEffect,
@@ -7019,6 +7356,7 @@ function BlockCodingStudio({
 /* === end block coding === */
 
 ReactDOM.createRoot(document.getElementById('root')).render(/*#__PURE__*/React.createElement(App, null));
+}); /* end of __cqLoadReact.then wrapper */
 </script>
 </body>
 </html>
