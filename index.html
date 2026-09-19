@@ -1006,6 +1006,187 @@
     display: block;
   }
 
+  /* ============================
+     CLOUD ACCOUNTS
+     ============================ */
+  .cq-account-floater {
+    position: fixed;
+    top: 12px; right: 14px;
+    z-index: 85;
+    display: flex; align-items: center; gap: 8px;
+    pointer-events: none;
+  }
+  .cq-account-floater > * { pointer-events: auto; }
+  .cq-signin-chip {
+    padding: 8px 14px;
+    background: var(--cq-primary); color: white;
+    border-radius: 999px;
+    font-weight: 700; font-size: 13px;
+    border: none; cursor: pointer;
+    box-shadow: 0 6px 18px hsl(258 89% 60% / .35);
+    transition: transform .15s;
+  }
+  .cq-signin-chip:hover { transform: translateY(-1px); }
+  .cq-account-chip {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 4px 12px 4px 4px;
+    background: var(--cq-surface); color: var(--cq-ink);
+    border: 1px solid var(--cq-line);
+    border-radius: 999px;
+    font-size: 13px; font-weight: 700;
+    cursor: pointer;
+    box-shadow: var(--cq-shadow-card);
+    max-width: 180px;
+  }
+  .cq-account-chip:hover { border-color: var(--cq-primary); }
+  .cq-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  @media (max-width: 480px) { .cq-name { display: none; } }
+  .cq-avatar {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 28px; height: 28px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--cq-primary), var(--cq-accent));
+    color: white; font-weight: 800; font-size: 13px;
+  }
+  .cq-avatar-lg { width: 44px; height: 44px; font-size: 18px; }
+  .cq-sync-badge {
+    display: inline-flex; align-items: center; gap: 4px;
+    padding: 4px 10px; font-size: 11px; font-weight: 700;
+    background: var(--cq-surface); border: 1px solid var(--cq-line);
+    border-radius: 999px; box-shadow: var(--cq-shadow-card);
+  }
+  .cq-sync-lbl { }
+  @media (max-width: 480px) { .cq-sync-lbl { display: none; } }
+  .cq-account-menu {
+    position: absolute; top: 46px; right: 0;
+    width: 300px; max-width: calc(100vw - 24px);
+    background: var(--cq-surface); border: 1px solid var(--cq-line);
+    border-radius: 14px; box-shadow: 0 24px 60px rgba(0,0,0,.2);
+    padding: 14px;
+    z-index: 90;
+  }
+  .cq-menu-head { display: flex; gap: 12px; align-items: center; padding-bottom: 12px; border-bottom: 1px solid var(--cq-line); }
+  .cq-menu-actions { display: flex; flex-direction: column; gap: 4px; margin-top: 10px; }
+  .cq-menu-item {
+    padding: 9px 10px; text-align: left; border-radius: 8px;
+    background: transparent; border: none; color: var(--cq-ink);
+    font-size: 13px; cursor: pointer;
+  }
+  .cq-menu-item:hover { background: var(--cq-sunken); }
+  .cq-menu-item.danger { color: var(--cq-danger); }
+  .cq-menu-item.danger:hover { background: hsl(0 84% 96%); }
+  .cq-dark .cq-menu-item.danger:hover { background: hsl(0 50% 18%); }
+  .cq-menu-danger { margin-top: 10px; padding: 10px; border: 1px solid var(--cq-danger); border-radius: 10px; background: hsl(0 84% 98%); }
+  .cq-dark .cq-menu-danger { background: hsl(0 50% 10%); }
+  .cq-menu-footer { border-top: 1px solid var(--cq-line); padding-top: 10px; margin-top: 10px; text-align: center; }
+
+  .cq-auth-overlay {
+    position: fixed; inset: 0;
+    background: rgba(15, 10, 40, 0.55);
+    backdrop-filter: blur(4px);
+    z-index: 100;
+    display: flex; align-items: center; justify-content: center;
+    padding: 20px;
+  }
+  .cq-auth-modal {
+    width: 100%; max-width: 440px;
+    background: var(--cq-surface);
+    border: 1px solid var(--cq-line);
+    border-radius: 20px;
+    box-shadow: 0 30px 80px rgba(0,0,0,.4);
+    max-height: 95vh;
+    overflow: auto;
+  }
+  .cq-auth-head {
+    display: flex; align-items: center; gap: 12px;
+    padding: 16px 18px;
+    background: linear-gradient(135deg, var(--cq-primary), var(--cq-accent));
+    color: white;
+  }
+  .cq-auth-head .cq-close-btn { margin-left: auto; }
+  .cq-auth-warn {
+    margin: 12px; padding: 10px 12px;
+    background: hsl(45 100% 94%); color: hsl(30 80% 30%);
+    border: 1px solid hsl(45 80% 70%); border-radius: 10px;
+    font-size: 12px;
+  }
+  .cq-dark .cq-auth-warn { background: hsl(35 40% 18%); color: hsl(45 80% 80%); border-color: hsl(45 60% 40%); }
+  .cq-auth-form {
+    display: flex; flex-direction: column; gap: 10px;
+    padding: 12px 18px 4px;
+  }
+  .cq-auth-form label {
+    display: flex; flex-direction: column; gap: 4px;
+    font-size: 13px; font-weight: 600; color: var(--cq-ink);
+  }
+  .cq-auth-form .input {
+    background: var(--cq-surface); border: 1.5px solid var(--cq-line);
+    border-radius: 10px; padding: 8px 12px; font-size: 14px;
+    color: var(--cq-ink); font-weight: 400;
+    width: 100%;
+  }
+  .cq-auth-form .input:focus { outline: none; border-color: var(--cq-primary); }
+  .cq-pw-row { display: flex; gap: 6px; align-items: center; }
+  .cq-pw-row .input { flex: 1; }
+  .cq-auth-err {
+    padding: 8px 10px; background: hsl(0 84% 96%);
+    color: hsl(0 70% 40%); border: 1px solid hsl(0 60% 80%);
+    border-radius: 8px; font-size: 12px;
+  }
+  .cq-dark .cq-auth-err { background: hsl(0 50% 15%); color: hsl(0 80% 80%); border-color: hsl(0 50% 40%); }
+  .cq-check { flex-direction: row !important; align-items: center; gap: 6px; }
+  .cq-check input { margin: 0; }
+  .cq-auth-guest {
+    text-align: center; padding: 12px;
+    border-top: 1px solid var(--cq-line);
+  }
+  .cq-auth-form .btn-primary { padding: 10px 14px; font-size: 14px; }
+
+  .cq-guest-banner {
+    display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+    padding: 12px 16px;
+    background: var(--cq-surface);
+    border: 1px solid var(--cq-line);
+    border-radius: 14px;
+    box-shadow: 0 12px 40px rgba(0,0,0,.15);
+  }
+  .cq-guest-icon { font-size: 28px; }
+  .cq-guest-text { flex: 1; min-width: 200px; }
+  .cq-guest-actions { display: flex; gap: 6px; align-items: center; }
+  .cq-guest-close {
+    background: transparent; border: 1px solid var(--cq-line);
+    border-radius: 999px; width: 26px; height: 26px;
+    cursor: pointer; color: var(--cq-muted);
+  }
+  .cq-guest-close:hover { color: var(--cq-ink); border-color: var(--cq-primary); }
+
+  .cq-cloud-setup {
+    padding: 12px 14px;
+    background: linear-gradient(135deg, hsl(230 100% 97%), hsl(258 100% 97%));
+    border: 1px solid hsl(258 60% 85%);
+    border-radius: 10px;
+    margin: 12px;
+  }
+  .cq-dark .cq-cloud-setup {
+    background: linear-gradient(135deg, hsl(258 40% 15%), hsl(258 40% 18%));
+    border-color: hsl(258 50% 40%);
+  }
+  .cq-cloud-setup-row {
+    display: flex; gap: 6px; align-items: stretch;
+  }
+  .cq-cloud-setup-row .input { flex: 1; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; }
+  .cq-cloud-setup-row .btn-primary { padding: 8px 14px; font-size: 13px; white-space: nowrap; }
+  .cq-cloud-ok {
+    padding: 8px 10px;
+    background: hsl(142 76% 95%);
+    color: hsl(142 76% 30%);
+    border: 1px solid hsl(142 60% 70%);
+    border-radius: 8px;
+    font-size: 12px;
+  }
+  .cq-dark .cq-cloud-ok {
+    background: hsl(142 40% 15%); color: hsl(142 80% 80%); border-color: hsl(142 50% 40%);
+  }
+
   .anim-pop     { animation: pop .35s cubic-bezier(.34,1.56,.64,1) both; }
   .anim-slideUp { animation: slideUp .28s ease-out both; }
   .anim-shake   { animation: shake .42s ease-in-out both; }
@@ -7355,7 +7536,1110 @@ function BlockCodingStudio({
 }
 /* === end block coding === */
 
-ReactDOM.createRoot(document.getElementById('root')).render(/*#__PURE__*/React.createElement(App, null));
+
+
+/* === CLOUD ACCOUNTS (injected) === */
+"use strict";
+
+function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
+function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t.return && (u = t.return(), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
+/* ============================================================
+   CLOUD ACCOUNTS — Sign-up / sign-in / auto-sync to Google Sheets
+   ============================================================ */
+
+// Paste your Google Apps Script Web App URL between the quotes below.
+// Leave apiUrl empty (or set enabled:false) to run in local-only mode.
+const CLOUD_CONFIG = {
+  enabled: true,
+  // Master ComputeQuest API — Google Apps Script Web App deployment.
+  // Baked in by the teacher; students never see or configure this.
+  apiUrl: "https://script.google.com/macros/s/AKfycbwZyl1isT7o0162_yCBQLV8KabGEvNcmv-Krzo-vVg9_mA4HmiQZv9-FYJp9Uh8rxXb/exec"
+};
+const AUTH_KEY = 'cq:auth';
+const CLOUD_KEYS = ['cq:progress', 'cq:pyProgress', 'cq:bcProgress', 'cq:analytics', 'cq:pyFree', 'cq:bcFree'];
+
+// --- Session persistence -------------------------------------------
+function loadSavedAuth() {
+  try {
+    const raw = localStorage.getItem(AUTH_KEY);
+    if (!raw) return null;
+    const a = JSON.parse(raw);
+    if (a.sessionExpiry && Number(a.sessionExpiry) < Date.now()) return null;
+    return a;
+  } catch {
+    return null;
+  }
+}
+function persistAuth(a) {
+  try {
+    localStorage.setItem(AUTH_KEY, JSON.stringify(a));
+  } catch {}
+}
+function clearAuth() {
+  try {
+    localStorage.removeItem(AUTH_KEY);
+  } catch {}
+}
+
+// --- Cloud API (talks to Google Apps Script) -----------------------
+// The API URL can be provided EITHER by editing CLOUD_CONFIG.apiUrl in the file
+// OR (much easier) by pasting it once into the in-app "Configure cloud saving"
+// dialog — which stores it in localStorage under 'cq:cloudUrl'.
+function getApiUrl() {
+  // Production: the URL baked into CLOUD_CONFIG always wins.
+  // Any localStorage override is only used when no URL is baked in (dev mode).
+  if (CLOUD_CONFIG.apiUrl && /^https:\/\//.test(CLOUD_CONFIG.apiUrl)) {
+    return CLOUD_CONFIG.apiUrl;
+  }
+  try {
+    const stored = localStorage.getItem('cq:cloudUrl');
+    if (stored && /^https:\/\//.test(stored)) return stored;
+  } catch {}
+  return '';
+}
+function setApiUrl(url) {
+  try {
+    if (url && /^https:\/\//.test(url)) localStorage.setItem('cq:cloudUrl', url);
+    else localStorage.removeItem('cq:cloudUrl');
+    window.dispatchEvent(new CustomEvent('cq-cloudurl-changed'));
+  } catch {}
+}
+async function pingCloudUrl(url) {
+  const res = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ action: 'ping' }) });
+  const data = await res.json();
+  if (!data || data.success !== true) throw new Error('Server responded but not with success:true');
+  return data;
+}
+const CloudAPI = {
+  isConfigured() {
+    const url = getApiUrl();
+    return !!(CLOUD_CONFIG.enabled && url && /^https:\/\//.test(url));
+  },
+  async _call(action, payload) {
+    if (!this.isConfigured()) {
+      const e = new Error('Cloud saving hasn\'t been connected yet. Click ☁️ Configure cloud saving.');
+      e.code = 'NOT_CONFIGURED';
+      throw e;
+    }
+    let res;
+    try {
+      // Apps Script Web App accepts POST with text body (no preflight)
+      res = await fetch(getApiUrl(), {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'text/plain;charset=utf-8'
+        },
+        body: JSON.stringify({
+          action,
+          ...payload
+        }),
+        redirect: 'follow'
+      });
+    } catch (e) {
+      const err = new Error("Couldn't reach the cloud (offline?).");
+      err.code = 'NETWORK';
+      throw err;
+    }
+    let data;
+    try {
+      data = await res.json();
+    } catch {
+      throw new Error('Server returned a non-JSON response (' + res.status + ').');
+    }
+    if (!data || data.success !== true) {
+      const err = new Error(data && data.error || 'Unknown server error.');
+      err.code = data && data.code || 'SERVER';
+      throw err;
+    }
+    return data;
+  },
+  signUp(payload) {
+    return this._call('signup', payload);
+  },
+  signIn(payload) {
+    return this._call('login', payload);
+  },
+  loadProgress(userId, sessionToken) {
+    return this._call('loadProgress', {
+      userId,
+      sessionToken
+    });
+  },
+  saveProgress(userId, sessionToken, bundle, updatedAt) {
+    return this._call('saveProgress', {
+      userId,
+      sessionToken,
+      bundle,
+      updatedAt: updatedAt || new Date().toISOString()
+    });
+  },
+  signOut(userId, sessionToken) {
+    return this._call('logout', {
+      userId,
+      sessionToken
+    });
+  },
+  checkUsername(username) {
+    return this._call('checkUsername', {
+      username
+    });
+  },
+  deleteAccount(userId, sessionToken, password) {
+    return this._call('deleteAccount', {
+      userId,
+      sessionToken,
+      password
+    });
+  },
+  ping() {
+    return this._call('ping', {});
+  }
+};
+
+// --- Progress bundle helpers ---------------------------------------
+function readLocalBundle() {
+  const b = {};
+  for (const k of CLOUD_KEYS) {
+    try {
+      const raw = localStorage.getItem(k);
+      b[k] = raw ? JSON.parse(raw) : null;
+    } catch {
+      b[k] = null;
+    }
+  }
+  return b;
+}
+function writeLocalBundle(bundle) {
+  if (!bundle) return;
+  for (const k of CLOUD_KEYS) {
+    if (Object.prototype.hasOwnProperty.call(bundle, k) && bundle[k] != null) {
+      try {
+        localStorage.setItem(k, JSON.stringify(bundle[k]));
+      } catch {}
+    }
+  }
+}
+
+// --- Safe merge (max/union for growth-only data) --------------------
+function isPlainObj(v) {
+  return v && typeof v === 'object' && !Array.isArray(v);
+}
+function isIsoDate(v) {
+  return typeof v === 'string' && /^\d{4}-\d{2}-\d{2}/.test(v);
+}
+function safeMerge(local, cloud) {
+  if (local == null) return cloud;
+  if (cloud == null) return local;
+  if (Array.isArray(local) && Array.isArray(cloud)) {
+    // Union primitives; concat objects/arrays (best-effort dedupe by JSON)
+    const seen = new Set();
+    const out = [];
+    for (const item of [...local, ...cloud]) {
+      const key = typeof item === 'object' ? JSON.stringify(item) : String(item);
+      if (!seen.has(key)) {
+        seen.add(key);
+        out.push(item);
+      }
+    }
+    return out;
+  }
+  if (typeof local === 'number' && typeof cloud === 'number') {
+    return Math.max(local, cloud);
+  }
+  if (typeof local === 'boolean' && typeof cloud === 'boolean') {
+    return local || cloud;
+  }
+  if (isIsoDate(local) && isIsoDate(cloud)) {
+    return local > cloud ? local : cloud;
+  }
+  if (isPlainObj(local) && isPlainObj(cloud)) {
+    const out = {};
+    const keys = new Set([...Object.keys(local), ...Object.keys(cloud)]);
+    keys.forEach(k => {
+      out[k] = safeMerge(local[k], cloud[k]);
+    });
+    return out;
+  }
+  // Different types: prefer local (student's current context)
+  return local != null ? local : cloud;
+}
+function mergeBundles(localBundle, cloudBundle) {
+  const merged = {};
+  const allKeys = new Set([...Object.keys(localBundle || {}), ...Object.keys(cloudBundle || {})]);
+  allKeys.forEach(k => {
+    merged[k] = safeMerge(localBundle ? localBundle[k] : null, cloudBundle ? cloudBundle[k] : null);
+  });
+  return merged;
+}
+
+// --- Auth context ---------------------------------------------------
+const AuthCtx = React.createContext({
+  user: null,
+  syncStatus: 'idle',
+  online: true,
+  signIn: async () => {},
+  signUp: async () => {},
+  signOut: async () => {},
+  openAuth: () => {},
+  closeAuth: () => {},
+  exportProgress: () => {},
+  deleteAccount: async () => {},
+  syncNow: () => {},
+  isConfigured: false,
+  authOpen: false,
+  authMode: 'signin'
+});
+
+// Patch localStorage.setItem so we get events when our keys change
+(function installStorageWatch() {
+  if (typeof Storage === 'undefined' || Storage.prototype.__cqPatched) return;
+  const orig = Storage.prototype.setItem;
+  Storage.prototype.setItem = function (k, v) {
+    orig.call(this, k, v);
+    try {
+      if (this === window.localStorage && typeof k === 'string' && k.startsWith('cq:') && k !== AUTH_KEY) {
+        window.dispatchEvent(new CustomEvent('cq-storage', {
+          detail: {
+            key: k
+          }
+        }));
+      }
+    } catch {}
+  };
+  Storage.prototype.__cqPatched = true;
+})();
+
+/* CloudSetupPanel (injected) */
+"use strict";
+
+function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
+function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t.return && (u = t.return(), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
+function CloudSetupPanel(_ref) {
+  let onDone = _ref.onDone;
+  const _useState = useState(() => {
+      try {
+        return localStorage.getItem('cq:cloudUrl') || '';
+      } catch {
+        return '';
+      }
+    }),
+    _useState2 = _slicedToArray(_useState, 2),
+    url = _useState2[0],
+    setUrl = _useState2[1];
+  const _useState3 = useState(false),
+    _useState4 = _slicedToArray(_useState3, 2),
+    busy = _useState4[0],
+    setBusy = _useState4[1];
+  const _useState5 = useState(null),
+    _useState6 = _slicedToArray(_useState5, 2),
+    msg = _useState6[0],
+    setMsg = _useState6[1];
+  const _useState7 = useState(false),
+    _useState8 = _slicedToArray(_useState7, 2),
+    ok = _useState8[0],
+    setOk = _useState8[1];
+  const testAndSave = async () => {
+    const trimmed = String(url || '').trim();
+    setMsg(null);
+    setOk(false);
+    if (!/^https:\/\/script\.google\.com\/.*\/exec$/i.test(trimmed) && !/^https:\/\//.test(trimmed)) {
+      setMsg({
+        type: 'err',
+        text: 'That doesn\'t look like a Google Apps Script /exec URL.'
+      });
+      return;
+    }
+    setBusy(true);
+    try {
+      await pingCloudUrl(trimmed);
+      setApiUrl(trimmed);
+      setOk(true);
+      setMsg({
+        type: 'ok',
+        text: '✅ Connected! Cloud saving is on for everyone using this device.'
+      });
+      setTimeout(() => {
+        if (onDone) onDone();
+      }, 900);
+    } catch (e) {
+      setMsg({
+        type: 'err',
+        text: '❌ Couldn\'t reach that URL. Check that: (1) you deployed as a Web App, (2) access = Anyone, (3) the URL ends with /exec.'
+      });
+    } finally {
+      setBusy(false);
+    }
+  };
+  const clear = () => {
+    setApiUrl('');
+    setUrl('');
+    setMsg({
+      type: 'ok',
+      text: 'Cloud URL cleared. Guest mode only for now.'
+    });
+  };
+  const already = CloudAPI.isConfigured();
+  return /*#__PURE__*/React.createElement("div", {
+    className: "cq-cloud-setup"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "font-display text-base mb-1"
+  }, "\u2601\uFE0F ", already ? 'Cloud saving is on' : 'Connect cloud saving'), /*#__PURE__*/React.createElement("div", {
+    className: "text-xs text-muted mb-3"
+  }, "Paste the ", /*#__PURE__*/React.createElement("b", null, "Web App /exec URL"), " from your Google Apps Script deployment. You only need to do this once per device \u2014 it stays in this browser."), /*#__PURE__*/React.createElement("div", {
+    className: "cq-cloud-setup-row"
+  }, /*#__PURE__*/React.createElement("input", {
+    className: "input",
+    value: url,
+    onChange: e => setUrl(e.target.value),
+    placeholder: "https://script.google.com/macros/s/AKfy.../exec",
+    spellCheck: false,
+    autoCorrect: "off",
+    autoCapitalize: "off"
+  }), /*#__PURE__*/React.createElement("button", {
+    className: "btn-primary",
+    onClick: testAndSave,
+    disabled: busy || !url.trim()
+  }, busy ? 'Testing…' : 'Test & save')), msg && /*#__PURE__*/React.createElement("div", {
+    className: msg.type === 'ok' ? 'cq-cloud-ok' : 'cq-auth-err',
+    style: {
+      marginTop: 8
+    }
+  }, msg.text), /*#__PURE__*/React.createElement("div", {
+    className: "text-xs text-muted mt-2"
+  }, "Don't have a URL yet? Follow the one-page guide (", /*#__PURE__*/React.createElement("code", null, "CLOUD-SETUP-GUIDE.md"), ") \u2014 it takes about 5 minutes."), already && /*#__PURE__*/React.createElement("button", {
+    onClick: clear,
+    className: "text-xs text-danger mt-3",
+    style: {
+      textDecoration: 'underline'
+    }
+  }, "Remove cloud URL from this device"));
+}
+
+function AuthProvider(_ref) {
+  let children = _ref.children;
+  const _useState = useState(() => loadSavedAuth()),
+    _useState2 = _slicedToArray(_useState, 2),
+    user = _useState2[0],
+    setUser = _useState2[1];
+  const _useState3 = useState('idle'),
+    _useState4 = _slicedToArray(_useState3, 2),
+    syncStatus = _useState4[0],
+    setSyncStatus = _useState4[1]; // idle | syncing | offline | error
+  const _useState5 = useState(typeof navigator !== 'undefined' ? navigator.onLine : true),
+    _useState6 = _slicedToArray(_useState5, 2),
+    online = _useState6[0],
+    setOnline = _useState6[1];
+  const _useState7 = useState(false),
+    _useState8 = _slicedToArray(_useState7, 2),
+    authOpen = _useState8[0],
+    setAuthOpen = _useState8[1];
+  const _useState9 = useState('signin'),
+    _useState0 = _slicedToArray(_useState9, 2),
+    authMode = _useState0[0],
+    setAuthMode = _useState0[1];
+  const syncTimerRef = useRef(null);
+  const isConfigured = CloudAPI.isConfigured();
+  const openAuth = useCallback(function () {
+    let mode = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'signin';
+    setAuthMode(mode);
+    setAuthOpen(true);
+  }, []);
+  const closeAuth = useCallback(() => setAuthOpen(false), []);
+  const doSyncNow = useCallback(async function () {
+    let options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+    const current = user;
+    if (!current || !isConfigured) return;
+    if (!navigator.onLine) {
+      setSyncStatus('offline');
+      return;
+    }
+    setSyncStatus('syncing');
+    try {
+      const bundle = readLocalBundle();
+      await CloudAPI.saveProgress(current.userId, current.sessionToken, bundle);
+      setSyncStatus('idle');
+    } catch (e) {
+      setSyncStatus(e.code === 'NETWORK' ? 'offline' : 'error');
+      // Retry after 30s on transient failures
+      setTimeout(() => {
+        if (navigator.onLine) doSyncNow();
+      }, 30000);
+    }
+  }, [user, isConfigured]);
+  const scheduleSync = useCallback(() => {
+    if (!user || !isConfigured) return;
+    if (syncTimerRef.current) clearTimeout(syncTimerRef.current);
+    syncTimerRef.current = setTimeout(() => doSyncNow(), 4000);
+  }, [user, isConfigured, doSyncNow]);
+
+  // Load cloud progress + merge on sign-in
+  const bootstrapFromCloud = useCallback(async u => {
+    if (!u || !isConfigured) return;
+    setSyncStatus('syncing');
+    try {
+      const res = await CloudAPI.loadProgress(u.userId, u.sessionToken);
+      const cloudBundle = res.progress && res.progress.bundle ? res.progress.bundle : null;
+      const localBundle = readLocalBundle();
+      const merged = mergeBundles(localBundle, cloudBundle);
+      writeLocalBundle(merged);
+      // Push merged state back to cloud so both sides converge
+      await CloudAPI.saveProgress(u.userId, u.sessionToken, merged);
+      setSyncStatus('idle');
+      // Trigger a UI refresh so components using localStorage-derived state re-read
+      window.dispatchEvent(new CustomEvent('cq-progress-restored'));
+    } catch (e) {
+      setSyncStatus(e.code === 'NETWORK' ? 'offline' : 'error');
+    }
+  }, [isConfigured]);
+
+  // On mount: if we have a saved session, verify by loading progress
+  useEffect(() => {
+    if (user && isConfigured) bootstrapFromCloud(user);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // Storage-change listener triggers debounced sync
+  useEffect(() => {
+    const handler = () => scheduleSync();
+    window.addEventListener('cq-storage', handler);
+    return () => window.removeEventListener('cq-storage', handler);
+  }, [scheduleSync]);
+
+  // Online/offline detection
+  useEffect(() => {
+    const on = () => {
+      setOnline(true);
+      if (user) doSyncNow();
+    };
+    const off = () => {
+      setOnline(false);
+      setSyncStatus('offline');
+    };
+    window.addEventListener('online', on);
+    window.addEventListener('offline', off);
+    return () => {
+      window.removeEventListener('online', on);
+      window.removeEventListener('offline', off);
+    };
+  }, [user, doSyncNow]);
+
+  // Best-effort save on page unload
+  useEffect(() => {
+    const handler = () => {
+      if (!user || !isConfigured) return;
+      try {
+        const bundle = readLocalBundle();
+        const payload = JSON.stringify({
+          action: 'saveProgress',
+          userId: user.userId,
+          sessionToken: user.sessionToken,
+          bundle,
+          updatedAt: new Date().toISOString()
+        });
+        if (navigator.sendBeacon) {
+          navigator.sendBeacon(getApiUrl(), new Blob([payload], {
+            type: 'text/plain;charset=utf-8'
+          }));
+        }
+      } catch {}
+    };
+    window.addEventListener('beforeunload', handler);
+    return () => window.removeEventListener('beforeunload', handler);
+  }, [user, isConfigured]);
+  const signIn = useCallback(async (usernameOrEmail, password) => {
+    if (!isConfigured) throw new Error('Cloud saving is not configured yet. Ask the teacher to add the API URL.');
+    const res = await CloudAPI.signIn({
+      usernameOrEmail,
+      password
+    });
+    const u = {
+      ...res.user,
+      sessionToken: res.sessionToken,
+      sessionExpiry: res.sessionExpiry
+    };
+    persistAuth(u);
+    setUser(u);
+    // Merge cloud progress into local
+    const cloudBundle = res.progress && res.progress.bundle ? res.progress.bundle : null;
+    const localBundle = readLocalBundle();
+    const merged = mergeBundles(localBundle, cloudBundle);
+    writeLocalBundle(merged);
+    try {
+      await CloudAPI.saveProgress(u.userId, u.sessionToken, merged);
+      setSyncStatus('idle');
+    } catch (e) {
+      setSyncStatus(e.code === 'NETWORK' ? 'offline' : 'error');
+    }
+    window.dispatchEvent(new CustomEvent('cq-progress-restored'));
+    return u;
+  }, [isConfigured]);
+  const signUp = useCallback(async payload => {
+    if (!isConfigured) throw new Error('Cloud saving is not configured yet. Ask the teacher to add the API URL.');
+    const res = await CloudAPI.signUp(payload);
+    const u = {
+      ...res.user,
+      sessionToken: res.sessionToken,
+      sessionExpiry: res.sessionExpiry
+    };
+    persistAuth(u);
+    setUser(u);
+    // First push local (if any) up to cloud
+    const localBundle = readLocalBundle();
+    try {
+      await CloudAPI.saveProgress(u.userId, u.sessionToken, localBundle);
+      setSyncStatus('idle');
+    } catch (e) {
+      setSyncStatus(e.code === 'NETWORK' ? 'offline' : 'error');
+    }
+    return u;
+  }, [isConfigured]);
+  const signOut = useCallback(async () => {
+    const u = user;
+    // Do a final sync so nothing is lost
+    if (u && isConfigured && navigator.onLine) {
+      try {
+        const bundle = readLocalBundle();
+        await CloudAPI.saveProgress(u.userId, u.sessionToken, bundle);
+        await CloudAPI.signOut(u.userId, u.sessionToken);
+      } catch {}
+    }
+    clearAuth();
+    setUser(null);
+    setSyncStatus('idle');
+  }, [user, isConfigured]);
+  const exportProgress = useCallback(() => {
+    const bundle = readLocalBundle();
+    const payload = {
+      app: 'ComputeQuest',
+      exportedAt: new Date().toISOString(),
+      user: user ? {
+        userId: user.userId,
+        displayName: user.displayName
+      } : null,
+      bundle
+    };
+    const blob = new Blob([JSON.stringify(payload, null, 2)], {
+      type: 'application/json'
+    });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'computequest-progress-' + (user ? user.username : 'guest') + '-' + new Date().toISOString().slice(0, 10) + '.json';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  }, [user]);
+  const deleteAccount = useCallback(async password => {
+    if (!user) return;
+    await CloudAPI.deleteAccount(user.userId, user.sessionToken, password);
+    clearAuth();
+    setUser(null);
+    setSyncStatus('idle');
+    // Also clear local progress since account is gone
+    for (const k of CLOUD_KEYS) {
+      try {
+        localStorage.removeItem(k);
+      } catch {}
+    }
+    window.location.reload();
+  }, [user]);
+  const ctx = {
+    user,
+    syncStatus,
+    online,
+    isConfigured,
+    signIn,
+    signUp,
+    signOut,
+    openAuth,
+    closeAuth,
+    exportProgress,
+    deleteAccount,
+    syncNow: () => doSyncNow(),
+    authOpen,
+    authMode,
+    setAuthMode
+  };
+  return /*#__PURE__*/React.createElement(AuthCtx.Provider, {
+    value: ctx
+  }, children, authOpen && /*#__PURE__*/React.createElement(AuthModal, null));
+}
+function useAuth() {
+  return React.useContext(AuthCtx);
+}
+
+// --- Sign-in / Sign-up modal ---------------------------------------
+function AuthModal() {
+  const auth = useAuth();
+  const _useState1 = useState(auth.authMode || 'signin'),
+    _useState10 = _slicedToArray(_useState1, 2),
+    mode = _useState10[0],
+    setMode = _useState10[1];
+  const _useState11 = useState(false),
+    _useState12 = _slicedToArray(_useState11, 2),
+    busy = _useState12[0],
+    setBusy = _useState12[1];
+  const _useState13 = useState(null),
+    _useState14 = _slicedToArray(_useState13, 2),
+    err = _useState14[0],
+    setErr = _useState14[1];
+  const _useState15 = useState(false),
+    _useState16 = _slicedToArray(_useState15, 2),
+    showPw = _useState16[0],
+    setShowPw = _useState16[1];
+  // Sign-in fields
+  const _useState17 = useState(''),
+    _useState18 = _slicedToArray(_useState17, 2),
+    siUser = _useState18[0],
+    setSiUser = _useState18[1];
+  const _useState19 = useState(''),
+    _useState20 = _slicedToArray(_useState19, 2),
+    siPw = _useState20[0],
+    setSiPw = _useState20[1];
+  // Sign-up fields
+  const _useState21 = useState(''),
+    _useState22 = _slicedToArray(_useState21, 2),
+    suUsername = _useState22[0],
+    setSuUsername = _useState22[1];
+  const _useState23 = useState(''),
+    _useState24 = _slicedToArray(_useState23, 2),
+    suDisplay = _useState24[0],
+    setSuDisplay = _useState24[1];
+  const _useState25 = useState(''),
+    _useState26 = _slicedToArray(_useState25, 2),
+    suEmail = _useState26[0],
+    setSuEmail = _useState26[1];
+  const _useState27 = useState(''),
+    _useState28 = _slicedToArray(_useState27, 2),
+    suPw = _useState28[0],
+    setSuPw = _useState28[1];
+  const _useState29 = useState(''),
+    _useState30 = _slicedToArray(_useState29, 2),
+    suPw2 = _useState30[0],
+    setSuPw2 = _useState30[1];
+  const _useState31 = useState('7'),
+    _useState32 = _slicedToArray(_useState31, 2),
+    suYear = _useState32[0],
+    setSuYear = _useState32[1];
+  const _useState33 = useState(false),
+    _useState34 = _slicedToArray(_useState33, 2),
+    suAgree = _useState34[0],
+    setSuAgree = _useState34[1];
+  const doSignIn = async e => {
+    e && e.preventDefault();
+    setErr(null);
+    setBusy(true);
+    try {
+      await auth.signIn(siUser.trim(), siPw);
+      auth.closeAuth();
+    } catch (ex) {
+      setErr(ex.message);
+    } finally {
+      setBusy(false);
+    }
+  };
+  const doSignUp = async e => {
+    e && e.preventDefault();
+    setErr(null);
+    if (!suAgree) return setErr('Please tick the box to confirm.');
+    if (suPw !== suPw2) return setErr('The two passwords don\'t match.');
+    if (suPw.length < 6) return setErr('Password must be at least 6 characters.');
+    if (!/^[a-zA-Z0-9_.-]{3,30}$/.test(suUsername)) return setErr('Username must be 3-30 letters, numbers, . _ - only.');
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(suEmail)) return setErr('Please enter a valid email.');
+    setBusy(true);
+    try {
+      await auth.signUp({
+        username: suUsername.trim(),
+        email: suEmail.trim(),
+        password: suPw,
+        displayName: suDisplay.trim() || suUsername.trim(),
+        yearGroup: suYear
+      });
+      auth.closeAuth();
+    } catch (ex) {
+      setErr(ex.message);
+    } finally {
+      setBusy(false);
+    }
+  };
+  const isSignIn = mode === 'signin';
+  return /*#__PURE__*/React.createElement("div", {
+    className: "cq-auth-overlay",
+    onClick: e => {
+      if (e.target.classList.contains('cq-auth-overlay')) auth.closeAuth();
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "cq-auth-modal anim-pop"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "cq-auth-head"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "text-3xl"
+  }, "\uD83E\uDDE0"), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    className: "font-display text-lg"
+  }, isSignIn ? 'Welcome back!' : 'Create your student account'), /*#__PURE__*/React.createElement("div", {
+    className: "text-xs text-muted"
+  }, "Save your progress across devices.")), /*#__PURE__*/React.createElement("button", {
+    className: "cq-close-btn",
+    onClick: auth.closeAuth,
+    "aria-label": "Close"
+  }, "\u2715")), !auth.isConfigured && /*#__PURE__*/React.createElement("div", {
+    className: "cq-auth-warn"
+  }, /*#__PURE__*/React.createElement(CloudSetupPanel, { onDone: () => { setTimeout(() => window.location.reload(), 400); } })), isSignIn ? /*#__PURE__*/React.createElement("form", {
+    className: "cq-auth-form",
+    onSubmit: doSignIn
+  }, /*#__PURE__*/React.createElement("label", null, "Username or email", /*#__PURE__*/React.createElement("input", {
+    className: "input",
+    value: siUser,
+    onChange: e => setSiUser(e.target.value),
+    autoFocus: true,
+    autoCapitalize: "off",
+    autoCorrect: "off"
+  })), /*#__PURE__*/React.createElement("label", null, "Password", /*#__PURE__*/React.createElement("div", {
+    className: "cq-pw-row"
+  }, /*#__PURE__*/React.createElement("input", {
+    className: "input",
+    type: showPw ? 'text' : 'password',
+    value: siPw,
+    onChange: e => setSiPw(e.target.value)
+  }), /*#__PURE__*/React.createElement("button", {
+    type: "button",
+    className: "btn-ghost !py-1 !px-2 text-xs",
+    onClick: () => setShowPw(s => !s)
+  }, showPw ? 'Hide' : 'Show'))), err && /*#__PURE__*/React.createElement("div", {
+    className: "cq-auth-err"
+  }, "\u26A0 ", err), /*#__PURE__*/React.createElement("button", {
+    type: "submit",
+    className: "btn-primary",
+    disabled: busy || !auth.isConfigured
+  }, busy ? 'Signing in…' : 'Sign in'), /*#__PURE__*/React.createElement("div", {
+    className: "text-sm text-center mt-2"
+  }, "Don't have an account?", ' ', /*#__PURE__*/React.createElement("button", {
+    type: "button",
+    className: "text-primary underline",
+    onClick: () => setMode('signup')
+  }, "Create account")), /*#__PURE__*/React.createElement("div", {
+    className: "text-xs text-muted text-center mt-1"
+  }, "Forgot password? Password reset isn't available yet \u2014 ask your teacher.")) : /*#__PURE__*/React.createElement("form", {
+    className: "cq-auth-form",
+    onSubmit: doSignUp
+  }, /*#__PURE__*/React.createElement("label", null, "Username", /*#__PURE__*/React.createElement("input", {
+    className: "input",
+    value: suUsername,
+    onChange: e => setSuUsername(e.target.value),
+    autoFocus: true,
+    autoCapitalize: "off",
+    autoCorrect: "off",
+    placeholder: "e.g. joseph_b"
+  })), /*#__PURE__*/React.createElement("label", null, "Display name", /*#__PURE__*/React.createElement("input", {
+    className: "input",
+    value: suDisplay,
+    onChange: e => setSuDisplay(e.target.value),
+    placeholder: "What should we call you?"
+  })), /*#__PURE__*/React.createElement("label", null, "Email", /*#__PURE__*/React.createElement("input", {
+    className: "input",
+    type: "email",
+    value: suEmail,
+    onChange: e => setSuEmail(e.target.value),
+    autoCapitalize: "off",
+    autoCorrect: "off"
+  })), /*#__PURE__*/React.createElement("label", null, "Password", /*#__PURE__*/React.createElement("input", {
+    className: "input",
+    type: showPw ? 'text' : 'password',
+    value: suPw,
+    onChange: e => setSuPw(e.target.value)
+  })), /*#__PURE__*/React.createElement("label", null, "Confirm password", /*#__PURE__*/React.createElement("input", {
+    className: "input",
+    type: showPw ? 'text' : 'password',
+    value: suPw2,
+    onChange: e => setSuPw2(e.target.value)
+  })), /*#__PURE__*/React.createElement("label", null, "Year group", /*#__PURE__*/React.createElement("select", {
+    className: "input",
+    value: suYear,
+    onChange: e => setSuYear(e.target.value)
+  }, /*#__PURE__*/React.createElement("option", {
+    value: "7"
+  }, "Year 7"), /*#__PURE__*/React.createElement("option", {
+    value: "8"
+  }, "Year 8"), /*#__PURE__*/React.createElement("option", {
+    value: "9"
+  }, "Year 9"), /*#__PURE__*/React.createElement("option", {
+    value: "other"
+  }, "Other"))), /*#__PURE__*/React.createElement("label", {
+    className: "cq-check"
+  }, /*#__PURE__*/React.createElement("input", {
+    type: "checkbox",
+    checked: suAgree,
+    onChange: e => setSuAgree(e.target.checked)
+  }), /*#__PURE__*/React.createElement("span", null, "I understand this account is for using ComputeQuest.")), err && /*#__PURE__*/React.createElement("div", {
+    className: "cq-auth-err"
+  }, "\u26A0 ", err), /*#__PURE__*/React.createElement("button", {
+    type: "submit",
+    className: "btn-primary",
+    disabled: busy || !auth.isConfigured
+  }, busy ? 'Creating account…' : 'Create account'), /*#__PURE__*/React.createElement("div", {
+    className: "text-sm text-center mt-2"
+  }, "Already have an account?", ' ', /*#__PURE__*/React.createElement("button", {
+    type: "button",
+    className: "text-primary underline",
+    onClick: () => setMode('signin')
+  }, "Sign in"))), /*#__PURE__*/React.createElement("div", {
+    className: "cq-auth-guest"
+  }, /*#__PURE__*/React.createElement("button", {
+    className: "btn-ghost text-sm",
+    onClick: () => auth.closeAuth()
+  }, "Continue as guest"), /*#__PURE__*/React.createElement("div", {
+    className: "text-xs text-muted mt-1"
+  }, "Guest progress stays on this device only."))));
+}
+
+// --- Sync status chip ----------------------------------------------
+function SyncBadge() {
+  const auth = useAuth();
+  if (!auth.user) return null;
+  const map = {
+    idle: {
+      icon: '☁️',
+      label: 'Synced',
+      color: 'var(--cq-success)'
+    },
+    syncing: {
+      icon: '🟡',
+      label: 'Syncing…',
+      color: 'var(--cq-warn)'
+    },
+    offline: {
+      icon: '🔴',
+      label: 'Offline',
+      color: 'var(--cq-danger)'
+    },
+    error: {
+      icon: '⚠️',
+      label: 'Sync failed',
+      color: 'var(--cq-danger)'
+    }
+  };
+  const s = map[auth.syncStatus] || map.idle;
+  return /*#__PURE__*/React.createElement("span", {
+    className: "cq-sync-badge",
+    title: s.label,
+    style: {
+      color: s.color
+    }
+  }, s.icon, " ", /*#__PURE__*/React.createElement("span", {
+    className: "cq-sync-lbl"
+  }, s.label));
+}
+
+// --- Floating account chip (top-right, over Header) -----------------
+function AccountFloater() {
+  const auth = useAuth();
+  const _useState35 = useState(false),
+    _useState36 = _slicedToArray(_useState35, 2),
+    menuOpen = _useState36[0],
+    setMenuOpen = _useState36[1];
+  const _useState37 = useState(false),
+    _useState38 = _slicedToArray(_useState37, 2),
+    deleting = _useState38[0],
+    setDeleting = _useState38[1];
+  const _useState39 = useState(''),
+    _useState40 = _slicedToArray(_useState39, 2),
+    delPw = _useState40[0],
+    setDelPw = _useState40[1];
+  const _useState41 = useState(null),
+    _useState42 = _slicedToArray(_useState41, 2),
+    delErr = _useState42[0],
+    setDelErr = _useState42[1];
+  if (!auth.user) {
+    const configured = CloudAPI.isConfigured();
+    return /*#__PURE__*/React.createElement("div", {
+      className: "cq-account-floater"
+    }, /*#__PURE__*/React.createElement("button", {
+      className: "cq-signin-chip",
+      onClick: () => auth.openAuth('signin'),
+      title: configured ? "Sign in to save progress across devices" : "Click to connect Google Sheets cloud saving"
+    }, configured ? "\u2601\uFE0F Sign in / Sign up" : "\u2601\uFE0F Set up cloud saving"));
+  }
+  const initial = (auth.user.displayName || auth.user.username || '?').charAt(0).toUpperCase();
+  return /*#__PURE__*/React.createElement("div", {
+    className: "cq-account-floater"
+  }, /*#__PURE__*/React.createElement(SyncBadge, null), /*#__PURE__*/React.createElement("button", {
+    className: "cq-account-chip",
+    onClick: () => setMenuOpen(o => !o),
+    title: auth.user.displayName || auth.user.username
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "cq-avatar"
+  }, initial), /*#__PURE__*/React.createElement("span", {
+    className: "cq-name"
+  }, auth.user.displayName || auth.user.username)), menuOpen && /*#__PURE__*/React.createElement("div", {
+    className: "cq-account-menu anim-pop",
+    onClick: e => e.stopPropagation()
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "cq-menu-head"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "cq-avatar cq-avatar-lg"
+  }, initial), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    className: "font-display"
+  }, auth.user.displayName || auth.user.username), /*#__PURE__*/React.createElement("div", {
+    className: "text-xs text-muted"
+  }, "Year ", auth.user.yearGroup || '—', " \xB7 ", /*#__PURE__*/React.createElement("span", {
+    className: "font-mono"
+  }, auth.user.userId)), /*#__PURE__*/React.createElement("div", {
+    className: "text-xs text-muted"
+  }, "@", auth.user.username))), /*#__PURE__*/React.createElement("div", {
+    className: "cq-menu-actions"
+  }, /*#__PURE__*/React.createElement("button", {
+    className: "cq-menu-item",
+    onClick: () => {
+      auth.syncNow();
+    }
+  }, "\uD83D\uDD04 Sync now"), /*#__PURE__*/React.createElement("button", {
+    className: "cq-menu-item",
+    onClick: () => {
+      auth.exportProgress();
+      setMenuOpen(false);
+    }
+  }, "\uD83D\uDCBE Download my progress"), /*#__PURE__*/React.createElement("button", {
+    className: "cq-menu-item",
+    onClick: () => {
+      setDeleting(true);
+    }
+  }, "\uD83D\uDDD1 Delete account"), /*#__PURE__*/React.createElement("button", {
+    className: "cq-menu-item danger",
+    onClick: async () => {
+      await auth.signOut();
+      setMenuOpen(false);
+    }
+  }, "\u21A9 Sign out")), deleting && /*#__PURE__*/React.createElement("div", {
+    className: "cq-menu-danger"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "text-sm font-semibold mb-1"
+  }, "Delete account?"), /*#__PURE__*/React.createElement("div", {
+    className: "text-xs text-muted mb-2"
+  }, "This will remove your account and cloud progress. This cannot be undone."), /*#__PURE__*/React.createElement("input", {
+    className: "input",
+    type: "password",
+    value: delPw,
+    onChange: e => setDelPw(e.target.value),
+    placeholder: "Enter your password to confirm"
+  }), delErr && /*#__PURE__*/React.createElement("div", {
+    className: "cq-auth-err mt-1"
+  }, delErr), /*#__PURE__*/React.createElement("div", {
+    className: "flex gap-2 mt-2"
+  }, /*#__PURE__*/React.createElement("button", {
+    className: "btn-ghost text-sm",
+    onClick: () => {
+      setDeleting(false);
+      setDelPw('');
+      setDelErr(null);
+    }
+  }, "Cancel"), /*#__PURE__*/React.createElement("button", {
+    className: "btn-primary text-sm",
+    style: {
+      background: 'var(--cq-danger)'
+    },
+    onClick: async () => {
+      try {
+        setDelErr(null);
+        await auth.deleteAccount(delPw);
+      } catch (ex) {
+        setDelErr(ex.message);
+      }
+    }
+  }, "Delete for good"))), /*#__PURE__*/React.createElement("div", {
+    className: "cq-menu-footer"
+  }, /*#__PURE__*/React.createElement("button", {
+    className: "text-xs text-muted",
+    onClick: () => setMenuOpen(false)
+  }, "Close"))));
+}
+
+// --- Guest banner (shown to logged-out users on home) --------------
+function GuestBanner() {
+  const auth = useAuth();
+  const _useState43 = useState(() => {
+      try {
+        return sessionStorage.getItem('cq:guestBannerDismissed') === '1';
+      } catch {
+        return false;
+      }
+    }),
+    _useState44 = _slicedToArray(_useState43, 2),
+    dismissed = _useState44[0],
+    setDismissed = _useState44[1];
+  if (auth.user || dismissed || !auth.isConfigured) return null;
+  return /*#__PURE__*/React.createElement("div", {
+    className: "cq-guest-banner anim-slideUp"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "cq-guest-icon"
+  }, "\u2601\uFE0F"), /*#__PURE__*/React.createElement("div", {
+    className: "cq-guest-text"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "font-display"
+  }, "You're playing as a guest"), /*#__PURE__*/React.createElement("div", {
+    className: "text-sm text-muted"
+  }, "Create an account to save XP, badges, streaks and Python/Block progress across devices.")), /*#__PURE__*/React.createElement("div", {
+    className: "cq-guest-actions"
+  }, /*#__PURE__*/React.createElement("button", {
+    className: "btn-primary text-sm",
+    onClick: () => auth.openAuth('signup')
+  }, "Create account"), /*#__PURE__*/React.createElement("button", {
+    className: "btn-ghost text-sm",
+    onClick: () => auth.openAuth('signin')
+  }, "Sign in"), /*#__PURE__*/React.createElement("button", {
+    className: "cq-guest-close",
+    onClick: () => {
+      try {
+        sessionStorage.setItem('cq:guestBannerDismissed', '1');
+      } catch {}
+      setDismissed(true);
+    },
+    "aria-label": "Dismiss"
+  }, "\u2715")));
+}
+
+// --- Root shell: wraps AuthProvider around App --------------------
+function RootShell() {
+  return /*#__PURE__*/React.createElement(AuthProvider, null, /*#__PURE__*/React.createElement(App, null), /*#__PURE__*/React.createElement(AccountFloater, null), /*#__PURE__*/React.createElement(GuestBannerHost, null));
+}
+
+// Portal-style host: injects the guest banner near the top of <main>
+function GuestBannerHost() {
+  const auth = useAuth();
+  useEffect(() => {
+    // Re-render on route change
+    const iv = setInterval(() => {}, 1000);
+    return () => clearInterval(iv);
+  }, []);
+  if (auth.user || !auth.isConfigured) return null;
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: 'fixed',
+      bottom: 22,
+      left: 22,
+      right: 22,
+      maxWidth: 560,
+      margin: '0 auto',
+      pointerEvents: 'none',
+      zIndex: 75
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      pointerEvents: 'auto'
+    }
+  }, /*#__PURE__*/React.createElement(GuestBanner, null)));
+}
+/* === end accounts === */
+
+ReactDOM.createRoot(document.getElementById('root')).render(/*#__PURE__*/React.createElement(RootShell, null));
 }); /* end of __cqLoadReact.then wrapper */
 </script>
 </body>
